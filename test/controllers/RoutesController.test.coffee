@@ -15,5 +15,5 @@ describe 'angular | RoutesController', ->
     inject ($httpBackend)->
       $httpBackend.expectGET('/api/v1/routes/list').respond ['/','/b']
       $httpBackend.flush()
-      scope.routes[1].assert_Is '/b aaaaa'
+      scope.routes[1].assert_Is '/b'
       scope.routes.assert_Is ['/','/b']
