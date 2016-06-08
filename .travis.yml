@@ -10,3 +10,7 @@ before_script:
   - bower install
   - npm install -g gulp
   - cd ui; gulp; cd ..
+  - ls -la
+
+script:
+  - npm test
