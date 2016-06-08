@@ -12,12 +12,12 @@ module.exports = (wallaby)->
       #{pattern: 'bower_components/chai/chai.js', instrument: true},
       just_Load  'node_modules/chai/chai.js'
         
-      './ui/src/**/*.coffee'
-      './ui/.dist/js/templates.js'
+      './src/**/*.coffee'
+      './.dist/js/templates.js'
 
     ]
     tests : [
-      './ui/test/**/*.coffee'
+      './test/**/*.coffee'
     ]
 
     bootstrap:  ()->

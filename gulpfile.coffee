@@ -33,4 +33,4 @@ gulp.task 'watch', ['compile-coffee', 'compile-pug', 'templateCache'], ()->
   gulp.watch source_Folder, ['compile-coffee']
   gulp.watch pug_Folder, ['compile-pug', 'templateCache']
 
-gulp.task 'default', ['compile-coffee','compile-pug'], ()->
+gulp.task 'default', ['compile-coffee','compile-pug', 'templateCache'], ()->

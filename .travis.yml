@@ -1,0 +1,12 @@
+language: node_js
+
+node_js:
+  - "5"
+
+
+before_script:
+
+  - npm install -g bower
+  - bower install
+  - npm install -g gulp
+  - cd ui; gulp; cd ..
