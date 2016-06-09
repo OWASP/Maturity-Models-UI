@@ -1,12 +1,12 @@
 {
-  "name": "bsimm-graphs",
-  "description": "BSIMM Graphs",
+  "name": "maturity-models-ui",
+  "description": "Maturity Models UI",
   "main": "index.js",
   "authors": [
     "Dinis Cruz"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/DinisCruz/BSIMM-Graphs",
+  "homepage": "https://github.com/DinisCruz/Maturity-Models-UI",
   "moduleType": [],
   "dependencies": {
     "d3": "~3.5.16",
