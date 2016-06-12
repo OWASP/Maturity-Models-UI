@@ -16,7 +16,7 @@ div.ng-hide(ng-controller='EditDataController' ng-show='data')
             a.button.postfix(ng-click='save_Data()') save
         .small-1.columns
         .small-4.columns
-            .center.label.success.round {{status}}
+            .center.label.round(ng-class='messageClass') {{status}}
 
     .row.fullWidth
         hr

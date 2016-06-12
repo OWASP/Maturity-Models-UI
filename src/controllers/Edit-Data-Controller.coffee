@@ -1,11 +1,16 @@
 angular.module('MM_Graph')
   .controller 'EditDataController', ($scope, $routeParams,  MM_Graph_API)->
     target = $routeParams.target
-
+    $scope.messageClass = 'secondary'
     $scope.save_Data = ()->
       #$scope.status = 'saving data ....'
       MM_Graph_API.file_Save $scope.target, $scope.data, (result)->
-        $scope.status = result
+        if result.error
+          $scope.messageClass = 'alert'
+          $scope.status = result.error
+        else
+          $scope.messageClass = 'success'
+          $scope.status = result.status
 
 
     if target
