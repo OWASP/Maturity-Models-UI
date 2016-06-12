@@ -1,0 +1,14 @@
+.activity-table .panel.callout {
+          padding-top: 1px;
+          padding-bottom: 1px;
+      }
+
+.activity-table td {
+          padding: 2px !important;
+          text-align: center !important;
+      }
+
+.activity-table input[type="radio"] {
+          vertical-align: middle !important;
+          margin :0px !important;
+      }
