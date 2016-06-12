@@ -1,0 +1,9 @@
+.row
+    div(ng-controller='ProjectsController')
+        div.callout.large.primary
+            div.row.column
+                h4 Projects
+                pre {{test}}
+                //ul
+                    #routes(ng-repeat="(key, value) in routes.sort()")
+                        a(href='{{value}}' target='_self') {{value}}
