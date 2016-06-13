@@ -42,4 +42,4 @@ gulp.task 'watch', ['compile-coffee', 'compile-pug', 'templateCache', 'concat-cs
   gulp.watch pug_Files   , ['compile-pug', 'templateCache']
   gulp.watch css_Files   , ['concat-css']
 
-gulp.task 'default', ['compile-coffee','compile-pug', 'templateCache'], ()->
+gulp.task 'default', ['compile-coffee','compile-pug', 'templateCache', 'concat-css'], ()->
