@@ -15,7 +15,4 @@ describe '| directive | activity-table', ->
       $compile(template)($scope);
       $scope.$apply();
       element = template
-
-  it '<simple/>',->
-    element.find('style').text().assert_Contains 'panel.callout'
     
