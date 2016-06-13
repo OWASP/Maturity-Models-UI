@@ -1,19 +1,44 @@
 angular.module('MM_Graph')
-  .controller 'RadarController', ($scope, $routeParams, MM_Graph_API)->
+  .controller 'RadarControllerAll', ($scope, $routeParams, MM_Graph_API)->
     $scope.version = 'v0.7.7'
 
-    target     = $scope.target     || $routeParams.target
-    target_Div = '.chart-container' #'.chart-' + target
+    target = 'team-A'
+    target_Div = '.radar-all-data'
 
-    if target
-      MM_Graph_API.file_Get target,(result)->
-        $scope.data = result
-        $scope.team = result.metadata.team
+    all_Data = {}
 
-        mapData result, (data)->
-          showRadar(data)
+    mapData = (list, next)->
+      item = list.pop()
+      if not item
+        console.log 'all done'
+        return next()
+      else
+        if item.contains('team') #or !(['team-A', 'team-B', 'team-C'].contains item)
+          if not (['team-A', 'team-B', 'team-C','team-D','team-random'].contains item)
+            console.log 'mapping ' + item
+            MM_Graph_API.file_Get item,(data)->
+              all_Data[item] =  data
+              #console.log data
+              return mapData list, next
 
-    mapData = (result, next)->
+        mapData list, next
+
+    MM_Graph_API.file_List (list)->
+      mapData list, ->
+        console.log 'ready to plot graph'
+        showRadar()
+
+    showRadar  = ()->
+      data = []
+      data.push get_Radar_Fields()
+      data.push get_Default_Data()
+      for key,value of all_Data
+        calculate_Data value, (team_Data)->
+          data.push map_Team_Data team_Data
+
+      RadarChart.draw target_Div, data, radar_Config()
+
+    calculate_Data = (result, next)->
 
       calculate = (activity, prefix)->
         score = 0.2
@@ -37,13 +62,15 @@ angular.module('MM_Graph')
         AM  : calculate 'Deployment'  , 'AM'
         T   : calculate 'Governance'  , 'T'
         CP  : calculate 'Governance'  , 'CP'
+
       next data
 
     radar_Config = ()->
       config =
         color: (index)->
-              return ['black', 'orange', 'green'][index];
-        w: 450,
+              return ['black', 'orange', 'Aqua', 'Cyan', 'Blue', 'Red',
+                      'Pink','Turquoise','Lime','DarkTurquoise','CadetBlue'][index];
+        w: 1050,
         h: 450,
         levels: 6,
         maxValue: 3.0
@@ -51,18 +78,18 @@ angular.module('MM_Graph')
 
     get_Radar_Fields = ()->
       axes: [
-        {axis: "Strategy & Metrics", xOffset: 1, value: 0},
-        {axis: "Conf & Vuln Management", xOffset: -110, value: 0},
-        {axis: "Software Environment", xOffset: -30, value: 0},
-        {axis: "Penetration Testing", xOffset: 1, value: 0},
-        {axis: "Security Testing", xOffset: -25, value: 0},
-        {axis: "Code Review", xOffset: -60, value: 0},
-        {axis: "Architecture Analysis", xOffset: 1, value: 0},
-        {axis: "Standards & Requirements", xOffset: 100, value: 0},
-        {axis: "Security Features & Design", xOffset: 30, value: 0},
-        {axis: "Attack Models", xOffset: 1, value: 0},
-        {axis: "Training", xOffset: 30, value: 0},
-        {axis: "Compliance and Policy", xOffset: 100, value: 0},
+        {axis: "SM"   , yOffset: -2, value: 0},
+        {axis: "CMVM" , xOffset: -30, value: 0},
+        {axis: "SE"   , xOffset: -10, value: 0},
+        {axis: "PT"   , xOffset: -1, value: 0},
+        {axis: "ST"   , xOffset: -10, value: 0},
+        {axis: "CR"   , xOffset: -10, value: 0},
+        {axis: "AA"   , xOffset: 1, value: 0},
+        {axis: "SR"   , xOffset: 10, value: 0},
+        {axis: "SFD"  , xOffset: 12, value: 0},
+        {axis: "AM"   , xOffset: 1, value: 0},
+        {axis: "T"    , xOffset: 2, value: 0},
+        {axis: "CP"   , xOffset: 10, value: 0},
       ]
 
     get_Default_Data = ()->
@@ -80,9 +107,9 @@ angular.module('MM_Graph')
         {value: 1.2},  # Training
         {value: 2.1},  # Compliance and Policy
       ]
+
     map_Team_Data = (data)->
       {
-        colour: 'red',
         axes: [
           {value: data.SM  },  # Strategy & Metrics
           {value: data.CMVM},  # Configuration & Vulnerability Management
@@ -99,10 +126,3 @@ angular.module('MM_Graph')
         ]
       }
 
-    showRadar  = (team_Data)->
-      data = []
-      data.push get_Radar_Fields()
-      data.push get_Default_Data()
-      data.push map_Team_Data(team_Data)
-
-      RadarChart.draw target_Div, data, radar_Config()

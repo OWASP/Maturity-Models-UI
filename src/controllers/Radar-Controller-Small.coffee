@@ -1,9 +1,9 @@
 angular.module('MM_Graph')
-  .controller 'RadarController', ($scope, $routeParams, MM_Graph_API)->
+  .controller 'RadarControllerSmall', ($scope, $routeParams, MM_Graph_API)->
     $scope.version = 'v0.7.7'
 
     target     = $scope.target     || $routeParams.target
-    target_Div = '.chart-container' #'.chart-' + target
+    target_Div = '.chart-' + target
 
     if target
       MM_Graph_API.file_Get target,(result)->
@@ -43,26 +43,26 @@ angular.module('MM_Graph')
       config =
         color: (index)->
               return ['black', 'orange', 'green'][index];
-        w: 450,
-        h: 450,
+        w: 250,
+        h: 250,
         levels: 6,
         maxValue: 3.0
       config
 
     get_Radar_Fields = ()->
       axes: [
-        {axis: "Strategy & Metrics", xOffset: 1, value: 0},
-        {axis: "Conf & Vuln Management", xOffset: -110, value: 0},
-        {axis: "Software Environment", xOffset: -30, value: 0},
-        {axis: "Penetration Testing", xOffset: 1, value: 0},
-        {axis: "Security Testing", xOffset: -25, value: 0},
-        {axis: "Code Review", xOffset: -60, value: 0},
-        {axis: "Architecture Analysis", xOffset: 1, value: 0},
-        {axis: "Standards & Requirements", xOffset: 100, value: 0},
-        {axis: "Security Features & Design", xOffset: 30, value: 0},
-        {axis: "Attack Models", xOffset: 1, value: 0},
-        {axis: "Training", xOffset: 30, value: 0},
-        {axis: "Compliance and Policy", xOffset: 100, value: 0},
+        {axis: "SM"   , yOffset: -2, value: 0},
+        {axis: "CMVM" , xOffset: -30, value: 0},
+        {axis: "SE"   , xOffset: -10, value: 0},
+        {axis: "PT"   , xOffset: -1, value: 0},
+        {axis: "ST"   , xOffset: -10, value: 0},
+        {axis: "CR"   , xOffset: -10, value: 0},
+        {axis: "AA"   , xOffset: 1, value: 0},
+        {axis: "SR"   , xOffset: 10, value: 0},
+        {axis: "SFD"  , xOffset: 12, value: 0},
+        {axis: "AM"   , xOffset: 1, value: 0},
+        {axis: "T"    , xOffset: 2, value: 0},
+        {axis: "CP"   , xOffset: 10, value: 0},
       ]
 
     get_Default_Data = ()->
