@@ -10,22 +10,21 @@ angular.module('MM_Graph')
     mapData = (list, next)->
       item = list.pop()
       if not item
-        console.log 'all done'
+        #console.log 'all done'
         return next()
-      else
-        if item.contains('team') #or !(['team-A', 'team-B', 'team-C'].contains item)
-          if not (['team-A', 'team-B', 'team-C','team-D','team-random'].contains item)
-            console.log 'mapping ' + item
-            MM_Graph_API.file_Get item,(data)->
-              all_Data[item] =  data
-              #console.log data
-              return mapData list, next
 
+      if item.contains('team') #or !(['team-A', 'team-B', 'team-C'].contains item)
+          #console.log 'mapping ' + item
+          MM_Graph_API.file_Get item,(data)->
+            all_Data[item] =  data
+            #console.log data
+            return mapData list, next
+      else
         mapData list, next
 
     MM_Graph_API.file_List (list)->
       mapData list, ->
-        console.log 'ready to plot graph'
+        #console.log 'ready to plot graph'
         showRadar()
 
     showRadar  = ()->

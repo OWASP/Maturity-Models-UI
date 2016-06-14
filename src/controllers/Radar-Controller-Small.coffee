@@ -7,11 +7,12 @@ angular.module('MM_Graph')
 
     if target
       MM_Graph_API.file_Get target,(result)->
-        $scope.data = result
-        $scope.team = result.metadata.team
+        if result.metadata
+          $scope.data = result
+          $scope.team = result.metadata.team
 
-        mapData result, (data)->
-          showRadar(data)
+          mapData result, (data)->
+            showRadar(data)
 
     mapData = (result, next)->
 
