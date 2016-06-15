@@ -1,8 +1,8 @@
 angular.module('MM_Graph')
   .config  ($routeProvider)->
     $routeProvider
-      .when '/view/'               , templateUrl:'/ui/html/pages/welcome.page.html'
-      .when '/view/projects/'      , templateUrl:'/ui/html/pages/projects.page.html'
+      .when '/view'                , templateUrl:'/ui/html/pages/welcome.page.html'
+      .when '/view/projects'       , templateUrl:'/ui/html/pages/projects.page.html'
       .when '/view/all/radar'      , templateUrl:'/ui/html/pages/all-radar.page.html'
       .when '/view/routes'         , templateUrl:'/ui/html/pages/routes.page.html'
       .when '/view/teams'          , templateUrl:'/ui/html/pages/teams.page.html'

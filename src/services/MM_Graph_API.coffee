@@ -17,13 +17,18 @@ class MM_Graph_API
   file_List: (callback)=>
     url = "/api/v1/file/list"
     @.$http.get url
-      .success callback
+           .success callback
 
   file_Save: (target,data, callback)=>
     url = "/api/v1/file/save/#{target}?pretty"
-    @.$http.post url, data
-      .success (data)->
-        callback data
+    @.$http.post(url, data)
+           .success (data)->
+              callback data
+
+  project_List: (callback)=>
+    url = "/api/v1/project/list"
+    @.$http.get url
+           .success callback
 
   view_Table: (target,callback)=>
     url = "/api/v1/table/#{target}"
