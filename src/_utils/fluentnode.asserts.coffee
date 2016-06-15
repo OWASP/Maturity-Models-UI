@@ -48,3 +48,12 @@ if window['chai']     # need to move this to a separate file only available duri
     else
       @.contains(value).assert_Is_True(message)
     @
+
+  Array::assert_Not_Contains = (value, message)->
+    message = message || "[assert_Contains]"
+    if value instanceof Array
+      for item in value
+        @.contains(item).assert_Is_False("#{item} not found in array: #{@}")
+    else
+      @.contains(value).assert_Is_False(message)
+    @
