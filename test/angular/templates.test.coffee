@@ -5,7 +5,7 @@ describe 'angular | templates', ->
   it 'check setup',->
     inject ($templateCache)->
       $templateCache.keys().assert_Is [ 'put', 'get', 'remove', 'removeAll', 'destroy', 'info' , 'get_Keys']
-      $templateCache.info().assert_Is { id: 'templates', size: 22 }
+      $templateCache.info().id.assert_Is 'templates'
 
 
   it 'check values',->
