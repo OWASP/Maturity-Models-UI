@@ -3,7 +3,6 @@ language: node_js
 node_js:
   - "5"
 
-
 before_script:
 
   - npm install -g bower
@@ -11,6 +10,3 @@ before_script:
   - npm install -g gulp
   - gulp
   - ls -la
-
-#script:
-#  - npm test

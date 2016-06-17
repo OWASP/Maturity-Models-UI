@@ -10,6 +10,7 @@ module.exports = (wallaby)->
       just_Load 'bower_components/angular-mocks/angular-mocks.js'
 
       just_Load 'bower_components/jquery/dist/jquery.min.js'
+
       # weird bug where chai will load from node_modules but not from bower_components
       #{pattern: 'bower_components/chai/chai.js', instrument: true},
       just_Load  'node_modules/chai/chai.js'
