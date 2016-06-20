@@ -1,0 +1,22 @@
+.row
+    div(ng-controller='ProjectSchemaController')#project
+        div.callout.large.primary
+            div.row.column
+                h4 Schema for Project {{project}}
+                    b(ng-if='level') &#32;for level {{level}}
+                table
+                    thead
+                        tr
+                            th(colspan=2 ng-repeat="(key, value) in table.headers") {{value}}
+                    tbody
+                        tr
+                            td
+                                b Key
+                            td
+                                b Level
+                            td
+                                b Description
+                        tr(ng-repeat="(key,value) in schema" ng-if='!level || level==value.level')
+                            td {{key}}
+                            td {{value.level}}
+                            td {{value.description}}

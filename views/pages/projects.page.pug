@@ -6,3 +6,5 @@
                 ul
                     li(ng-repeat="(key, value) in projects.sort()")
                         a(href='view/project/{{value}}') {{value}}
+                        span -
+                        a(href='view/project/{{value}}/schema') schema
