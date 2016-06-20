@@ -4,5 +4,6 @@ app.directive  'radar', ()->
   controller: 'RadarControllerSmall'
   restrict: 'E',
   scope:
-    target: '=target'
+    project: '=project'
+    team   : '=team'
   templateUrl: '/ui/html/directives/radar.html'

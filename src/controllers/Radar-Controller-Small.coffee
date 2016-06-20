@@ -2,11 +2,13 @@ angular.module('MM_Graph')
   .controller 'RadarControllerSmall', ($scope, $routeParams, MM_Graph_API)->
     $scope.version = 'v0.7.7'
 
-    target     = $scope.target     || $routeParams.target
-    target_Div = '.chart-' + target
+    project  = $scope.project  || $routeParams.project || 'demo'
+    team     = $scope.team     || $routeParams.team
 
-    if target
-      MM_Graph_API.file_Get target,(result)->
+    target_Div = '.chart-' + team
+    
+    if project and team
+      MM_Graph_API.file_Get project, team,(result)->
         if result.metadata
           $scope.data = result
           $scope.team = result.metadata.team

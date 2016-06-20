@@ -1,8 +1,10 @@
 angular.module('MM_Graph')
   .controller 'TableController', ($scope, $routeParams, MM_Graph_API)->
-    target = $routeParams.target
+    project = $routeParams.project
+    team    = $routeParams.team
 
-    if target
-      MM_Graph_API.view_Table target, (data)->
-        $scope.target = target
+    if project and team
+      $scope.project = project
+      $scope.team    = team
+      MM_Graph_API.view_Table project, team, (data)->
         $scope.table = data

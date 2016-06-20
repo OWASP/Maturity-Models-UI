@@ -1,15 +1,14 @@
-
 br
 .row.column
     .small-12.columns
         .activity-table
             .panel.callout.radius.text-center
-                b {{team}}
-                    //a(href='/view/{{target}}/edit') {{team}}
-.row.column
+                b {{team}} {{project}}
+                    //a(href='/view/{{project}}/{{team}}/edit') {{team}}
+//.row.column
     .small-2.columns
     .small-8.columns
-        div(class='chart-{{target}}')
+        div(class='chart-{{team}}')
 
     .small-2.columns
     //.row

@@ -2,16 +2,25 @@ angular.module('MM_Graph')
   .controller 'RadarController', ($scope, $routeParams, MM_Graph_API)->
     $scope.version = 'v0.7.7'
 
-    target     = $scope.target     || $routeParams.target
-    target_Div = '.chart-container' #'.chart-' + target
+    #level_1 = 'AppSec-Level-1'
 
-    if target
-      MM_Graph_API.file_Get target,(result)->
-        $scope.data = result
-        $scope.team = result.metadata.team
+    project  = $scope.project  || $routeParams.project
+    team     = $scope.team     || $routeParams.team
+    target_Div = '.chart-container' #'.chart-' + team
 
-        mapData result, (data)->
-          showRadar(data)
+    if project  and team
+
+      #MM_Graph_API.file_Get project, level_1,(level_1_Result)->
+
+        #mapData level_1_Result, (level_1_Data)->
+        #  console.log level_1_Data
+
+          MM_Graph_API.file_Get project, team,(result)->
+            $scope.data = result
+            $scope.team = result.metadata.team
+
+            mapData result, (data)->
+              showRadar(data)
 
     mapData = (result, next)->
 
@@ -99,10 +108,12 @@ angular.module('MM_Graph')
         ]
       }
 
-    showRadar  = (team_Data)->
+    showRadar  = (team_Data,level_1_Data)->
       data = []
       data.push get_Radar_Fields()
       data.push get_Default_Data()
+      #data.push map_Team_Data(level_1_Data)
       data.push map_Team_Data(team_Data)
+
 
       RadarChart.draw target_Div, data, radar_Config()

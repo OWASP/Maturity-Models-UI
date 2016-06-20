@@ -8,12 +8,12 @@
                         th name
                         th(colspan=3).text-center action
                     tbody
-                    tr(ng-repeat="(key, value) in teams.sort()")
+                    tr(ng-repeat="(key, team) in teams.sort()")
                         td
-                            span {{value}}
+                            span {{team}}
                         td
-                            a(href='/view/{{value}}') view
+                            a(href='/view/{{project}}/{{team}}') view
                         td
-                            a(href='/view/{{value}}/edit') edit
+                            a(href='/view/{{project}}/{{team}}/edit') edit
                         td
-                            a(href='/view/{{value}}/raw') raw
+                            a(href='/view/{{project}}/{{team}}/raw') raw

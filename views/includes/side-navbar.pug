@@ -3,11 +3,13 @@ div(ng-controller='SideNavBarController')
     dl.sub-nav(ng-cloak)
         dt
             b
-                a(href='/view/teams') {{target}}
+                a(href='/view/project/{{project}}') {{project}}
+        dt
+            b {{team}}
         dd
-            a(href='/view/{{target}}'       ) view
+            a(href='/view/{{project}}/{{team}}'       ) view
         dd
-            a(href='/view/{{target}}/edit'  ) edit
+            a(href='/view/{{project}}/{{team}}/edit'  ) edit
         dd
-            a(href='/view/{{target}}/raw'   ) raw
+            a(href='/view/{{project}}/{{team}}/raw'   ) raw
     br

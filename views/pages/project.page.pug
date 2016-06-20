@@ -2,7 +2,7 @@
     div(ng-controller='ProjectController')#project
         div.callout.large.primary
             div.row.column
-                h4 Project {{target}}
+                h4 Project {{project}}
                 ul
-                    li(ng-repeat="(key, value) in teams.sort()")
-                        a(href='view/{{value}}') {{value}}
+                    li(ng-repeat="(key, team) in teams.sort()")
+                        a(href='view/{{project}}/{{team}}') {{team}}

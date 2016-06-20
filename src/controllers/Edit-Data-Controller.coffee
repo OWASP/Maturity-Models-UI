@@ -1,10 +1,11 @@
 angular.module('MM_Graph')
   .controller 'EditDataController', ($scope, $routeParams,  MM_Graph_API)->
-    target = $routeParams.target
+    project = $routeParams.project
+    team    = $routeParams.team
     $scope.messageClass = 'secondary'
     $scope.save_Data = ()->
       #$scope.status = 'saving data ....'
-      MM_Graph_API.file_Save $scope.target, $scope.data, (result)->
+      MM_Graph_API.file_Save project,team , $scope.data, (result)->
         if result.error
           $scope.messageClass = 'alert'
           $scope.status = result.error
@@ -13,10 +14,11 @@ angular.module('MM_Graph')
           $scope.status = result.status
 
 
-    if target
+    if project and team
       $scope.status = 'loading team data'
-      $scope.target = target
-      MM_Graph_API.file_Get target, (data)->
+      $scope.project = project
+      $scope.team    = team
+      MM_Graph_API.file_Get project, team, (data)->
         $scope.status = 'data loaded'
         $scope.data_Raw     = JSON.stringify(data, null, 4)
         $scope.data         = data

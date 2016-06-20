@@ -2,7 +2,9 @@ angular.module('MM_Graph')
   .controller 'RadarControllerAll', ($scope, $routeParams, MM_Graph_API)->
     $scope.version = 'v0.7.7'
 
-    target = 'team-A'
+    project  = $scope.project  || $routeParams.project  || 'demo'
+    team     = $scope.team     || $routeParams.team     || 'team-A'
+
     target_Div = '.radar-all-data'
 
     all_Data = {}
@@ -15,14 +17,14 @@ angular.module('MM_Graph')
 
       if item.contains('team') #or !(['team-A', 'team-B', 'team-C'].contains item)
           #console.log 'mapping ' + item
-          MM_Graph_API.file_Get item,(data)->
+          MM_Graph_API.file_Get project, item,(data)->
             all_Data[item] =  data
             #console.log data
             return mapData list, next
       else
         mapData list, next
 
-    MM_Graph_API.file_List (list)->
+    MM_Graph_API.file_List project, (list)->
       mapData list, ->
         #console.log 'ready to plot graph'
         showRadar()
@@ -41,11 +43,12 @@ angular.module('MM_Graph')
 
       calculate = (activity, prefix)->
         score = 0.2
-        for key,value of result.activities[activity] when key.contains(prefix)
-          if value is 'Yes'
-            score += 0.4
-          if value is 'NA'
-            score += 0.1
+        if result.activities
+          for key,value of result.activities[activity] when key.contains(prefix)
+            if value is 'Yes'
+              score += 0.4
+            if value is 'NA'
+              score += 0.1
         score
 
       data =

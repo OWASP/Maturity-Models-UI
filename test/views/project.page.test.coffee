@@ -10,33 +10,33 @@ describe '| views | project.page', ->
       html = $templateCache.get      'pages/project.page.html'
 
   it 'check raw template value',->
-    console.log html
+    #console.log html
     using $(html), ->
-      @.find('#project' ).text()                 .assert_Is 'Project {{target}}{{value}}'
+      @.find('#project' ).text()                 .assert_Is 'Project {{project}}{{team}}'
       @.find('#project' ).attr('ng-controller')  .assert_Is 'ProjectController'
       @.find('div'      ).length                 .assert_Is 3
-      @.find('h4'       ).text()                 .assert_Is 'Project {{target}}'
-      @.find('li'       ).eq(0).attr('ng-repeat').assert_Is '(key, value) in teams.sort()'
-      @.find('a'        ).eq(0).attr('href')     .assert_Is 'view/{{value}}'
-      @.find('a'        ).eq(0).html()           .assert_Is '{{value}}'
+      @.find('h4'       ).text()                 .assert_Is 'Project {{project}}'
+      @.find('li'       ).eq(0).attr('ng-repeat').assert_Is '(key, team) in teams.sort()'
+      @.find('a'        ).eq(0).attr('href')     .assert_Is 'view/{{project}}/{{team}}'
+      @.find('a'        ).eq(0).html()           .assert_Is '{{team}}'
 
 
   it 'check with Controller', ->
       inject ($compile, $rootScope, $routeParams, $httpBackend)->
 
-        $routeParams.target = 'demo'
+        $routeParams.project = 'demo'
         element = $compile(angular.element(html))($rootScope)
 
-        $httpBackend.expectGET('/api/v1/project/get/' + $routeParams.target).respond ['demo','appsec']
+        $httpBackend.expectGET('/api/v1/project/get/' + $routeParams.project).respond ['team-A','team-B']
         $httpBackend.flush()
 
         using $(element.find('a')), ->
           @.length.assert_Is 2
           using @.eq(0), ->
-            @.attr('href').assert_Is 'view/appsec'
-            @.html().assert_Is 'appsec'
+            @.attr('href').assert_Is 'view/demo/team-A'
+            @.html().assert_Is 'team-A'
           using @.eq(1), ->
-            @.attr('href').assert_Is 'view/demo'
-            @.html().assert_Is 'demo'
+            @.attr('href').assert_Is 'view/demo/team-B'
+            @.html().assert_Is 'team-B'
 
 

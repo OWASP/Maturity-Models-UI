@@ -9,13 +9,13 @@ describe 'controllers | Projects', ->
   beforeEach ->
     inject ($controller, $rootScope)->
       scope = $rootScope.$new()
-      routeParams = target : 'demo'
+      routeParams = project : 'demo'
       $controller('ProjectController', { $scope: scope, $routeParams : routeParams })
 
   it 'constructor',->
     inject ($httpBackend)->
-      $httpBackend.expectGET('/api/v1/project/get/'+routeParams.target).respond ['/','/b']
+      $httpBackend.expectGET('/api/v1/project/get/'+routeParams.project).respond ['/','/b']
       $httpBackend.flush()
-      scope.target.assert_Is 'demo'
+      scope.project.assert_Is 'demo'
       scope.teams[1].assert_Is '/b'
       scope.teams.assert_Is ['/','/b']

@@ -1,12 +1,13 @@
 angular.module('MM_Graph')
   .controller 'ViewDataController', ($scope, $routeParams, MM_Graph_API)->
 
-    target = $routeParams.target
-
-    if target
+    project = $routeParams.project
+    team    = $routeParams.team
+    
+    if project and team
       $scope.status = 'loading team data'
       $scope.target = target
-      MM_Graph_API.file_Get target, (data)->
+      MM_Graph_API.file_Get project, team, (data)->
         $scope.status = 'data loaded'
         $scope.data   = JSON.stringify(data, null, 4)
         console.log JSON.stringify(data, null, 2)
