@@ -8,21 +8,15 @@
                 table
                     thead
                         tr
-                            th(colspan=2 ng-repeat="(key, value) in table.headers") {{value}}
-                    tbody
-                        tr
-                            //td
-                            //    b #
-
-                            td
+                            th
                                 b Key
-                            td
+                            th
                                 b Level
-                            td
+                            th
                                 b Activity
+                    tbody
                         tr(ng-repeat="(key,value) in items")
-                            //td {{value.index}}
                             td {{key}}
                             td {{value.level}}
                             td
-                                .text-left {{value.description}}
+                                .text-left {{value.activity}}

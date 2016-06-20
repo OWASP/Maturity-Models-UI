@@ -32,7 +32,7 @@ describe '| views | project-schema.page', ->
       $httpBackend.expectGET('/api/v1/project/schema/bsimm').respond sample_Schema
       $httpBackend.flush()
 
-      $(element).find('td').length.assert_Is 6
+      $(element).find('td').length.assert_Is 3
 
 
 
