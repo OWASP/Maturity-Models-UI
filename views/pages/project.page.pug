@@ -1,0 +1,8 @@
+.row
+    div(ng-controller='ProjectController')#project
+        div.callout.large.primary
+            div.row.column
+                h4 Project {{target}}
+                ul
+                    li(ng-repeat="(key, value) in teams.sort()")
+                        a(href='view/{{value}}') {{value}}

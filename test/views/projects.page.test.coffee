@@ -16,7 +16,7 @@ describe '| views | project.page', ->
       @.find('div'      ).length                 .assert_Is 3
       @.find('h4'       ).text()                 .assert_Is 'Projects'
       @.find('li'       ).eq(0).attr('ng-repeat').assert_Is '(key, value) in projects.sort()'
-      @.find('a'        ).eq(0).attr('href')     .assert_Is 'project/{{value}}'
+      @.find('a'        ).eq(0).attr('href')     .assert_Is 'view/project/{{value}}'
       @.find('a'        ).eq(0).html()           .assert_Is '{{value}}'
 
 
@@ -31,10 +31,10 @@ describe '| views | project.page', ->
         using $(element.find('a')), ->
           @.length.assert_Is 2
           using @.eq(0), ->
-            @.attr('href').assert_Is 'project/appsec'
+            @.attr('href').assert_Is 'view/project/appsec'
             @.html().assert_Is 'appsec'
           using @.eq(1), ->
-            @.attr('href').assert_Is 'project/demo'
+            @.attr('href').assert_Is 'view/project/demo'
             @.html().assert_Is 'demo'
 
 

@@ -30,6 +30,11 @@ class MM_Graph_API
     @.$http.get url
            .success callback
 
+  project_Get: (target,callback)=>
+    url = "/api/v1/project/get/#{target}"
+    @.$http.get url
+           .success callback
+
   view_Table: (target,callback)=>
     url = "/api/v1/table/#{target}"
     @.$http.get url
