@@ -4,24 +4,25 @@
             div.row.column
                 h4 Schema for Project {{project}}
                     b(ng-if='level') &#32;for level {{level}}
-                    b &#32;- ({{total}} mappings)
+                    b &#32;- {{total}} activities
                 table
                     thead
                         tr
                             th(colspan=2 ng-repeat="(key, value) in table.headers") {{value}}
                     tbody
                         tr
-                            td
-                                b #
+                            //td
+                            //    b #
 
                             td
                                 b Key
                             td
                                 b Level
                             td
-                                b Description
+                                b Activity
                         tr(ng-repeat="(key,value) in items")
-                            td {{value.index}}
+                            //td {{value.index}}
                             td {{key}}
                             td {{value.level}}
-                            td {{value.description}}
+                            td
+                                .text-left {{value.description}}

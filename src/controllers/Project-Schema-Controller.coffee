@@ -15,5 +15,5 @@ angular.module('MM_Graph')
             value.index = count++
             items[key] = value
 
-        $scope.total = count
+        $scope.total = count - 1
         $scope.items = items
