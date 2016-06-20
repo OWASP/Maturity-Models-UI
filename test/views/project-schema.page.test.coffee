@@ -15,10 +15,10 @@ describe '| views | project-schema.page', ->
 
   it 'check raw template value',->
     using $(html), ->
-      @.find('#project').text()                  .assert_Is 'Project {{project}}{{schema}}'
+      @.find('#project').text()                 .assert_Contains '{project}}'
       @.find('#project').attr('ng-controller')  .assert_Is 'ProjectSchemaController'
       @.find('div'     ).length                 .assert_Is 3
-      @.find('h4'      ).text()                 .assert_Is 'Project {{project}}'      
+      @.find('h4'      ).text()                 .assert_Is 'Schema for Project {{project}} for level {{level}}'      
 
 
   it 'check with Controller', ->
@@ -32,9 +32,7 @@ describe '| views | project-schema.page', ->
       $httpBackend.expectGET('/api/v1/project/schema/bsimm').respond sample_Schema
       $httpBackend.flush()
 
-      schema = $(element).find('pre').html()
-      schema.assert_Is '{"SM.1.1":{"level":"1","description":"SM.1.1 description"}}'
+      $(element).find('td').length.assert_Is 6
 
-      #.assert_Contains sample_Schema
 
 

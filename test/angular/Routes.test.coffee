@@ -12,6 +12,7 @@ describe '| angular | Routes ', ->
         '/view/projects'
         '/view/project/:project'
         '/view/project/:project/schema'
+        '/view/project/:project/schema/:level'
         '/view/all/radar'
         '/view/routes'
         '/view/:project/teams'
