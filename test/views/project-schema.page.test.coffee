@@ -17,8 +17,8 @@ describe '| views | project-schema.page', ->
     using $(html), ->
       @.find('#project').text()                 .assert_Contains '{project}}'
       @.find('#project').attr('ng-controller')  .assert_Is 'ProjectSchemaController'
-      @.find('div'     ).length                 .assert_Is 3
-      @.find('h4'      ).text()                 .assert_Is 'Schema for Project {{project}} for level {{level}} - ({{total}} mappings)'
+      @.find('div'     ).length                 .assert_Is 4
+      @.find('h4'      ).text()                 .assert_Is 'Schema for Project {{project}} for level {{level}} - {{total}} activities'
 
 
   it 'check with Controller', ->
@@ -32,7 +32,7 @@ describe '| views | project-schema.page', ->
       $httpBackend.expectGET('/api/v1/project/schema/bsimm').respond sample_Schema
       $httpBackend.flush()
 
-      $(element).find('td').length.assert_Is 8
+      $(element).find('td').length.assert_Is 6
 
 
 
