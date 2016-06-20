@@ -3,8 +3,17 @@ angular.module('MM_Graph')
 
     project = $routeParams.project
     level   = $routeParams.level
+
     if project
       $scope.project = project
       $scope.level   = level
       MM_Graph_API.project_Schema project, (data)->
-        $scope.schema = data
+        count   = 1
+        items = {}
+        for key,value of data
+          if (not level) or value.level is level
+            value.index = count++
+            items[key] = value
+
+        $scope.total = count
+        $scope.items = items

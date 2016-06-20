@@ -1,9 +1,10 @@
-.row
+.row.activity-table
     div(ng-controller='ProjectSchemaController')#project
         div.callout.large.primary
             div.row.column
                 h4 Schema for Project {{project}}
                     b(ng-if='level') &#32;for level {{level}}
+                    b &#32;- ({{total}} mappings)
                 table
                     thead
                         tr
@@ -11,12 +12,16 @@
                     tbody
                         tr
                             td
+                                b #
+
+                            td
                                 b Key
                             td
                                 b Level
                             td
                                 b Description
-                        tr(ng-repeat="(key,value) in schema" ng-if='!level || level==value.level')
+                        tr(ng-repeat="(key,value) in items")
+                            td {{value.index}}
                             td {{key}}
                             td {{value.level}}
                             td {{value.description}}
