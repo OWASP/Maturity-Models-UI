@@ -2,12 +2,18 @@ app = angular.module('MM_Graph')
 
 class MM_Graph_API
   constructor: (http)->
-    @.$http = http
+    @.$http   = http
+    @.version = '/api/v1'
 
   routes: (callback)=>
     url = "/api/v1/routes/list"
     @.$http.get url
            .success callback
+
+  data_Radar: (project, team, callback)=>
+    url = "#{@.version}/data/#{project}/#{team}/radar"
+    @.$http.get url
+      .success callback
 
   file_Get: (project, team,callback)=>
     url = "/api/v1/team/#{project}/get/#{team}?pretty"
