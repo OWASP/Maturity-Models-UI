@@ -1,4 +1,4 @@
-describe '| angular | Routes ', ->
+describe 'angular | Routes ', ->
 
   beforeEach ()->
     module('MM_Graph')

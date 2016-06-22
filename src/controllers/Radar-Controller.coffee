@@ -3,7 +3,6 @@ angular.module('MM_Graph')
     $scope.version = 'v0.7.7'
 
     #level_1 = 'AppSec-Level-1'
-
     project  = $scope.project  || $routeParams.project
     team     = $scope.team     || $routeParams.team
     target_Div = '.chart-container' #'.chart-' + team
@@ -90,8 +89,7 @@ angular.module('MM_Graph')
         {value: 2.1},  # Compliance and Policy
       ]
     map_Team_Data = (data)->
-      {
-        colour: 'red',
+      {        
         axes: [
           {value: data.SM  },  # Strategy & Metrics
           {value: data.CMVM},  # Configuration & Vulnerability Management

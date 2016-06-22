@@ -1,4 +1,4 @@
-describe '| views | project-schema.page', ->
+describe 'views | project-schema.page', ->
 
   html = null
   sample_Schema = 'SM.1.1':

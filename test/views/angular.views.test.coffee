@@ -1,4 +1,4 @@
-describe '| angular | views | angular-page', ->
+describe 'angular | views | angular-page', ->
 
   beforeEach ()->
     module('MM_Graph')

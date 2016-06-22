@@ -1,4 +1,4 @@
-describe '| services | MM_Graph_API', ->
+describe 'services | MM_Graph_API', ->
 
   mm_Graph_API  = null
   $http         = null

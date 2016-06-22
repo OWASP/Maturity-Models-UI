@@ -1,4 +1,4 @@
-describe '| views | project.page', ->
+describe 'views | projects.page', ->
 
   html = null
 
@@ -11,7 +11,7 @@ describe '| views | project.page', ->
 
   it 'check raw template value',->
     using $(html), ->
-      @.find('#projects').text()                 .assert_Is 'Projects{{value}}-schema'
+      @.find('#projects').text()                 .assert_Is 'Projects{{value}}    , see schema'
       @.find('#projects').attr('ng-controller')  .assert_Is 'ProjectsController'
       @.find('div'      ).length                 .assert_Is 3
       @.find('h4'       ).text()                 .assert_Is 'Projects'

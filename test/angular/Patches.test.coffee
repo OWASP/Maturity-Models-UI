@@ -1,4 +1,4 @@
-describe '| angular | Patches ', ->
+describe 'angular | Patches ', ->
 
   beforeEach ()->
     module('MM_Graph')

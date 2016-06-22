@@ -1,4 +1,4 @@
-describe '| views | project.page', ->
+describe 'views | project.page', ->
 
   html = null
 
