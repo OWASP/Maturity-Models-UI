@@ -5,4 +5,5 @@ angular.module('MM_Graph')
     if project
       $scope.project = project
       MM_Graph_API.project_Get project, (data)->
-        $scope.teams = data      
+        $scope.teams = data
+        $scope.aaaa = 123123

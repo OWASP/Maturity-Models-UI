@@ -1,7 +1,7 @@
 angular.module('MM_Graph')
   .controller 'EditDataController', ($scope, $routeParams,  MM_Graph_API)->
     project = $routeParams.project
-    team    = $routeParams.team
+    team    = $routeParams.team  
     $scope.messageClass = 'secondary'
     $scope.save_Data = ()->
       #$scope.status = 'saving data ....'
@@ -19,7 +19,7 @@ angular.module('MM_Graph')
       $scope.project = project
       $scope.team    = team
       MM_Graph_API.file_Get project, team, (data)->
-        $scope.status = 'data loaded'
+        $scope.status       = 'data loaded'
         $scope.data_Raw     = JSON.stringify(data, null, 4)
         $scope.data         = data
         $scope.metadata     = data.metadata

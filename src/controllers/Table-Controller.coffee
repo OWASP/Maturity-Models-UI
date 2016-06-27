@@ -8,3 +8,4 @@ angular.module('MM_Graph')
       $scope.team    = team
       MM_Graph_API.view_Table project, team, (data)->
         $scope.table = data
+
