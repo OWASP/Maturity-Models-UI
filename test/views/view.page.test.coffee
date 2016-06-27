@@ -21,4 +21,4 @@ describe 'views | view.page', ->
         @.run()
 
   it 'pages/view.page.html', ->
-    $(view.html).eq(0).attr('ng-controller').assert_Is 'TableController'
+    $(view.html).eq(0).attr('ng-controller').assert_Is 'OldTableController'
