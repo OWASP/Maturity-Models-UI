@@ -15,11 +15,12 @@ angular.module('MM_Graph')
         #  console.log level_1_Data
 
           MM_Graph_API.file_Get project, team,(result)->
-            $scope.data = result
-            $scope.team = result.metadata.team
+            if result?.metadata
+              $scope.data = result
+              $scope.team = result.metadata.team
 
-            mapData result, (data)->
-              showRadar(data)
+              mapData result, (data)->
+                showRadar(data)
 
     mapData = (result, next)->
 

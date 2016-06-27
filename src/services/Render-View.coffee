@@ -31,7 +31,7 @@ class Render_View
 
     @.route   = @.$route.current
     @.element = @.ng_View[0].nextSibling
-    @.html    = @.element.outerHTML
+    @.html    = @.element.innerHTML
     @.$       = (selector)->$(@.html).find(selector)
 
     @

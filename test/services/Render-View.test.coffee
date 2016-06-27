@@ -53,12 +53,12 @@ describe 'services | Render-View', ->
       using $injector.get('Render_View')(options), ->    
         @.run()
     
-        @.element.outerHTML.assert_Is @.html
+        @.element.innerHTML.assert_Is @.html
         @.html.assert_Contains('ng-controller')
         @.html.assert_Contains '"metadata": 42'
         @.route.params.assert_Is { project: 'abc', team: '123' }
         @.route.$$route.templateUrl.assert_Is @.url_Template
-        @.$('div').length.assert_Is 4
+        @.$('div').length.assert_Is 3
         
   it 'run (with values manually set)', ->
     using render_View, ->
@@ -67,12 +67,12 @@ describe 'services | Render-View', ->
        .set_Url_Data         path: "/api/v1/team/#{@.project}/get/#{@.team}?pretty", value: metadata: 42
        .run()
             
-      @.element.outerHTML.assert_Is @.html
+      @.element.innerHTML.assert_Is @.html
       @.html.assert_Contains('ng-controller')
       @.html.assert_Contains '"metadata": 42'
       @.route.params.assert_Is { project: 'bsimm', team: 'team-A' }
       @.route.$$route.templateUrl.assert_Is @.url_Template
-      @.$('div').length.assert_Is 4
+      @.$('div').length.assert_Is 3
       
   it 'set_Url_Data', -> 
     using render_View, ->

@@ -39,3 +39,5 @@ describe 'views | table.page', ->
       
     $(html).find('h1').html('table will go here')
     $(html).find('pre').html().assert_Is '{"metadata":42}' 
+    
+    
