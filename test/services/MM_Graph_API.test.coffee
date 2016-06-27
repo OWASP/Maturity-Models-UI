@@ -21,8 +21,6 @@ describe 'services | MM_Graph_API', ->
       $httpBackend.verifyNoOutstandingExpectation()
       $httpBackend.verifyNoOutstandingRequest()
 
-  #todo: add tests for file_Get, file_List, file_Save (Issue-78)
-
   it 'data_Radar', ->
     expected_Data = [ { "axes": []}]
     using mm_Graph_API, ->

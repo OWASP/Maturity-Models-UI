@@ -19,7 +19,6 @@ angular.module('MM_Graph')
         MM_Graph_API.data_Radar project, team,(data)->
           $scope.radar_Data = data
           $scope.show_Radar data, $scope.get_Radar_Config()
-          console.log data
 
     $scope.show_Radar = (data, config)->
       div    = $scope.radar_Div
@@ -29,3 +28,4 @@ angular.module('MM_Graph')
       RadarChart?.draw div, data, config
 
     $scope.load_Data $routeParams.project, $routeParams.team
+  
