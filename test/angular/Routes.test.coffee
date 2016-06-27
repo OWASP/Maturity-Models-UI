@@ -18,7 +18,8 @@ describe 'angular | Routes ', ->
         '/view/:project/:team'
         '/view/:project/:team/edit'
         '/view/:project/:team/radar'
-        '/view/:project/:team/raw']
+        '/view/:project/:team/raw'
+        '/view/:project/:team/table']
       
       expected_Routes = []      
       for route in routes                               # handle case where angular adds an extra route with / at the end
@@ -56,6 +57,7 @@ describe 'angular | Routes ', ->
         '/view/:project/:team/edit'             : 'edit.page.html'
         '/view/:project/:team/radar'            : 'radar.page.html'
         '/view/:project/:team/raw'              : 'raw.page.html'
+        '/view/:project/:team/table'            : 'table.page.html'
         '/aaaa'                                 : '404.page.html'
 
       map_Expected_GETs (value for key,value of url_Mappings)
@@ -67,7 +69,7 @@ describe 'angular | Routes ', ->
         @.verifyNoOutstandingRequest()
 
 
-  # other
+  # Issues regression tests
 
   it 'Check for double / in path',->
     inject ($route, $httpBackend, $location, $rootScope)->      
