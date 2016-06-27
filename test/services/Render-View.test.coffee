@@ -54,11 +54,12 @@ describe 'services | Render-View', ->
         @.run()
     
         @.element.innerHTML.assert_Is @.html
+        @.element.outerHTML.assert_Is @.outer_Html
         @.html.assert_Contains('ng-controller')
         @.html.assert_Contains '"metadata": 42'
         @.route.params.assert_Is { project: 'abc', team: '123' }
         @.route.$$route.templateUrl.assert_Is @.url_Template
-        @.$('div').length.assert_Is 3
+        @.$('div').length.assert_Is 4
         
   it 'run (with values manually set)', ->
     using render_View, ->
@@ -72,7 +73,7 @@ describe 'services | Render-View', ->
       @.html.assert_Contains '"metadata": 42'
       @.route.params.assert_Is { project: 'bsimm', team: 'team-A' }
       @.route.$$route.templateUrl.assert_Is @.url_Template
-      @.$('div').length.assert_Is 3
+      @.$('div').length.assert_Is 4
       
   it 'set_Url_Data', -> 
     using render_View, ->

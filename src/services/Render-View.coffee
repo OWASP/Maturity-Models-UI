@@ -29,10 +29,11 @@ class Render_View
     @.$location.path @.url_Location
     @.$httpBackend.flush()
 
-    @.route   = @.$route.current
-    @.element = @.ng_View[0].nextSibling
-    @.html    = @.element.innerHTML
-    @.$       = (selector)->$(@.html).find(selector)
+    @.route      = @.$route.current
+    @.element    = @.ng_View[0].nextSibling
+    @.html       = @.element.innerHTML
+    @.outer_Html = @.element.outerHTML
+    @.$          = (selector)-> $(@.outer_Html).find(selector)
 
     @
   
