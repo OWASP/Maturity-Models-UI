@@ -20,10 +20,6 @@ class MM_Graph_API
     @.$http.get url
       .success callback
 
-  file_List: (project, callback)=>
-    url = "/api/v1/team/#{project}/list"
-    @.$http.get url
-           .success callback
 
   file_Save: (project,team,data, callback)=>
     url = "/api/v1/team/#{project}/save/#{team}"

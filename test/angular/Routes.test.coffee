@@ -15,7 +15,6 @@ describe 'angular | Routes ', ->
         '/view/project/:project/schema/:level'
         '/view/all/radar'
         '/view/routes'
-        '/view/:project/teams'
         '/view/:project/:team'
         '/view/:project/:team/edit'
         '/view/:project/:team/radar'
@@ -53,7 +52,6 @@ describe 'angular | Routes ', ->
 #        '/view/project/:project/schema/:level'  : 'project-schema.page.html'     # since it is using the same urlTemplate value
         '/view/all/radar'                       : 'all-radar.page.html'
         '/view/routes'                          : 'routes.page.html'
-        '/view/:project/teams'                  : 'teams.page.html'
         '/view/:project/:team'                  : 'view.page.html'
         '/view/:project/:team/edit'             : 'edit.page.html'
         '/view/:project/:team/radar'            : 'radar.page.html'
@@ -71,14 +69,13 @@ describe 'angular | Routes ', ->
 
   # other
 
-  xit 'Check for double / in path',->
+  it 'Check for double / in path',->
     inject ($route, $httpBackend, $location, $rootScope)->      
       $httpBackend
         .whenGET (value)->
           value.assert_Not_Contains '//'
           return true
-        .respond []        
-      #$location.path('/aaa')
+        .respond []              
 
       $rootScope.$digest();
       $httpBackend.flush()
