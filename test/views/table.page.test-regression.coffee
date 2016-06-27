@@ -1,4 +1,4 @@
-describe 'views | table.page', ->
+describe 'regression | views | table .page', ->
 
   html          = null
   project       = null
@@ -25,9 +25,9 @@ describe 'views | table.page', ->
       $templateCache.get_Keys().assert_Contains 'pages/table.page.html'
       html = $templateCache.get 'pages/table.page.html'
 
-  it '$templateCache value',->
-    using $(html), ->
-      $(html).find('h1').html().assert_Is 'table will go here'
+  #it '$templateCache value',->
+  #  using $(html), ->
+  #    $(html).find('h1').html().assert_Is 'table will go here'
 
   it 'check view content', ->
     inject ($route, $location, $rootScope, $httpBackend, $compile)->
@@ -88,5 +88,5 @@ describe 'views | table.page', ->
           regexp              : /^\/view\/(?:([^\/]+))\/(?:([^\/]+))\/table$/,
           keys                : [ { name: 'project', optional: false }, { name: 'team', optional: false } ]
         loadedTemplateUrl     : '/ui/html/pages/table.page.html'
-      console.log $route.current
+      
       JSON.stringify($route.current).assert_Is JSON.stringify(expected_Route)
