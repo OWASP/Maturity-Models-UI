@@ -35,6 +35,8 @@ class Render_View
     @.outer_Html = @.element.outerHTML
     @.$          = (selector)-> $(@.outer_Html).find(selector)
 
+    @.$httpBackend.verifyNoOutstandingExpectation()
+    @.$httpBackend.verifyNoOutstandingRequest()
     @
   
   set_Url_Data: (url_Data)=>

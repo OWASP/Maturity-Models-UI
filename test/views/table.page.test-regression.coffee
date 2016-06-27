@@ -72,7 +72,7 @@ describe 'regression | views | table .page', ->
     inject ($route, $location, $rootScope, $httpBackend)->
       $httpBackend.expectGET('/ui/html/pages/table.page.html').respond(html)
       $location.path url
-      $rootScope.$digest()
+      $rootScope.$digest() 
 
       $location.path().assert_Is url
 

@@ -1,10 +1,8 @@
-
 describe 'controllers | Projects', ->
   $scope      = null
   routeParams = null
   project     = 'bsimm'
-  team        = 'team-A'
-  test_Data   = null
+  team        = 'team-A'  
   
   beforeEach ->
     module('MM_Graph')

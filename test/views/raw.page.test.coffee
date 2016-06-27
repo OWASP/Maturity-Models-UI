@@ -1,4 +1,4 @@
-describe 'views | table.page', ->
+describe 'views | raw.page', ->
 
   project       = 'bsimm'
   team          = 'team-A'
@@ -17,6 +17,10 @@ describe 'views | table.page', ->
     inject ($injector)->
       view = $injector.get('Render_View')(options).run()
 
+  #afterEach ()->
+  #  inject ($httpBackend)->
+  #    $httpBackend.verifyNoOutstandingExpectation()
+      
   it 'pages/view.page.html', ->
     using view, ->
       @.$('div').attr('ng-controller').assert_Is 'EditDataController'

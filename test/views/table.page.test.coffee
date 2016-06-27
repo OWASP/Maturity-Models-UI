@@ -17,7 +17,7 @@ describe 'views | table.page', ->
     inject ($injector)->
       view = $injector.get('Render_View')(options).run()
 
-  it 'pages/view.page.html', -> 
+  it 'pages/view.page.html', ->
     view.$('h1').html().assert_Is 'table will go here'
     view.$('pre').html().assert_Is '{"metadata":42}'
     view.route.$$route.controller.assert_Is 'TableController'
