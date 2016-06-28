@@ -1,4 +1,4 @@
-describe 'regression | views | table .page', ->
+xdescribe 'regression | views | table .page', ->
 
   html          = null
   project       = null

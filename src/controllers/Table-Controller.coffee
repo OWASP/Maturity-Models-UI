@@ -5,5 +5,8 @@ angular.module('MM_Graph')
     if project and team
       $scope.project = project
       $scope.team    = team
-      MM_Graph_API.view_Table project, team, (data)->
-        $scope.table = data
+      MM_Graph_API.project_Schema project, (schema)->
+        $scope.schema = schema
+      #  console.log schema
+      #MM_Graph_API.view_Table project, team, (data)->
+      #  $scope.table = data

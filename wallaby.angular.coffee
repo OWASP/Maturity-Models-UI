@@ -26,6 +26,6 @@ module.exports = (wallaby)->
     bootstrap:  ()->
       window.expect = chai.expect;
 
-  testFramework: 'mocha'
+    #testFramework: 'mocha'
 
   return config

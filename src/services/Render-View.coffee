@@ -45,6 +45,10 @@ class Render_View
       @.$httpBackend.expectGET(@.url_Data.path).respond @.url_Data.value
     @
 
+  set_Expect_Get: (path, data)=>
+    @.$httpBackend.expectGET(path).respond data
+    @
+    
   set_Url_Location: (location)=>
     if location
       @.url_Location = location
