@@ -6,13 +6,7 @@ div
                 a(href='/view/project/{{project}}') {{project}}
         dt
             b {{team}}
-        dd
-            a(href='/view/{{project}}/{{team}}'       ) view
-        dd
-            a(href='/view/{{project}}/{{team}}/radar' ) radar
-
-        dd
-            a(href='/view/{{project}}/{{team}}/edit'  ) edit
-        dd
-            a(href='/view/{{project}}/{{team}}/raw'   ) raw
+        pre
+            dd(ng-repeat='link in links')
+                a(href='{{link.path}}') {{link.text}}
     br

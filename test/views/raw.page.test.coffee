@@ -24,7 +24,6 @@ describe 'views | raw.page', ->
   it 'pages/view.page.html', ->
     using view, ->
       @.$('div').attr('ng-controller').assert_Is 'EditDataController'
-      @.$('pre').html().assert_Is '{\n    "metadata": 42\n}'
 
 
 

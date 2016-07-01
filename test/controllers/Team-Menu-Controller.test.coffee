@@ -15,6 +15,7 @@ describe 'controllers | Projects', ->
 
   it '$controller',->
     using $scope, ->
-
       @.project     .assert_Is project
       @.team        .assert_Is team
+      @.base_Path   .assert_Is "/view/#{project}/#{team}"
+      @.links.size().assert_Is 5

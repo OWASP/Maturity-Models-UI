@@ -25,14 +25,27 @@ describe '| directive | team-navbar', ->
 
   it 'should contain navigation links', ->
     links = (text:a.text, href: a.href for a in $(html).find('a'))
-    links.size().assert_Is 5
-    check_Link = (index, path, text) ->
-      links[index].href.assert_Contains path
-      links[index].text.assert_Is text
+    links.size().assert_Is 6
 
-    check_Link 0, "/view/project/#{project}"        , project
-    check_Link 1, "/view/#{project}/#{team}"        , 'view'
-    check_Link 2, "/view/#{project}/#{team}/radar"  , 'radar'
-    check_Link 3, "/view/#{project}/#{team}/edit"   , 'edit'
-    check_Link 4, "/view/#{project}/#{team}/raw"    , 'raw'
+    index = 0
+    check_Link = (path, text) ->
+      links[index  ].href.assert_Contains path
+      links[index++].text.assert_Is text
+
+    check_Link "/view/project/#{project}"        , project
+    check_Link "/view/#{project}/#{team}"        , 'view'
+    check_Link "/view/#{project}/#{team}/table"  , 'table'
+    check_Link "/view/#{project}/#{team}/radar"  , 'radar'
+    check_Link "/view/#{project}/#{team}/edit"   , 'edit'
+    check_Link "/view/#{project}/#{team}/raw"    , 'raw'
+
+  ###it 'should have valid links', ->
+    links = (a.href for a in $(html).find('a'))
+    inject ($location, $httpBackend)->
+
+      $location.path links[2]
+      $scope = angular.element(element).scope()
+      $scope.$digest()
+      $httpBackend.flush()###
+
 
