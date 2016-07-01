@@ -11,7 +11,7 @@ describe 'controllers | Projects', ->
     inject ($controller, $rootScope)->
       $scope = $rootScope.$new()
       routeParams = project : project , team: team
-      $controller('SideNavBarController', { $scope: $scope, $routeParams : routeParams })
+      $controller('TeamMenuController', { $scope: $scope, $routeParams : routeParams })
 
   it '$controller',->
     using $scope, ->

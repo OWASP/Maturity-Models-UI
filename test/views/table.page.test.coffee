@@ -23,10 +23,10 @@ describe 'views | table.page', ->
   it 'pages/view.page.html', ()->
 
     
-    console.log view
-    #view.$('h1').html().assert_Is 'table will go here'
-    #view.route.$$route.controller.assert_Is 'TableController'
-    #view.$('pre').html().assert_Is '{"metadata":42}'
+    #console.log view
+    view.$('h1').html().assert_Is 'table will go here'
+    view.route.$$route.controller.assert_Is 'TableController'
+    #view.$rootScope.schema.assert_Is '{"metadata":42}'
     
 
 
