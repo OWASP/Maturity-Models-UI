@@ -2,12 +2,10 @@ describe 'views | table.page', ->
 
   project       = 'bsimm'
   team          = 'team-A'
-  #schema_Data   =
-  #console.log schema_File
+
   options =
     project         : project
     team            : team
-    #url_Data        : path: "/api/v1/table/#{project}/#{team}" , value: { metadata: 42}
     url_Location    : "/view/#{project}/#{team}/table"
     url_Template_Key: 'pages/table.page.html'
 
@@ -21,12 +19,23 @@ describe 'views | table.page', ->
                 .run()
 
   it 'pages/view.page.html', ()->
+    using view, ->
+
+      @.$('div').first().attr('ng-controller')
+                               .assert_Is 'TableController'
+      @.$('h1').html()         .assert_Is 'table will go here'
+      @.$('#teamMenu a').length.assert_Is 6
+      @.$routeParams           .assert_Is { project: 'bsimm', team: 'team-A' }
+
+    #console.log view.element.scope
+    scope = angular.element(view.element).scope()
+    #console.log view.scope.$digest()
+    view.$rootScope.$digest()
+    #console.log view.$rootScope
+    #console.log scope.project
 
     
-    #console.log view
-    view.$('h1').html().assert_Is 'table will go here'
-    view.route.$$route.controller.assert_Is 'TableController'
-    #view.$rootScope.schema.assert_Is '{"metadata":42}'
+    
     
 
 

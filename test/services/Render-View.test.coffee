@@ -16,6 +16,7 @@ describe 'services | Render-View', ->
       (typeof(@.$location     )).assert_Is 'object'
       (typeof(@.$rootScope    )).assert_Is 'object'
       (typeof(@.$templateCache)).assert_Is 'object'
+      (typeof(@.$routeParams  )).assert_Is 'object'
 
       @.project .assert_Is 'bsimm'
       @.team    .assert_Is 'team-A'
@@ -23,7 +24,8 @@ describe 'services | Render-View', ->
       (@.element          is null).assert_Is_True()
       (@.html             is null).assert_Is_True()
       (@.ng_View          is null).assert_Is_True()
-      (@.Url_Template_Key is null).assert_Is_True()
+      (@.scope            is null).assert_Is_True()
+      (@.url_Template_Key is null).assert_Is_True()
       (@.url_Data         is null).assert_Is_True()
       (@.url_Location     is null).assert_Is_True()
       (@.url_Template     is null).assert_Is_True()
@@ -53,14 +55,17 @@ describe 'services | Render-View', ->
       using $injector.get('Render_View')(options), ->    
         @.run()
     
-        @.element.innerHTML.assert_Is @.html
-        @.element.outerHTML.assert_Is @.outer_Html
-        @.html.assert_Contains('ng-controller')
-        @.html.assert_Contains '"metadata": 42'
-        @.route.params.assert_Is { project: 'abc', team: '123' }
+        @.element.innerHTML        .assert_Is @.html
+        @.element.outerHTML        .assert_Is @.outer_Html
+        @.html                     .assert_Contains('ng-controller')
+        @.html                     .assert_Contains '"metadata": 42'
+        @.$routeParams             .assert_Is { project: 'abc', team: '123' }
+        @.route.params             .assert_Is { project: 'abc', team: '123' }
         @.route.$$route.templateUrl.assert_Is @.url_Template
-        @.$('div').length.assert_Is 4
-        
+        @.$('div').length          .assert_Is 4
+        @.scope.$$listenerCount    .assert_Is {}
+
+
   it 'run (with values manually set)', ->
     using render_View, ->
       @.set_Url_Location     "/view/#{@.project}/#{@.team}/raw"

@@ -13,7 +13,7 @@ angular.module('MM_Graph')
       .when '/view/:project/:team/edit'             , templateUrl: "#{pages}/edit.page.html"
       .when '/view/:project/:team/radar'            , templateUrl: "#{pages}/radar.page.html"
       .when '/view/:project/:team/raw'              , templateUrl: "#{pages}/raw.page.html"
-      .when '/view/:project/:team/table'            , templateUrl: "#{pages}/table.page.html"         , controller: 'TableController'
+      .when '/view/:project/:team/table'            , templateUrl: "#{pages}/table.page.html"
 
       .otherwise templateUrl: "#{pages}/404.page.html"
 
