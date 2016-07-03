@@ -50,11 +50,11 @@ gulp.task 'server', ()->
   server_Process.stderr.on 'data', (data)->console.log(data.toString().trim())
   return true   # without this, gulp will block here and not complete this task 
 
-gulp.task 'watch', ['compile-coffee', 'compile-pug', 'templateCache', 'concat-css'], ()->
+gulp.task 'watch', ['compile-coffee', 'compile-pug', 'templateCache', 'concat-css', 'server'], ()->
   gulp.watch src_Files_Api , ['server']
   gulp.watch src_Files_Ui  , ['compile-coffee']
   gulp.watch pug_Files     , ['compile-pug', 'templateCache']
   gulp.watch css_Files     , ['concat-css']
 
 
-gulp.task 'default', ['compile-coffee','compile-pug', 'templateCache', 'concat-css', 'server'], ()->
+gulp.task 'default', ['compile-coffee','compile-pug', 'templateCache', 'concat-css'], ()->
