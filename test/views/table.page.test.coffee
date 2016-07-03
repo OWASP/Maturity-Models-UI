@@ -16,6 +16,7 @@ describe 'views | table.page', ->
     inject ($injector, test_Data)->
       view = $injector.get('Render_View')(options)
                 .set_Expect_Get("/api/v1/project/schema/#{project}", test_Data.bsimm_Schema)
+                .set_Expect_Get("/api/v1/team/#{project}/get/#{team}?pretty", test_Data.bsimm_Schema)
                 .run()
 
   it 'pages/view.page.html', ()->
@@ -23,7 +24,7 @@ describe 'views | table.page', ->
 
       @.$('div').first().attr('ng-controller')
                                .assert_Is 'TableController'
-      @.$('h1').html()         .assert_Is 'table will go here'
+      #@.$('h1').html()         .assert_Is 'table will go here'
       @.$('#teamMenu a').length.assert_Is 6
       @.$routeParams           .assert_Is { project: 'bsimm', team: 'team-A' }
 
