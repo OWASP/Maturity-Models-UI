@@ -1,5 +1,5 @@
 #to be deleted
-describe '| directive | team-navbar', ->
+describe '| directive | team-menu', ->
   project = 'bsimm'
   team    = 'team-A'
   element = null
@@ -13,8 +13,8 @@ describe '| directive | team-navbar', ->
     inject ($rootScope, $compile, $templateCache, $routeParams)->
       $routeParams.project = project
       $routeParams.team    = team
-      $templateCache.put '/ui/html/directives/team-navbar.html', $templateCache.get('directives/team-navbar.html')
-      element = angular.element('<teamMenu/>')[0]
+      $templateCache.put '/ui/html/directives/team-menu.html', $templateCache.get('directives/team-menu.html')
+      element = angular.element('<teamMenu/>')[0] 
       $scope   = $rootScope.$new()
       $compile(element)($scope)
       $scope.$apply()
@@ -39,13 +39,8 @@ describe '| directive | team-navbar', ->
     check_Link "/view/#{project}/#{team}/edit"   , 'edit'
     check_Link "/view/#{project}/#{team}/raw"    , 'raw'
 
-  ###it 'should have valid links', ->
-    links = (a.href for a in $(html).find('a'))
-    inject ($location, $httpBackend)->
-
-      $location.path links[2]
-      $scope = angular.element(element).scope()
-      $scope.$digest()
-      $httpBackend.flush()###
+  #it 'check menu active status', ->
+  #  inject ($location)->
+  #    console.log $location.path()
 
 

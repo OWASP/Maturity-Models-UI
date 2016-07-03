@@ -4,15 +4,18 @@ concat        = require 'gulp-concat'
 pug           = require 'gulp-pug'
 plumber       = require 'gulp-plumber'
 templateCache = require('gulp-angular-templatecache');
+child_process = require 'child_process'
 
-
-source_Files  = './src/**/*.coffee'
+src_Files_Api  = '../src/**/*.coffee'
+src_Files_Ui  = './src/**/*.coffee'
 pug_Files     = './views/**/*.pug'
 css_Files     = './views/css/**/*.css'
 
-html_Folder   = './.dist/html'
-js_Folder     = './.dist/js'
-css_Folder    = './.dist/css'
+html_Folder    = './.dist/html'
+js_Folder      = './.dist/js'
+css_Folder     = './.dist/css'
+
+server_Process = null
 
 gulp.task 'compile-pug', ()->
   gulp.src pug_Files
@@ -21,7 +24,7 @@ gulp.task 'compile-pug', ()->
       .pipe gulp.dest html_Folder
 
 gulp.task 'compile-coffee', ()->
-  gulp.src(source_Files)
+  gulp.src(src_Files_Ui)
       .pipe plumber()
       .pipe coffee {bare: true}
       .pipe concat js_Folder + '/angular-src.js'
@@ -36,10 +39,22 @@ gulp.task 'concat-css', ()->
   gulp.src(css_Files)
       .pipe concat css_Folder + '/app.css'
       .pipe gulp.dest '.'
-  
-gulp.task 'watch', ['compile-coffee', 'compile-pug', 'templateCache', 'concat-css'], ()->
-  gulp.watch source_Files, ['compile-coffee']
-  gulp.watch pug_Files   , ['compile-pug', 'templateCache']
-  gulp.watch css_Files   , ['concat-css']
 
-gulp.task 'default', ['compile-coffee','compile-pug', 'templateCache', 'concat-css'], ()->
+gulp.task 'server', ()->
+  if server_Process
+    console.log 'stopping server'
+    server_Process.kill()
+
+  server_Process = child_process.spawn 'node', ['../server.js']
+  server_Process.stdout.on 'data', (data)->console.log(data.toString().trim())
+  server_Process.stderr.on 'data', (data)->console.log(data.toString().trim())
+  return true   # without this, gulp will block here and not complete this task 
+
+gulp.task 'watch', ['compile-coffee', 'compile-pug', 'templateCache', 'concat-css'], ()->
+  gulp.watch src_Files_Api , ['server']
+  gulp.watch src_Files_Ui  , ['compile-coffee']
+  gulp.watch pug_Files     , ['compile-pug', 'templateCache']
+  gulp.watch css_Files     , ['concat-css']
+
+
+gulp.task 'default', ['compile-coffee','compile-pug', 'templateCache', 'concat-css', 'server'], ()->

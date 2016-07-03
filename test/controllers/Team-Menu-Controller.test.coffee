@@ -19,3 +19,24 @@ describe 'controllers | Projects', ->
       @.team        .assert_Is team
       @.base_Path   .assert_Is "/view/#{project}/#{team}"
       @.links.size().assert_Is 5
+      
+  it 'is_Active', ->
+    inject ($location)->
+      base_Path        = "/view/#{project}/#{team}"
+      using $scope.is_Active, ->
+        @(''    ).assert_Is ''
+
+        $location.url(base_Path)
+        @('view').assert_Is 'active'
+        @('edit').assert_Is ''
+        @('raw' ).assert_Is ''
+
+        $location.url(base_Path+'/raw')
+        @('view').assert_Is ''
+        @('edit').assert_Is ''
+        @('raw' ).assert_Is 'active'
+
+        $location.url(base_Path+'/edit')
+        @('view').assert_Is ''
+        @('edit').assert_Is 'active'
+        @('raw' ).assert_Is ''

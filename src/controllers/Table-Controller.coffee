@@ -7,6 +7,7 @@ angular.module('MM_Graph')
       $scope.team    = team
       MM_Graph_API.project_Schema project, (schema)->
         $scope.schema = schema
+
       #  console.log schema
       #MM_Graph_API.view_Table project, team, (data)->
       #  $scope.table = data

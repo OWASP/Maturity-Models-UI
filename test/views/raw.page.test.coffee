@@ -21,10 +21,10 @@ describe 'views | raw.page', ->
   #  inject ($httpBackend)->
   #    $httpBackend.verifyNoOutstandingExpectation()
       
-  it 'pages/view.page.html', ->
+  it 'pages/view.page.html', -> 
     using view, ->
       @.$('div').attr('ng-controller').assert_Is 'EditDataController'
-
-
+      @.$('.sub-nav #raw').attr('id'   ).assert_Is 'raw'
+      @.$('.sub-nav #raw').attr('class').assert_Is 'active' 
 
     

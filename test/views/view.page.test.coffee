@@ -21,4 +21,6 @@ describe 'views | view.page', ->
         @.run()
 
   it 'pages/view.page.html', ->
-    $(view.html).eq(0).attr('ng-controller').assert_Is 'OldTableController'
+    using view, ->
+      $(@.html).eq(0).attr('ng-controller').assert_Is 'OldTableController'      
+      @.$('.sub-nav #view').attr('class').assert_Is 'active' 

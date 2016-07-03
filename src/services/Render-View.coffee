@@ -21,7 +21,7 @@ class Render_View
     @.url_Location     = null
     @.url_Template     = null
 
-    @.$templateCache.put '/ui/html/directives/team-navbar.html', @.$templateCache.get('directives/team-navbar.html')      # caused by the views that have a sub menu
+    @.$templateCache.put '/ui/html/directives/team-menu.html', @.$templateCache.get('directives/team-menu.html')      # caused by the views that have a sub menu
 
     @.set_Url_Location     @.options.url_Location
     @.set_Url_Template_Key @.options.url_Template_Key
