@@ -19,7 +19,8 @@ describe 'angular | Routes ', ->
         '/view/:project/:team/edit'
         '/view/:project/:team/radar'
         '/view/:project/:team/raw'
-        '/view/:project/:team/table']
+        '/view/:project/:team/table',
+        '/view/:project/:team/table/:level']
       
       expected_Routes = []      
       for route in routes                               # handle case where angular adds an extra route with / at the end
@@ -58,6 +59,7 @@ describe 'angular | Routes ', ->
         '/view/:project/:team/radar'            : 'radar.page.html'
         '/view/:project/:team/raw'              : 'raw.page.html'
         '/view/:project/:team/table'            : 'table.page.html'
+        #'/view/project/:team/table/:level'      : 'table.page.html'               # same prob as above
         '/aaaa'                                 : '404.page.html'
 
       map_Expected_GETs (value for key,value of url_Mappings)

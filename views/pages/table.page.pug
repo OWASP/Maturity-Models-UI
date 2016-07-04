@@ -1,6 +1,32 @@
 div(ng-controller='TableController')
     teamMenu
-    .row
-        pre {{schema}}
-        hr
-        pre {{table}}
+    .row.fullWidth.activity-table
+        table
+            thead
+                tr
+                    th Domain
+                    th Practice
+                    th Activity
+                    th Level
+                    th Question
+                    th Yes
+                    th No
+                    th NA
+                    th Maybe
+                    th Proof
+            tbody
+                tr(ng-repeat="(key, cells) in rows")
+                    td {{cells[0]}}
+                    td {{cells[1]}}
+                    td {{cells[2]}}
+                    td {{cells[3]}}
+                    td {{cells[4]}}
+                    td
+                        input(type='checkbox' ng-checked= 'cells[5]')
+                    td
+                        input(type='checkbox' ng-checked= 'cells[6]')
+                    td
+                        input(type='checkbox' ng-checked= 'cells[7]')
+                    td
+                        input(type='checkbox' ng-checked= 'cells[8]')
+                    td {{cells[9]}}
