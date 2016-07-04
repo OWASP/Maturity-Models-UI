@@ -3,37 +3,3 @@ div
     teamTable(level='1')
     teamTable(level='2')
     teamTable(level='3')
-
-    //.row.fullWidth.activity-table(ng-init="level='3'")
-        h4 Level {{level}}:
-
-            thead
-                tr
-                    th.hide-for-medium-down.hide-for-print #
-                    th.hide-for-medium-down.hide-for-print Domain
-                    th.hide-for-medium-down.hide-for-print Practice
-                    th Activity
-                    th Level
-                    th Question
-                    th Yes
-                    th No
-                    th NA
-                    th Maybe
-                    th.hide-for-medium-down.hide-for-print Proof
-            tbody
-                tr(ng-repeat="(index, cells) in map_Rows(level)")
-                    td.hide-for-medium-down.hide-for-print {{index}}
-                    td.hide-for-medium-down.hide-for-print {{cells[0]}}
-                    td.hide-for-medium-down.hide-for-print {{cells[1]}}
-                    td {{cells[2]}}
-                    td {{cells[3]}}
-                    td {{cells[4]}}
-                    td
-                        input(type='radio' ng-checked= 'cells[5]')
-                    td
-                        input(type='radio' ng-checked= 'cells[6]')
-                    td
-                        input(type='radio' ng-checked= 'cells[7]')
-                    td
-                        input(type='radio' ng-checked= 'cells[8]')
-                    td.hide-for-medium-down  {{cells[9]}}
