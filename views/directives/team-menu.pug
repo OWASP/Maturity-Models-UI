@@ -6,6 +6,6 @@ div#teamMenu
                 a(href='/view/project/{{project}}') {{project}}
         dt
             b {{team}}
-        dd(ng-repeat='link in links', class='{{link.class}}', id='{{link.text}}')
-            a(href='{{link.path}}') {{link.text}}
-    br
+        .hide-for-print
+            dd(ng-repeat='link in links', class='{{link.class}}', id='{{link.text}}')
+                a(href='{{link.path}}') {{link.text}}

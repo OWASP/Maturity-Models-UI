@@ -4,8 +4,9 @@ div(ng-controller='TableController')
         table
             thead
                 tr
-                    th Domain
-                    th Practice
+                    th.hide-for-medium-down.hide-for-print #
+                    th.hide-for-medium-down.hide-for-print Domain
+                    th.hide-for-medium-down.hide-for-print Practice
                     th Activity
                     th Level
                     th Question
@@ -13,20 +14,21 @@ div(ng-controller='TableController')
                     th No
                     th NA
                     th Maybe
-                    th Proof
+                    th.hide-for-medium-down.hide-for-print Proof
             tbody
-                tr(ng-repeat="(key, cells) in rows")
-                    td {{cells[0]}}
-                    td {{cells[1]}}
+                tr(ng-repeat="(index, cells) in rows")
+                    td.hide-for-medium-down.hide-for-print {{index}}
+                    td.hide-for-medium-down.hide-for-print {{cells[0]}}
+                    td.hide-for-medium-down.hide-for-print {{cells[1]}}
                     td {{cells[2]}}
                     td {{cells[3]}}
                     td {{cells[4]}}
                     td
-                        input(type='checkbox' ng-checked= 'cells[5]')
+                        input(type='radio' ng-checked= 'cells[5]')
                     td
-                        input(type='checkbox' ng-checked= 'cells[6]')
+                        input(type='radio' ng-checked= 'cells[6]')
                     td
-                        input(type='checkbox' ng-checked= 'cells[7]')
+                        input(type='radio' ng-checked= 'cells[7]')
                     td
-                        input(type='checkbox' ng-checked= 'cells[8]')
-                    td {{cells[9]}}
+                        input(type='radio' ng-checked= 'cells[8]')
+                    td.hide-for-medium-down  {{cells[9]}}

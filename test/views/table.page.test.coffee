@@ -24,7 +24,7 @@ describe 'views | table.page', ->
       @.$routeParams.assert_Is { project: 'bsimm', team: 'team-A' }
       @.$('div'        ).first().attr('ng-controller').assert_Is 'TableController'
       @.$('#teamMenu a').length.assert_Is 6
-      @.$('td'         ).length.assert_Is 50
+      @.$('td'         ).length.assert_Is 55
 
 
 
