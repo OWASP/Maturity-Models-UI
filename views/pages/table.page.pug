@@ -1,7 +1,12 @@
-div(ng-controller='TableController')
+div
     teamMenu
-    .row.fullWidth.activity-table
-        table
+    teamTable(level='1')
+    teamTable(level='2')
+    teamTable(level='3')
+
+    //.row.fullWidth.activity-table(ng-init="level='3'")
+        h4 Level {{level}}:
+
             thead
                 tr
                     th.hide-for-medium-down.hide-for-print #
@@ -16,7 +21,7 @@ div(ng-controller='TableController')
                     th Maybe
                     th.hide-for-medium-down.hide-for-print Proof
             tbody
-                tr(ng-repeat="(index, cells) in rows")
+                tr(ng-repeat="(index, cells) in map_Rows(level)")
                     td.hide-for-medium-down.hide-for-print {{index}}
                     td.hide-for-medium-down.hide-for-print {{cells[0]}}
                     td.hide-for-medium-down.hide-for-print {{cells[1]}}

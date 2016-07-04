@@ -1,14 +1,22 @@
 .activity-table .panel.callout {
-          padding-top: 1px;
-          padding-bottom: 1px;
-      }
-
+            padding-top: 1px;
+            padding-bottom: 1px;
+    }
+.activity-table table th {
+            font-size:12px !important;
+    }
 .activity-table td {
-          padding: 2px !important;
-          text-align: center !important;
-      }
+            padding: 2px !important;
+            text-align: center !important;
+            font-size:12px !important;
+    }
 
 .activity-table input[type="radio"] {
-          vertical-align: middle !important;
-          margin :0px !important;
-      }
+            vertical-align: middle !important;
+            margin :0px !important;
+    }
+
+
+@media print {
+    .panel.callout {border: solid; border-width: 2; background-color: #c0c0c0;}
+}

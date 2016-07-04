@@ -16,9 +16,10 @@ angular.module('MM_Graph')
       
     $scope.links =
       [
-        { text: 'view' , path: base_Path            , class: $scope.is_Active('view')}
-        { text: 'table', path: "#{base_Path}/table" , class: $scope.is_Active('table')}
-        { text: 'radar', path: "#{base_Path}/radar" , class: $scope.is_Active('radar')}
-        { text: 'edit' , path: "#{base_Path}/edit"  , class: $scope.is_Active('edit')}
-        { text: 'raw'  , path: "#{base_Path}/raw"   , class: $scope.is_Active('raw')}
+        { text: 'view'  , path: base_Path                        , class: $scope.is_Active('view')}
+        { text: 'table' , path: "#{base_Path}/table"             , class: $scope.is_Active('table')}
+        { text: 'radar' , path: "#{base_Path}/radar"             , class: $scope.is_Active('radar')}
+        { text: 'edit'  , path: "#{base_Path}/edit"              , class: $scope.is_Active('edit')}
+        { text: 'raw'   , path: "#{base_Path}/raw"               , class: $scope.is_Active('raw')}
+        { text: 'schema', path: "/view/project/#{project}/schema", class: $scope.is_Active('schema')}
       ]

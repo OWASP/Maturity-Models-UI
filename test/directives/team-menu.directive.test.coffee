@@ -25,7 +25,7 @@ describe '| directive | team-menu', ->
 
   it 'should contain navigation links', ->
     links = (text:a.text, href: a.href for a in $(html).find('a'))
-    links.size().assert_Is 6
+    links.size().assert_Is 7
 
     index = 0
     check_Link = (path, text) ->

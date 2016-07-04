@@ -2,11 +2,13 @@ angular.module('MM_Graph')
   .controller 'TableController', ($scope, $routeParams, MM_Graph_API)->
     project = $routeParams.project
     team    = $routeParams.team
-    level   = $routeParams.level
+    level   = $scope.level?.toString()
 
-    $scope.map_Rows = (data, schema)->            
-      mappings = []      
-      for domain, activity of data.activities        
+    $scope.map_Rows = ()->
+      data    = $scope.data
+      schema  = $scope.schema
+      mappings = []           
+      for domain, activity of data?.activities
         for key,value of activity
           row = [domain]
           if schema[key]
@@ -35,4 +37,7 @@ angular.module('MM_Graph')
         $scope.schema = schema      
         MM_Graph_API.file_Get project, team, (data)->
           $scope.data = data
-          $scope.rows = $scope.map_Rows(data, schema)                    
+          $scope.rows = $scope.map_Rows()
+          $scope.show = true
+          #console.log $scope.rows
+          #$scope.rows = $scope.map_Rows(data, schema)

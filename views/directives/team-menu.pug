@@ -1,11 +1,14 @@
 div#teamMenu
     br
-    dl.sub-nav(ng-cloak)
-        dt
-            b
-                a(href='/view/project/{{project}}') {{project}}
-        dt
-            b {{team}}
-        .hide-for-print
+    .hide-for-print
+        dl.sub-nav(ng-cloak)
+            dt
+                b
+                    a(href='/view/project/{{project}}') {{project}}
+            dt
+                b {{team}}
+
             dd(ng-repeat='link in links', class='{{link.class}}', id='{{link.text}}')
                 a(href='{{link.path}}') {{link.text}}
+    .show-for-print
+        h2 {{team}}
