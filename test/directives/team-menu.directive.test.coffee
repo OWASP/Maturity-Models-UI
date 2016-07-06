@@ -25,7 +25,7 @@ describe '| directive | team-menu', ->
 
   it 'should contain navigation links', ->
     links = (text:a.text, href: a.href for a in $(html).find('a'))
-    links.size().assert_Is 7
+    links.size().assert_Is 6
 
     index = 0
     check_Link = (path, text) ->
@@ -33,7 +33,7 @@ describe '| directive | team-menu', ->
       links[index++].text.assert_Is text
 
     check_Link "/view/project/#{project}"        , project
-    check_Link "/view/#{project}/#{team}"        , 'view'
+    #check_Link "/view/#{project}/#{team}"        , 'view'
     check_Link "/view/#{project}/#{team}/table"  , 'table'
     check_Link "/view/#{project}/#{team}/radar"  , 'radar'
     check_Link "/view/#{project}/#{team}/edit"   , 'edit'

@@ -10,7 +10,7 @@ angular.module('MM_Graph')
       .when '/view/project/:project/schema/:level'  , templateUrl: "#{pages}/project-schema.page.html"
       .when '/view/all/radar'                       , templateUrl: "#{pages}/all-radar.page.html"
       .when '/view/routes'                          , templateUrl: "#{pages}/routes.page.html"      
-      .when '/view/:project/:team'                  , templateUrl: "#{pages}/view.page.html"
+      #.when '/view/:project/:team'                  , templateUrl: "#{pages}/view.page.html"
       .when '/view/:project/:team/edit'             , templateUrl: "#{pages}/edit.page.html"
       .when '/view/:project/:team/radar'            , templateUrl: "#{pages}/radar.page.html"
       .when '/view/:project/:team/raw'              , templateUrl: "#{pages}/raw.page.html"

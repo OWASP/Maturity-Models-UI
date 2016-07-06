@@ -29,8 +29,6 @@ describe 'controllers | Projects', ->
       @.team   .assert_Is team
       @.schema .assert_Is data_Schema
       @.data   .assert_Is data_Team_A
-      #@.rows.size().assert_Is 4
-      #@.rows[0].assert_Is [ 'Governance', '', 'SM.1.1', '1', 'Is there a formal SDL (Software Development Lifecycle) used?', true, false,false, false , '']
 
 
   it '$scope.map_Rows', ->
