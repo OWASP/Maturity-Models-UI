@@ -5,6 +5,7 @@ angular.module('MM_Graph')
       .when '/view'                                 , templateUrl: "#{pages}/welcome.page.html"
       .when '/view/projects'                        , templateUrl: "#{pages}/projects.page.html"
       .when '/view/project/:project'                , templateUrl: "#{pages}/project.page.html"
+      .when '/view/project/:project/scores'         , templateUrl: "#{pages}/project-scores.page.html"
       .when '/view/project/:project/schema'         , templateUrl: "#{pages}/project-schema.page.html"
       .when '/view/project/:project/schema/:level'  , templateUrl: "#{pages}/project-schema.page.html"
       .when '/view/all/radar'                       , templateUrl: "#{pages}/all-radar.page.html"

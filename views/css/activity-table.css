@@ -2,6 +2,9 @@
             padding-top: 1px;
             padding-bottom: 1px;
     }
+.activity-table table {
+            width: 100%; !important;
+    }
 .activity-table table th {
             font-size:12px !important;
     }

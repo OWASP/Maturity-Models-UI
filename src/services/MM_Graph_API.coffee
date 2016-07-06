@@ -15,6 +15,11 @@ class MM_Graph_API
     @.$http.get url
       .success callback
 
+  data_Score: (project, team, callback)=>
+    url = "#{@.version}/data/#{project}/#{team}/score"
+    @.$http.get url
+      .success callback
+
   file_Get: (project, team,callback)=>
     url = "/api/v1/team/#{project}/get/#{team}?pretty"
     @.$http.get url
@@ -41,6 +46,11 @@ class MM_Graph_API
     url = "/api/v1/project/schema/#{project}"
     @.$http.get url
            .success callback
+
+  project_Scores: (project,callback)=>
+    url = "/api/v1/project/scores/#{project}"
+    @.$http.get url
+      .success callback
 
   view_Table: (project,team,callback)=>
     url = "/api/v1/table/#{project}/#{team}"

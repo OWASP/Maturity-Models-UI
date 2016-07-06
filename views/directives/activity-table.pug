@@ -7,7 +7,7 @@
         thead
             tr
                 th ID
-                //th Description
+                //th Level
                 th Yes
                 th No
                 th NA
@@ -16,7 +16,7 @@
         tbody
             tr.cell(ng-repeat="(key, value) in data")
                 td.text-left {{key}}
-                //td {{value}}
+                //td ...
                 td
                     input(type="radio" ng-name='key' ng-model="data[key]" value='Yes')
                 td
