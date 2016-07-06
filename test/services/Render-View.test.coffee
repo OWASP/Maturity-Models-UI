@@ -62,7 +62,7 @@ describe 'services | Render-View', ->
         @.$routeParams             .assert_Is { project: 'abc', team: '123' }
         @.route.params             .assert_Is { project: 'abc', team: '123' }
         @.route.$$route.templateUrl.assert_Is @.url_Template
-        @.$('div').length          .assert_Is 1
+        @.$('div').length          .assert_Is 6
         @.scope.$$listenerCount    .assert_Is {}
 
 
@@ -78,7 +78,7 @@ describe 'services | Render-View', ->
       @.html.assert_Contains '"metadata": 42'
       @.route.params.assert_Is { project: 'bsimm', team: 'team-A' }
       @.route.$$route.templateUrl.assert_Is @.url_Template
-      @.$('div').length.assert_Is 1
+      @.$('div').length.assert_Is 6
       
   it 'set_Url_Data', -> 
     using render_View, ->

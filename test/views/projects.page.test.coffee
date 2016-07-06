@@ -11,7 +11,7 @@ describe 'views | projects.page', ->
 
   it 'check raw template value',->
     using $(html), ->
-      @.find('#projects').text()                 .assert_Is 'Projects{{value}}    , see schema'
+      @.find('#projects').text()                 .assert_Is 'Projects{{value}}   - schema, scores'
       @.find('#projects').attr('ng-controller')  .assert_Is 'ProjectsController'
       @.find('div'      ).length                 .assert_Is 3
       @.find('h4'       ).text()                 .assert_Is 'Projects'
@@ -29,18 +29,24 @@ describe 'views | projects.page', ->
         $httpBackend.flush()
 
         using $(element.find('a')), ->
-          @.length.assert_Is 4
+          @.length.assert_Is 6
           using @.eq(0), ->
             @.attr('href').assert_Is 'view/project/appsec'
             @.html().assert_Is 'appsec'
           using @.eq(1), ->
             @.attr('href').assert_Is 'view/project/appsec/schema'
-            @.html().assert_Is 'schema'
+            @.html().assert_Is 'schema, '
           using @.eq(2), ->
+            @.attr('href').assert_Is 'view/project/appsec/scores'
+            @.html().assert_Is 'scores'
+          using @.eq(3), ->
             @.attr('href').assert_Is 'view/project/demo'
             @.html().assert_Is 'demo'
-          using @.eq(3), ->
+          using @.eq(4), ->
             @.attr('href').assert_Is 'view/project/demo/schema'
-            @.html().assert_Is 'schema'            
+            @.html().assert_Is 'schema, '
+          using @.eq(5), ->
+            @.attr('href').assert_Is 'view/project/demo/scores'
+            @.html().assert_Is 'scores'
 
 

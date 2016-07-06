@@ -5,6 +5,7 @@ describe 'controllers | Projects', ->
   team        = 'team-A'
   data_Schema = null
   data_Team_A = null
+  data_Scores = null
 
   beforeEach ->
     module('MM_Graph')
@@ -13,11 +14,13 @@ describe 'controllers | Projects', ->
     inject ($controller, $rootScope, $httpBackend, test_Data)->
       data_Schema = test_Data.bsimm_Schema
       data_Team_A = test_Data.team_A
+      data_Scores = {}                                                       # Issue-89: Add scores to test_Data service
       $scope = $rootScope.$new()
       routeParams = project : project , team: team
       $controller('TableController', { $scope: $scope, $routeParams : routeParams })
-      $httpBackend.expectGET("/api/v1/project/schema/#{project}"         ).respond data_Schema
-      $httpBackend.expectGET("/api/v1/team/#{project}/get/#{team}?pretty").respond data_Team_A
+      $httpBackend.expectGET("/api/v1/project/schema/#{project}"             ).respond data_Schema
+      $httpBackend.expectGET("/api/v1/data/#{project}/#{team}/score"         ).respond data_Scores
+      $httpBackend.expectGET("/api/v1/team/#{project}/get/#{team}?pretty"    ).respond data_Team_A
       $httpBackend.flush()
 
   it '$controller',->

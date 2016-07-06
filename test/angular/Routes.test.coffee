@@ -11,6 +11,7 @@ describe 'angular | Routes ', ->
         '/view'
         '/view/projects'
         '/view/project/:project'
+        '/view/project/:project/scores'              
         '/view/project/:project/schema'
         '/view/project/:project/schema/:level'
         '/view/all/radar'
