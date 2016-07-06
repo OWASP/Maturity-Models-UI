@@ -1,19 +1,44 @@
 angular.module('MM_Graph')
-  .controller 'ProjectSchemaController', ($scope, $routeParams, MM_Graph_API)->
+  .controller 'ProjectScoresController', ($scope, $routeParams, MM_Graph_API)->
 
     project = $routeParams.project
-    level   = $routeParams.level
+
+    $scope.get_Style = ()->
+      'green'
 
     if project
       $scope.project = project
-      $scope.level   = level
-      MM_Graph_API.project_Schema project, (data)->
-        count   = 1
-        items = {}
-        for key,value of data
-          if (not level) or value.level is level
-            value.index = count++
-            items[key] = value
+      MM_Graph_API.project_Scores project, (data)->
+        console.log data
+        $scope.data = data
+        for team, scores of data
+          if scores.level_1
+            if scores.level_1.value > 12
+              scores.level_1.color = 'green'
+            else if scores.level_1.value > 7
+              scores.level_1.color = 'orange'
+            else
+              if scores.level_1.value is 0
+                scores.level_1.color = 'black'
+              else
+                scores.level_1.color = 'red'
 
-        $scope.total = count - 1
-        $scope.items = items 
+            if scores.level_2.value > 11
+              scores.level_2.color = 'green'
+            else if scores.level_2.value > 7
+              scores.level_2.color = 'orange'
+            else
+              if scores.level_2.value is 0
+                scores.level_2.color = 'black'
+              else
+                scores.level_2.color = 'red'
+
+            if scores.level_3.value > 10
+              scores.level_3.color = 'green'
+            else if scores.level_3.value > 7
+              scores.level_3.color = 'orange'
+            else
+              if scores.level_3.value is 0
+                scores.level_3.color = 'black'
+              else
+                scores.level_3.color = 'red'
