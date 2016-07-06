@@ -6,21 +6,15 @@ div.ng-hide(ng-controller='EditDataController' ng-show='data')
             label.right.inline
                 b Team Name:
         .small-4.columns
-            input(type="text" ng-model='metadata.team')
+            input#team-name(type="text" ng-model='metadata.team')
         .small-1.columns
             a.button.postfix(ng-click='save_Data()') save
         .small-1.columns
         .small-4.columns
-            .center.label.round(ng-class='messageClass') {{status}}
+            .center.label.round#message(ng-class='messageClass') {{status}}
 
     .row.fullWidth
         hr
     .row.fullWidth
-        .medium-3.columns
-            activityTable(title='"Governance"', data='governance')
-        .medium-3.columns
-            activityTable(title='"Intelligence"', data='intelligence')
-        .medium-3.columns
-            activityTable(title='"SSDL"', data='ssdl')
-        .medium-3.columns
-            activityTable(title='"Deployment"' data='deployment')
+        .medium-3.columns(ng-repeat='(key,domain) in domains')
+            activityTable(title='key', data='domain')

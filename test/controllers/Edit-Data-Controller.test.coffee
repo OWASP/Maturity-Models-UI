@@ -4,16 +4,18 @@ describe 'controllers | Projects', ->
   routeParams = null
   project     = 'bsimm'
   team        = 'team-A'
-  test_Data   = null
+  bsimm_Team  = null
+  samm_Team   = null
   
   beforeEach ->
     module('MM_Graph')
 
   beforeEach ->
-    test_Data = metadata : 'metadata' , activities: Governance : 42, Intelligence: 43, SSDL: 44 ,Deployment: 45
-    inject ($controller, $rootScope)->
-      $scope = $rootScope.$new()
+    inject ($controller, $rootScope, test_Data)->
+      $scope      = $rootScope.$new()
       routeParams = project : project , team: team
+      bsimm_Team  = test_Data.bsimm_Team
+      samm_Team   = test_Data.samm_Team
       $controller('EditDataController', { $scope: $scope, $routeParams : routeParams })
 
   it '$controller (with project and team on $routeParams)',->
@@ -24,17 +26,19 @@ describe 'controllers | Projects', ->
       @.team        .assert_Is team
 
     inject ($httpBackend)->
-      $httpBackend.expectGET("/api/v1/team/#{project}/get/#{team}?pretty").respond test_Data
+      $httpBackend.expectGET("/api/v1/team/#{project}/get/#{team}?pretty").respond bsimm_Team
       $httpBackend.flush()
       using $scope, ->
         @.status      .assert_Is 'data loaded'
-        @.data_Raw    .assert_Is JSON.stringify(test_Data, null, 4)
-        @.data        .assert_Is test_Data
-        @.metadata    .assert_Is test_Data.metadata
-        @.governance  .assert_Is 42
-        @.intelligence.assert_Is 43
-        @.ssdl        .assert_Is 44
-        @.deployment  .assert_Is 45
+        @.data_Raw    .assert_Is JSON.stringify(bsimm_Team, null, 4)
+        @.data        .assert_Is bsimm_Team
+        @.metadata    .assert_Is bsimm_Team.metadata
+        @.domains     .assert_Is bsimm_Team.activities
+
+        @.domains.Governance['SM.1.1']  .assert_Is 'Yes'
+        @.domains.Intelligence['AM.1.2'].assert_Is 'Maybe'
+        @.domains.SSDL['AA.1.1']        .assert_Is 'NA'
+        @.domains.Deployment['PT.1.1']  .assert_Is 'No'
 
   it '$controller (with empty $routeParams)',->
     inject ($controller)->
@@ -43,12 +47,12 @@ describe 'controllers | Projects', ->
 
   it '$scope.save_Data', ->
     inject ($httpBackend)->
-      $httpBackend.expectGET("/api/v1/team/#{project}/get/#{team}?pretty").respond test_Data      
+      $httpBackend.expectGET("/api/v1/team/#{project}/get/#{team}?pretty").respond bsimm_Team
       $httpBackend.flush()
       
       # test with success return value
       $scope.save_Data() 
-      $httpBackend.expectPOST("/api/v1/team/#{project}/save/#{team}", test_Data).respond status: 'ok-status'      
+      $httpBackend.expectPOST("/api/v1/team/#{project}/save/#{team}", bsimm_Team).respond status: 'ok-status'
       $httpBackend.flush()
       using $scope, ->
         @.messageClass.assert_Is 'success'
@@ -56,9 +60,23 @@ describe 'controllers | Projects', ->
 
       # test with error return value  
       $scope.save_Data()  
-      $httpBackend.expectPOST("/api/v1/team/#{project}/save/#{team}", test_Data).respond error: 'an-error'
+      $httpBackend.expectPOST("/api/v1/team/#{project}/save/#{team}", bsimm_Team).respond error: 'an-error'
 
       $httpBackend.flush()
       using $scope, ->
         @.messageClass.assert_Is 'alert'
-        @.status .assert_Is      'an-error'  
+        @.status .assert_Is      'an-error'
+
+
+  it 'should load SAMM data', ->
+    inject ($httpBackend)->
+      $httpBackend.expectGET("/api/v1/team/#{project}/get/#{team}?pretty").respond samm_Team
+      $httpBackend.flush()
+      using $scope, ->
+        @.domains.Governance[  'SM.1.A'].assert_Is 'Yes'
+        @.domains.Construction['TA.1.A'].assert_Is 'No'
+        @.domains.Verification['DR.1.A'].assert_Is 'Maybe'
+        @.domains.Operation[   'IM.1.A'].assert_Is 'Yes'
+
+
+

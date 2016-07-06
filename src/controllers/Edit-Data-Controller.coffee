@@ -23,11 +23,7 @@ angular.module('MM_Graph')
         $scope.data_Raw     = JSON.stringify(data, null, 4)
         $scope.data         = data
         $scope.metadata     = data.metadata
-        $scope.governance   = $scope.data?.activities?.Governance
-        $scope.intelligence = $scope.data?.activities?.Intelligence
-        $scope.ssdl         = $scope.data?.activities?.SSDL
-        $scope.deployment   = $scope.data?.activities?.Deployment
-
+        $scope.domains      = $scope.data?.activities        
     else
       $scope.status = 'No team provided'
 

@@ -14,7 +14,12 @@ describe 'services | Test_Data', ->
     using test_Data.bsimm_Schema, ->
       @["SM.1.1"].assert_Is "level" :"1", "activity" : "Is there a formal SDL (Software Development Lifecycle) used?"
 
-  it 'team_A', ->
-    using test_Data.team_A, ->
-      @.metadata.team.assert_Is 'Team A'
+  it 'bsimm_Team', ->
+    using test_Data.bsimm_Team, ->
+      @.metadata.team.assert_Is 'Team BSIMM'
       @.activities.keys().assert_Is ['Governance', 'Intelligence', 'SSDL', 'Deployment']
+
+  it 'samm_Team', ->
+    using test_Data.samm_Team, ->
+      @.metadata.team.assert_Is 'Team SAMM'
+      @.activities.keys().assert_Is ['Governance', 'Construction', 'Verification', 'Operation']

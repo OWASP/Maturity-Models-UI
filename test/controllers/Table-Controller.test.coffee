@@ -13,7 +13,7 @@ describe 'controllers | Projects', ->
   beforeEach ->
     inject ($controller, $rootScope, $httpBackend, test_Data)->
       data_Schema = test_Data.bsimm_Schema
-      data_Team_A = test_Data.team_A
+      data_Team_A = test_Data.bsimm_Team
       data_Scores = {}                                                       # Issue-89: Add scores to test_Data service
       $scope = $rootScope.$new()
       routeParams = project : project , team: team
