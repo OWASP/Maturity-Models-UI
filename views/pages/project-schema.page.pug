@@ -5,18 +5,14 @@
                 h4 Schema for Project {{project}}
                     b(ng-if='level') &#32;for level {{level}}
                     b &#32;- {{total}} activities
-                table
+                table(border=1, style='border-collapse: collapse')
                     thead
                         tr
-                            th
-                                b Key
-                            th
-                                b Level
-                            th
-                                b Activity
+                            th Domain
+                            th Practice
+                            th Key
+                            th Level
+                            th Activity
                     tbody
-                        tr(ng-repeat="(key,value) in items")
-                            td {{key}}
-                            td {{value.level}}
-                            td
-                                .text-left {{value.activity}}
+                        tr(ng-repeat='row in rows', style='vertical-align: top')
+                          td(ng-repeat='cell in row track by $index' rowspan='{{::cell.rowspan}}', id='{{cell.id}}') {{::cell.value}}

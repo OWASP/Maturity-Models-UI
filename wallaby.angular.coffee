@@ -14,10 +14,9 @@ module.exports = (wallaby)->
       # weird bug where chai will load from node_modules but not from bower_components
       #{pattern: 'bower_components/chai/chai.js', instrument: true},
       just_Load  'node_modules/chai/chai.js'
-        
       './src/**/*.coffee'
       './.dist/js/templates.js'
-      just_Load './data/**/*.coffee'
+      './data/**/*.coffee'
     ]
     tests : [
       './test/**/*.coffee'
