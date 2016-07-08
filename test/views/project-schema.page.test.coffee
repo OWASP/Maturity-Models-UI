@@ -18,7 +18,7 @@ describe 'views | project-schema.page', ->
       @.find('#project').text()                 .assert_Contains '{project}}'
       @.find('#project').attr('ng-controller')  .assert_Is 'ProjectSchemaController'
       @.find('div'     ).length                 .assert_Is 3
-      @.find('h4'      ).text()                 .assert_Is 'Schema for Project {{project}} for level {{level}} - {{total}} activities'
+      @.find('h4'      ).text()                 .assert_Is 'Schema for Project {{project}} for level {{level}} - {{rows.size()}} activities'
 
 
   it 'check with Controller', ->
