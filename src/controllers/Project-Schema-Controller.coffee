@@ -26,7 +26,7 @@
               row.push value : activity.level
               row.push value : activity.name
 
-            rows.push row
+              rows.push row
             domain_Row   = []
             practice_Row = []
       return rows

@@ -4,7 +4,7 @@
             div.row.column
                 h4 Schema for Project {{project}}
                     b(ng-if='level') &#32;for level {{level}}
-                    b &#32;- {{total}} activities
+                    b &#32;- {{rows.size()}} activities
                 table(border=1, style='border-collapse: collapse')
                     thead
                         tr

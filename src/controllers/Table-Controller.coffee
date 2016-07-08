@@ -18,20 +18,20 @@ angular.module('MM_Graph')
           practice = schema.practices[practice_Name]
           for activity_Key in practice.activities
             activity = schema.activities[activity_Key]
+            if activity
+              if (not level) or activity.level is level
+                row = [domain_Name, practice_Name, activity_Key, activity.level, activity.name]
 
-            if (not level) or activity.level is level
-              row = [domain_Name, practice_Name, activity_Key, activity.level, activity.name]
-              
-              value = data.activities[activity_Key]
-              
-              switch value
-                when 'Yes'   then row.push true , false, false, false
-                when 'No'    then row.push false, true , false, false
-                when 'NA'    then row.push false, false, true , false
-                when 'Maybe' then row.push false, false, false, true
+                value = data.activities[activity_Key]
 
-              row.push ''  # proof value                  
-              mappings.push row
+                switch value
+                  when 'Yes'   then row.push true , false, false, false
+                  when 'No'    then row.push false, true , false, false
+                  when 'NA'    then row.push false, false, true , false
+                  when 'Maybe' then row.push false, false, false, true
+
+                row.push ''  # proof value
+                mappings.push row
 
       return mappings
 
