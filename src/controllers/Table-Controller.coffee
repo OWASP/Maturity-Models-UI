@@ -6,33 +6,27 @@ angular.module('MM_Graph')
 
     $scope.map_Rows = ()->
 
-      data    = $scope.data
-      schema  = $scope.schema
+      data       = $scope.data
+      schema     = $scope.schema
+      activities = schema.activities
       mappings = []
-#      yeses    = 0
 
       for domain, activity of data?.activities
         for key,value of activity
           row = [domain]
-          if schema[key]
+          if activities[key]
             cell_Activity_Id = key
-            cell_Activity    = schema[key].activity || ''
-            cell_Level       = schema[key].level    || ''
-            cell_Practice    = schema[key].practice || ''
+            cell_Activity    = activities[key].name || ''
+            cell_Level       = activities[key].level    || ''
+            cell_Practice    = activities[key].practice || ''
             if (not level) or cell_Level is level
               row.push cell_Practice, cell_Activity_Id, cell_Level , cell_Activity
               switch value
-                when 'Yes'
-                  row.push true , false, false, false
-#                  yeses += 1
-                when 'No'    
-                  row.push false, true , false, false
-                when 'NA'
-                  row.push false, false, true , false
-#                  yeses += 1
-                when 'Maybe' 
-                  row.push false, false, false, true
-#                  yeses += 0.2
+                when 'Yes'   then row.push true , false, false, false
+                when 'No'    then row.push false, true , false, false
+                when 'NA'    then row.push false, false, true , false
+                when 'Maybe' then row.push false, false, false, true
+
               row.push ''  # proof value
               mappings.push row
  #     console.log mappings.size(), yeses

@@ -23,7 +23,7 @@ describe 'views | raw.page', ->
       
   it 'pages/view.page.html', -> 
     using view, ->
-      @.$('div').attr('ng-controller').assert_Is 'EditDataController'
+      @.$('div').attr('ng-controller').assert_Is 'TeamRawController'
       @.$('.sub-nav #raw').attr('id'   ).assert_Is 'raw'
       @.$('.sub-nav #raw').attr('class').assert_Is 'active' 
 
