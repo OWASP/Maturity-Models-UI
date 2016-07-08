@@ -23,3 +23,22 @@ describe 'services | Test_Data', ->
     using test_Data.samm_Team, ->
       @.metadata.team.assert_Is 'Team SAMM'
       @.activities.keys().assert_Is ['Governance', 'Construction', 'Verification', 'Operation']
+
+  it '/project/schema/bsimm', ->
+    inject ($httpBackend, MM_Graph_API)->
+      MM_Graph_API.project_Schema 'bsimm', (data)-> 
+        data.domains.keys().assert_Is ['Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
+      $httpBackend.flush()
+
+  it '/project/schema/samm', ->
+    inject ($httpBackend, MM_Graph_API)->
+      MM_Graph_API.project_Schema 'samm', (data)->
+        data.keys().size().assert_Is 77
+        data['SM.1.A'].domain.assert_Is 'Governance'
+      $httpBackend.flush()
+        
+
+
+
+
+

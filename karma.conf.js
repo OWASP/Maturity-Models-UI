@@ -12,11 +12,13 @@ module.exports = function(config) {
 
             '.dist/js/angular-src.js',
             '.dist/js/templates.js',
+            './data/**/*.coffee',
 
             'test/**/*.coffee'
         ],
         exclude       : [ ],
         preprocessors : {
+            'data/**/*.coffee': ['coffee'],
             'test/**/*.coffee': ['coffee'],
         },
         reporters     : ['progress'],

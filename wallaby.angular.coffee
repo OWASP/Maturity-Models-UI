@@ -17,7 +17,7 @@ module.exports = (wallaby)->
         
       './src/**/*.coffee'
       './.dist/js/templates.js'
-
+      './data/**/*.coffee'
     ]
     tests : [
       './test/**/*.coffee'
