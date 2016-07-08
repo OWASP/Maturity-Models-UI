@@ -21,7 +21,7 @@ class MM_Graph_API
       .success callback
 
   file_Get: (project, team,callback)=>
-    url = "/api/v1/team/#{project}/get/#{team}?pretty"
+    url = "/api/v1/team/#{project}/get/#{team}"
     @.$http.get url
       .success callback
 

@@ -17,7 +17,7 @@ module.exports = (wallaby)->
         
       './src/**/*.coffee'
       './.dist/js/templates.js'
-      './data/**/*.coffee'
+      just_Load './data/**/*.coffee'
     ]
     tests : [
       './test/**/*.coffee'

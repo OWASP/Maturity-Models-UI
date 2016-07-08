@@ -17,16 +17,16 @@ class Render_View
     @.ng_View          = null
     @.scope            = null
     @.url_Template_Key = null
-    @.url_Data         = null
+    #@.url_Data         = null
     @.url_Location     = null
     @.url_Template     = null
 
-    @.$templateCache.put '/ui/html/directives/team-menu.html', @.$templateCache.get('directives/team-menu.html')      # caused by the views that have a sub menu
+    @.$templateCache.put '/ui/html/directives/team-menu.html' , @.$templateCache.get('directives/team-menu.html')      # caused by the views that have a sub menu
     @.$templateCache.put '/ui/html/directives/team-table.html', @.$templateCache.get('directives/team-table.html')
 
     @.set_Url_Location     @.options.url_Location
     @.set_Url_Template_Key @.options.url_Template_Key
-    @.set_Url_Data         @.options.url_Data
+    #@.set_Url_Data         @.options.url_Data
 
 
   run: =>    
@@ -43,12 +43,13 @@ class Render_View
     @.$httpBackend.verifyNoOutstandingExpectation()
     @.$httpBackend.verifyNoOutstandingRequest()
     @
-  
-  set_Url_Data: (url_Data)=>
-    if url_Data and url_Data.path and url_Data.value
-      @.url_Data = url_Data
-      @.$httpBackend.expectGET(@.url_Data.path).respond @.url_Data.value
-    @
+
+
+#  set_Url_Data: (url_Data)=>
+#    if url_Data and url_Data.path and url_Data.value
+#      @.url_Data = url_Data
+#      #@.$httpBackend.expectGET(@.url_Data.path).respond @.url_Data.value
+#    @
 
   set_Expect_Get: (path, data)=>
     @.$httpBackend.expectGET(path).respond data

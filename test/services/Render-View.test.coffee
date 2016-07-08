@@ -26,7 +26,7 @@ describe 'services | Render-View', ->
       (@.ng_View          is null).assert_Is_True()
       (@.scope            is null).assert_Is_True()
       (@.url_Template_Key is null).assert_Is_True()
-      (@.url_Data         is null).assert_Is_True()
+#      (@.url_Data         is null).assert_Is_True()
       (@.url_Location     is null).assert_Is_True()
       (@.url_Template     is null).assert_Is_True()
 
@@ -47,18 +47,18 @@ describe 'services | Render-View', ->
     options =
       project         : project
       team            : team
-      url_Data        : path :"/api/v1/team/#{project}/get/#{team}?pretty" , value: { metadata: 42}
+      url_Data        : path :"/api/v1/team/#{project}/get/#{team}" , value: { metadata: 42}
       url_Location    : "/view/#{project}/#{team}/raw"
       url_Template_Key: 'pages/raw.page.html'
       
     inject ($injector)->
-      using $injector.get('Render_View')(options), ->    
+      using $injector.get('Render_View')(options), ->
+        @.set_Expect_Get options.url_Data.path, options.url_Data.value
         @.run()
     
         @.element.innerHTML        .assert_Is @.html
         @.element.outerHTML        .assert_Is @.outer_Html
         @.html                     .assert_Contains('ng-controller')
-        @.html                     .assert_Contains '"metadata": 42'
         @.$routeParams             .assert_Is { project: 'abc', team: '123' }
         @.route.params             .assert_Is { project: 'abc', team: '123' }
         @.route.$$route.templateUrl.assert_Is @.url_Template
@@ -70,21 +70,20 @@ describe 'services | Render-View', ->
     using render_View, ->
       @.set_Url_Location     "/view/#{@.project}/#{@.team}/raw"
        .set_Url_Template_Key 'pages/raw.page.html'
-       .set_Url_Data         path: "/api/v1/team/#{@.project}/get/#{@.team}?pretty", value: metadata: 42
+       #.set_Url_Data         path: "/api/v1/team/#{@.project}/get/#{@.team}", value: metadata: 42
        .run()
             
       @.element.innerHTML.assert_Is @.html
-      @.html.assert_Contains('ng-controller')
-      @.html.assert_Contains '"metadata": 42'
+      @.html.assert_Contains('ng-controller')      
       @.route.params.assert_Is { project: 'bsimm', team: 'team-A' }
       @.route.$$route.templateUrl.assert_Is @.url_Template
       @.$('div').length.assert_Is 6
       
-  it 'set_Url_Data', -> 
-    using render_View, ->
-      @.set_Url_Data path: "/api/v1/table/#{@.project}/#{@.team}", value: {a : 42}
-      @.url_Data.path .assert_Is '/api/v1/table/bsimm/team-A'
-      @.url_Data.value.assert_Is a: 42
+#  it 'set_Url_Data', -> 
+#    using render_View, ->
+#      @.set_Url_Data path: "/api/v1/table/#{@.project}/#{@.team}", value: {a : 42}
+#      @.url_Data.path .assert_Is '/api/v1/table/bsimm/team-A'
+#      @.url_Data.value.assert_Is a: 42
       
   it 'set_Url_Location', ->
     using render_View, ->
