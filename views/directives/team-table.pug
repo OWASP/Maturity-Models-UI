@@ -15,7 +15,7 @@
                 th Maybe
                 th.hide-for-medium-down.hide-for-print Proof
         tbody
-            tr(ng-repeat="(index, cells) in rows")
+            tr(ng-repeat="(index, cells) in rows", id='{{cells[2]}}')
                 td.hide-for-print {{index + 1}}
                 td.hide-for-medium-down.hide-for-print {{cells[0]}}
                 td.hide-for-medium-down.hide-for-print {{cells[1]}}

@@ -6,17 +6,13 @@
                 table
                     thead
                         tr
-                            th
-                                b team
-                            th
-                                b Level 1
-                            th
-                                b Level 2
-                            th
-                                b Level 3
+                            th team
+                            th Level 1
+                            th Level 2
+                            th Level 3
 
                     tbody
-                        tr(ng-repeat="(team,scores) in data")
+                        tr(ng-repeat="(team,scores) in data", id ='{{team}}')
                             td.hide-for-print
                                 a(href='/view/{{project}}/{{team}}/table' target='_blank') {{team}}
                             td.show-for-print {{team}}
