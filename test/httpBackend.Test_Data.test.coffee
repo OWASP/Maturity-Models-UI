@@ -15,8 +15,10 @@ describe 'httpBackend | Test_Data', ->
   it '/project/schema/samm', ->
     inject ($httpBackend, MM_Graph_API)->
       MM_Graph_API.project_Schema 'samm', (data)->
-        data.keys().size().assert_Is 77
-        data['SM.1.A'].domain.assert_Is 'Governance'
+        data.keys()              .assert_Is       ['domains', 'practices', 'activities']
+        data.domains.keys()      .assert_Is       [ 'Governance', 'Construction', 'Verification', 'Opererations' ]
+        data.practices.keys()    .assert_Contains ['Strategy & Metrics', 'Policy & Compliance','Education & Guidance']
+        data.activities['SM.1.A'].assert_Is       { level: '1', name: 'Is there a software security assurance program in place?' }
       $httpBackend.flush()
       
   it 'team/bsimm/get/team-A', ->
