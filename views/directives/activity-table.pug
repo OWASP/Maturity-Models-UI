@@ -1,5 +1,5 @@
 .activity-table(id='{{title}}')
-    .panel.callout.radius.text-center
+    .panel.callout.radius.text-center#domain
         b {{title}}
 
     table.fullWidth
@@ -7,16 +7,14 @@
         thead
             tr
                 th ID
-                //th Level
                 th Yes
                 th No
                 th NA
                 th Maybe
 
         tbody
-            tr.cell(ng-repeat="(key, value) in data")
+            tr.cell(ng-repeat="(key, value) in data", id='{{key}}')
                 td.text-left {{key}}
-                //td ...
                 td
                     input(type="radio" ng-name='key' ng-model="data[key]" value='Yes')
                 td

@@ -8,7 +8,7 @@ div.ng-hide(ng-controller='TeamEditController' ng-show='data')
         .small-4.columns
             input#team-name(type="text" ng-model='metadata.team')
         .small-1.columns
-            a.button.postfix(ng-click='save_Data()') save
+            a.button.postfix#save-data(ng-click='save_Data()') save
         .small-1.columns
         .small-4.columns
             .center.label.round#message(ng-class='messageClass') {{status}}
