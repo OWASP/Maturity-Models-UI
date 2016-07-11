@@ -45,7 +45,7 @@ gulp.task 'server', ()->
     console.log 'stopping server'
     server_Process.kill()
 
-  server_Process = child_process.spawn 'node', ['../server.js']
+  server_Process = child_process.spawn 'node', ['../../server.js']
   server_Process.stdout.on 'data', (data)->console.log(data.toString().trim())
   server_Process.stderr.on 'data', (data)->console.log(data.toString().trim())
   return true   # without this, gulp will block here and not complete this task 
