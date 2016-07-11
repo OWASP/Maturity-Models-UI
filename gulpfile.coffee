@@ -6,7 +6,7 @@ plumber       = require 'gulp-plumber'
 templateCache = require('gulp-angular-templatecache');
 child_process = require 'child_process'
 
-src_Files_Api  = '../src/**/*.coffee'
+src_Files_Api  = '../api/src/**/*.coffee'
 src_Files_Ui  = './src/**/*.coffee'
 pug_Files     = './views/**/*.pug'
 css_Files     = './views/css/**/*.css'
