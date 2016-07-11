@@ -6,7 +6,7 @@ class MM_Graph_API
     @.version = '/api/v1'
 
   routes: (callback)=>
-    url = "/api/v1/routes/list"
+    url = "/api/v1/routes"
     @.$http.get url
            .success callback
 

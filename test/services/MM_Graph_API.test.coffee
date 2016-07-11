@@ -30,15 +30,13 @@ describe 'services | MM_Graph_API', ->
       $http.flush()
 
   it 'project_List', ->
-    using mm_Graph_API, ->
-      $http.expectGET('/api/v1/project/list').respond ['/','/b']
+    using mm_Graph_API, ->      
       @.project_List (data)->
-        data.assert_Is ['/','/b']
+        data.assert_Is ['bsimm','samm']
       $http.flush()
 
-  it 'routes', ()->
-    $http.expectGET('/api/v1/routes/list').respond ['/','/b']
+  it 'routes', ()->    
     using mm_Graph_API, ->
       @.routes (data)->
-        data.assert_Is ['/','/b']
+        data.raw.assert_Contains ['/ping']
       $http.flush()

@@ -13,7 +13,6 @@ describe 'angular | RoutesController', ->
 
   it 'constructor',->
     inject ($httpBackend)->
-      $httpBackend.expectGET('/api/v1/routes/list').respond ['/','/b']
       $httpBackend.flush()
-      scope.routes[1].assert_Is '/b'
-      scope.routes.assert_Is ['/','/b']
+      scope.routes.raw  .assert_Contains '/api/v1/team/:project/get/:team'
+      scope.routes.fixed.assert_Contains '/api/v1/team/bsimm/get/team-A'
