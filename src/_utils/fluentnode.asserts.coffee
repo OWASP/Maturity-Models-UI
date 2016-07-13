@@ -32,6 +32,10 @@ if window['chai']     # need to move this to a separate file only available duri
     expect(@.toString()).to.equal(target.toString(), message)
     @
 
+  Number::assert_Is_Bigger_Than          = (value)->      # slight modified from fluentnode version
+    (@ > value).assert_Is_True("#{@} was not bigger than #{value}")
+    @
+
   Boolean::assert_Is_False = ->
     expect(@.valueOf()).to.equal(false)
     return false

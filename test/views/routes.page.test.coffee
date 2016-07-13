@@ -26,7 +26,7 @@ describe 'views | routes.page', ->
       @.$('#raw a'  ).html(               ).assert_Is "/api/v1/data/:project/:team/radar"
 
       @.$('#fixed'  ).attr('id'           ).assert_Is 'fixed'
-      @.$('#fixed a').length               .assert_Is 44
-      @.$('#fixed a').html(               ).assert_Is "/api/v1/data/bsimm/empty/radar"
+      @.$('#fixed a').length               .assert_Is_Bigger_Than 40
+      @.$('#fixed a').html(               ).assert_Contains "/api/v1/data/"
 
     
