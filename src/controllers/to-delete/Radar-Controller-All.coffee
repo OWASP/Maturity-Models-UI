@@ -17,7 +17,7 @@ angular.module('MM_Graph')
 
       if item.contains('team') #or !(['team-A', 'team-B', 'team-C'].contains item)
           #console.log 'mapping ' + item
-          MM_API.file_Get project, item,(data)->
+          MM_API.team_Get project, item,(data)->
             all_Data[item] =  data
             #console.log data
             return mapData list, next

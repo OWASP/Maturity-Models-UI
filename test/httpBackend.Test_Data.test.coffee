@@ -21,7 +21,7 @@ describe 'httpBackend | Test_Data', ->
       
   it 'team/bsimm/get/team-A', ->
     inject ($httpBackend, MM_API)->
-      MM_API.file_Get 'bsimm', 'team-A', (data)->
+      MM_API.team_Get 'bsimm', 'team-A', (data)->
         data.metadata.team.assert_Is 'Team A'
         data.activities.keys().assert_Contains 'SM.1.1'
         data.activities.keys().size().assert_Is 74
@@ -29,7 +29,7 @@ describe 'httpBackend | Test_Data', ->
 
   it 'team/samm/get/team-E', ->
     inject ($httpBackend, MM_API)->
-      MM_API.file_Get 'samm', 'team-E', (data)->
+      MM_API.team_Get 'samm', 'team-E', (data)->
         data.metadata.team.assert_Is 'SAMM - Team E'
         data.activities.keys().assert_Contains 'SM.1.A'
         data.activities.keys().size().assert_Is 77

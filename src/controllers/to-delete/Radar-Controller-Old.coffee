@@ -9,12 +9,12 @@ angular.module('MM_Graph')
 
     if project  and team
 
-      #MM_API.file_Get project, level_1,(level_1_Result)->
+      #MM_API.team_Get project, level_1,(level_1_Result)->
 
         #mapData level_1_Result, (level_1_Data)->
         #  console.log level_1_Data
 
-          MM_API.file_Get project, team,(result)->
+          MM_API.team_Get project, team,(result)->
             if result?.metadata
               $scope.data = result
               $scope.team = result.metadata.team

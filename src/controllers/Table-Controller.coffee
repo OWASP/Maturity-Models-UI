@@ -68,7 +68,7 @@ angular.module('MM_Graph')
           $scope.scores = scores
           $scope.score = scores["level_#{level}"]?.percentage
 
-          MM_API.file_Get project, team, (data)->
+          MM_API.team_Get project, team, (data)->
             $scope.data = data
             $scope.rows = $scope.map_Rows()
             $scope.show = true

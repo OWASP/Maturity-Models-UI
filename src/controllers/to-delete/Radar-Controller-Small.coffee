@@ -8,7 +8,7 @@ angular.module('MM_Graph')
     target_Div = '.chart-' + team
     
     if project and team
-      MM_API.file_Get project, team,(result)->
+      MM_API.team_Get project, team,(result)->
         if result.metadata
           $scope.data = result
           $scope.team = result.metadata.team

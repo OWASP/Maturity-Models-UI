@@ -51,7 +51,7 @@ gulp.task 'concat-js-libs', ()->                                            # th
               bower_Folder + '/d3/d3.min.js'                          ,     # Issue 53 - Only use d3 script includes on pages that need it
               bower_Folder + '/radar-chart-d3/src/radar-chart.min.js' ,
 
-              bower_Folder + '/angular/angular.min.js'                ,
+              bower_Folder + '/angular/angular.js'                    ,     #todo: Add support for using min in production
               bower_Folder + '/angular-route/angular-route.min.js'    ,
               bower_Folder + '/jquery/dist/jquery.min.js'             ,
 

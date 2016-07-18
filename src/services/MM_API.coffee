@@ -20,7 +20,7 @@ class MM_API
     @.$http.get url
       .success callback
 
-  file_Get: (project, team,callback)=>
+  team_Get: (project, team,callback)=>
     url = "/api/v1/team/#{project}/get/#{team}"
     @.$http.get url
       .success callback
