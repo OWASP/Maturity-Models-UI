@@ -37,6 +37,7 @@ angular.module('MM_Graph')
       MM_API.project_Schema project, (schema)->
         $scope.schema = schema
         MM_API.team_Get project, team, (data)->
+          data.metadata      ?= { team: ''}                    #todo: set default value. This should be done on the backend
           $scope.status       = 'data loaded'
           $scope.data         = data
           $scope.metadata     = data.metadata
