@@ -1,5 +1,5 @@
   angular.module('MM_Graph')
-  .controller 'ProjectSchemaController', ($scope, $routeParams, MM_Graph_API)->
+  .controller 'ProjectSchemaController', ($scope, $routeParams, MM_API)->
 
     project = $routeParams.project
     level   = $routeParams.level
@@ -34,7 +34,7 @@
     if project
       $scope.project = project
       $scope.level   = level
-      MM_Graph_API.project_Schema project, (data)->
+      MM_API.project_Schema project, (data)->
         $scope.data = data
         $scope.rows = $scope.create_Table_Rows data
 

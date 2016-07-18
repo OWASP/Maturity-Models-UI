@@ -1,5 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'RadarControllerAll', ($scope, $routeParams, MM_Graph_API)->
+  .controller 'RadarControllerAll', ($scope, $routeParams, MM_API)->
     $scope.version = 'v0.7.7'
 
     project  = $scope.project  || $routeParams.project  || 'demo'
@@ -17,14 +17,14 @@ angular.module('MM_Graph')
 
       if item.contains('team') #or !(['team-A', 'team-B', 'team-C'].contains item)
           #console.log 'mapping ' + item
-          MM_Graph_API.file_Get project, item,(data)->
+          MM_API.file_Get project, item,(data)->
             all_Data[item] =  data
             #console.log data
             return mapData list, next
       else
         mapData list, next
 
-    MM_Graph_API.file_List project, (list)->
+    MM_API.file_List project, (list)->
       mapData list, ->
         #console.log 'ready to plot graph'
         showRadar()

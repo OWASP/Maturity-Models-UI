@@ -1,5 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'RadarControllerSmall', ($scope, $routeParams, MM_Graph_API)->
+  .controller 'RadarControllerSmall', ($scope, $routeParams, MM_API)->
     $scope.version = 'v0.7.7'
 
     project  = $scope.project  || $routeParams.project || 'demo'
@@ -8,7 +8,7 @@ angular.module('MM_Graph')
     target_Div = '.chart-' + team
     
     if project and team
-      MM_Graph_API.file_Get project, team,(result)->
+      MM_API.file_Get project, team,(result)->
         if result.metadata
           $scope.data = result
           $scope.team = result.metadata.team

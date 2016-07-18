@@ -1,5 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'TableController', ($scope, $routeParams, MM_Graph_API)->
+  .controller 'TableController', ($scope, $routeParams, MM_API)->
     project = $routeParams.project
     team    = $routeParams.team
     level   = $scope.level?.toString()
@@ -62,13 +62,13 @@ angular.module('MM_Graph')
     if project and team
       $scope.project = project
       $scope.team    = team
-      MM_Graph_API.project_Schema project, (schema)->
+      MM_API.project_Schema project, (schema)->
         $scope.schema = schema
-        MM_Graph_API.data_Score project, team, (scores)->
+        MM_API.data_Score project, team, (scores)->
           $scope.scores = scores
           $scope.score = scores["level_#{level}"]?.percentage
 
-          MM_Graph_API.file_Get project, team, (data)->
+          MM_API.file_Get project, team, (data)->
             $scope.data = data
             $scope.rows = $scope.map_Rows()
             $scope.show = true

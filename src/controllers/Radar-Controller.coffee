@@ -1,5 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'RadarController', ($scope, $routeParams, MM_Graph_API)->
+  .controller 'RadarController', ($scope, $routeParams, MM_API)->
     $scope.radar_Div = '.chart-container'
 
     $scope.get_Radar_Config = ()->
@@ -16,7 +16,7 @@ angular.module('MM_Graph')
         $scope.project = project
         $scope.team    = team
   
-        MM_Graph_API.data_Radar project, team,(data)->
+        MM_API.data_Radar project, team,(data)->
           $scope.radar_Data = data
           $scope.show_Radar data, $scope.get_Radar_Config()
 

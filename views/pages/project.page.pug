@@ -4,5 +4,14 @@
             div.row.column
                 h4 Project {{project}}
                 ul
-                    li(ng-repeat="(key, team) in teams.sort()")
-                        a(href='view/{{project}}/{{team}}/table') {{team}}
+                    ul
+                        li
+                            a(href='view/project/{{project}}/schema') schema
+
+                        li
+                            a(href='view/project/{{project}}/scores') scores
+                p Teams:
+                ul
+                    ul
+                        li(ng-repeat="(key, team) in teams.sort()")
+                            a(href='view/{{project}}/{{team}}/table') {{team}}

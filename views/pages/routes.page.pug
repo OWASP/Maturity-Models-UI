@@ -6,9 +6,9 @@
             ul
                 ul#raw
                     li(ng-repeat="(key, value) in routes.raw.sort()")
-                        a(href='{{value}}' target='_self') {{value}}
+                        a(href='{{::value}}' target='_self') {{::value}}
             b Raw
             ul
                 ul#fixed
                     li(ng-repeat="(key, value) in routes.fixed.sort()")
-                        a(href='{{value}}' target='_self') {{value}}
+                        a(href='{{::value}}' target='_self') {{::value}}

@@ -1,4 +1,4 @@
-describe 'services | MM_Graph_API', ->
+describe 'services | MM_API', ->
 
   mm_Graph_API  = null
   $http         = null
@@ -13,7 +13,7 @@ describe 'services | MM_Graph_API', ->
     version = '/api/v1'
     inject ($injector, $httpBackend)->
       $http = $httpBackend
-      mm_Graph_API = $injector.get('MM_Graph_API')
+      mm_Graph_API = $injector.get('MM_API')
 
 
   afterEach ->

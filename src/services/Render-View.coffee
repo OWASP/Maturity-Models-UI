@@ -16,8 +16,7 @@ class Render_View
     @.route            = null
     @.ng_View          = null
     @.scope            = null
-    @.url_Template_Key = null
-    #@.url_Data         = null
+    @.url_Template_Key = null    
     @.url_Location     = null
     @.url_Template     = null
 
@@ -25,31 +24,22 @@ class Render_View
     @.$templateCache.put '/ui/html/directives/team-table.html', @.$templateCache.get('directives/team-table.html')
 
     @.set_Url_Location     @.options.url_Location
-    @.set_Url_Template_Key @.options.url_Template_Key
-    #@.set_Url_Data         @.options.url_Data
+    @.set_Url_Template_Key @.options.url_Template_Key    
 
 
-  run: =>    
-    @.ng_View = @.$compile("<div ng-view></div>")(@.$rootScope)
+  run: =>
+    @.scope      = @.$rootScope.$new()
+    @.ng_View    = @.$compile("<div ng-view></div>")(@.scope)
     @.$location.path @.url_Location
     @.$httpBackend.flush()
-
     @.route      = @.$route.current
     @.element    = @.ng_View[0].nextSibling
     @.html       = @.element.innerHTML
     @.outer_Html = @.element.outerHTML
-    @.$          = (selector)-> $(@.outer_Html).find(selector)
-    @.scope      = angular.element(@.element).scope()
+    @.$          = (selector)-> $(@.outer_Html).find(selector)    
     @.$httpBackend.verifyNoOutstandingExpectation()
     @.$httpBackend.verifyNoOutstandingRequest()
     @
-
-
-#  set_Url_Data: (url_Data)=>
-#    if url_Data and url_Data.path and url_Data.value
-#      @.url_Data = url_Data
-#      #@.$httpBackend.expectGET(@.url_Data.path).respond @.url_Data.value
-#    @
 
   set_Expect_Get: (path, data)=>
     @.$httpBackend.expectGET(path).respond data

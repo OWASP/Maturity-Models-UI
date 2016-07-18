@@ -1,6 +1,6 @@
 app = angular.module('MM_Graph')
 
-class MM_Graph_API
+class MM_API
   constructor: (http)->
     @.$http   = http
     @.version = '/api/v1'
@@ -58,5 +58,5 @@ class MM_Graph_API
       .success callback
 
 
-app.service 'MM_Graph_API', ($http)=>
-  return new MM_Graph_API $http
+app.service 'MM_API', ($http)=>
+  return new MM_API $http

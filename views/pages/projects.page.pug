@@ -4,8 +4,6 @@
             div.row.column
                 h4 Projects
                 ul
-                    li(ng-repeat="(key, value) in projects.sort()")
-                        a(href='view/project/{{value}}') {{value}}
-                        span &#32;&#32;&#32;-&#32;
-                        a(href='view/project/{{value}}/schema') schema,&#32;
-                        a(href='view/project/{{value}}/scores') scores
+                    ul
+                        li(ng-repeat="(key, value) in projects.sort()")
+                            a(href='view/project/{{value}}') {{value}}

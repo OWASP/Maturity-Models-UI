@@ -5,7 +5,6 @@ describe 'views | raw.page', ->
   options =
     project         : project
     team            : team
-    url_Data        : path: "/api/v1/team/#{project}/get/#{team}?pretty" , value: { metadata: 42}
     url_Location    : "/view/#{project}/#{team}/raw"
     url_Template_Key: 'pages/raw.page.html'
 
@@ -17,10 +16,6 @@ describe 'views | raw.page', ->
     inject ($injector)->
       view = $injector.get('Render_View')(options).run()
 
-  #afterEach ()->
-  #  inject ($httpBackend)->
-  #    $httpBackend.verifyNoOutstandingExpectation()
-      
   it 'pages/view.page.html', -> 
     using view, ->
       @.$('div').attr('ng-controller').assert_Is 'TeamRawController'

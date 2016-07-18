@@ -11,6 +11,7 @@ describe 'angular | Routes ', ->
         '/view'
         '/view/projects'
         '/view/project/:project'
+        '/view/project/:project/new-team'
         '/view/project/:project/scores'
         '/view/project/:project/schema'
         '/view/project/:project/schema/:level'
@@ -29,6 +30,9 @@ describe 'angular | Routes ', ->
         expected_Routes.push route + '/'
       expected_Routes.push 'null'
 
+      for route in $route.routes.keys()                 # this makes it easier to debug which route is missing
+        #console.log route
+        expected_Routes.assert_Contains route
       $route.routes.keys().assert_Is expected_Routes
 
 

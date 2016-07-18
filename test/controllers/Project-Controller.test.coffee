@@ -19,4 +19,3 @@ describe 'controllers | Projects', ->
       scope.project.assert_Is 'demo'
       scope.teams[1].assert_Is '/b'
       scope.teams.assert_Is ['/','/b']
-      scope.aaaa.assert_Is 123123

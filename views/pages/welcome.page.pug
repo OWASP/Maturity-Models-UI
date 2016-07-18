@@ -1,4 +1,13 @@
 .row
     br
 
-    p Welcome. Please chose one of the menu options (above)
+    p Current Schemas:
+
+    div(ng-controller='ProjectsController')#project
+        ul
+            ul
+                li(ng-repeat="(key, value) in projects.sort()")
+                    a(href='view/project/{{value}}') {{value}}
+                    span &#32;&#32;&#32;-&#32;
+                    a(href='view/project/{{value}}/schema') schema,&#32;
+                    a(href='view/project/{{value}}/scores') scores

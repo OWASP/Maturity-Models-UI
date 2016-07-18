@@ -1,5 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'RadarControllerOld', ($scope, $routeParams, MM_Graph_API)->
+  .controller 'RadarControllerOld', ($scope, $routeParams, MM_API)->
     $scope.version = 'v0.7.7'
 
     #level_1 = 'AppSec-Level-1'
@@ -9,12 +9,12 @@ angular.module('MM_Graph')
 
     if project  and team
 
-      #MM_Graph_API.file_Get project, level_1,(level_1_Result)->
+      #MM_API.file_Get project, level_1,(level_1_Result)->
 
         #mapData level_1_Result, (level_1_Data)->
         #  console.log level_1_Data
 
-          MM_Graph_API.file_Get project, team,(result)->
+          MM_API.file_Get project, team,(result)->
             if result?.metadata
               $scope.data = result
               $scope.team = result.metadata.team
