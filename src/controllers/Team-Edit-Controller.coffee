@@ -18,8 +18,8 @@ angular.module('MM_Graph')
       for domain_Name,domain of schema.domains
         values = {}
         for practice_Name in domain.practices
-          for activity_Key in schema.practices[practice_Name].activities            
-            values[activity_Key] = data.activities[activity_Key]
+          for activity_Key in schema.practices[practice_Name].activities
+            values[activity_Key] = data.activities?[activity_Key]            
         domains[domain_Name] = values
       return domains
       

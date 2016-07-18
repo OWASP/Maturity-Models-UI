@@ -22,7 +22,7 @@ angular.module('MM_Graph')
               if (not level) or activity.level is level
                 row = [domain_Name, practice_Name, activity_Key, activity.level, activity.name]
 
-                value = data.activities[activity_Key]
+                value = data.activities?[activity_Key]
 
                 switch value
                   when 'Yes'   then row.push true , false, false, false
