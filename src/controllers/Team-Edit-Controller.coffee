@@ -3,7 +3,7 @@ angular.module('MM_Graph')
     project = $routeParams.project
     team    = $routeParams.team  
     $scope.messageClass = 'secondary'
-    $scope.save_Data = ()->
+    $scope.save_Data = ()->         
       #$scope.status = 'saving data ....'
       MM_API.file_Save project,team , $scope.data, (result)->
         if result.error
@@ -14,14 +14,6 @@ angular.module('MM_Graph')
           $scope.status = result.status
 
     $scope.map_Domains = (schema, data)->
-#      domains = {}
-#      for domain_Name,domain of schema.domains
-#        values = {}
-#        for practice_Name in domain.practices
-#          for activity_Key in schema.practices[practice_Name].activities
-#            values[activity_Key] = data.activities?[activity_Key]
-#        domains[domain_Name] = values
-#      return domains
       domains = {}
       for domain_Name,domain of schema.domains
         domains[domain_Name] = []

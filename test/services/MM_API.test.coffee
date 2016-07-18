@@ -38,7 +38,9 @@ describe 'services | MM_API', ->
   it 'team_New', ->
     using mm_API, ->
       @.team_New project, (data)->
-        data.assert_Is { status: 'Ok', team_Name: 'team-cvqrg' }
+        data.status.assert_Is 'Ok'
+        data.team_Name.assert_Contains 'team-'
+        data.team_Name.length.assert_Is 10
       $http.flush()
       
   it 'routes', ()->    

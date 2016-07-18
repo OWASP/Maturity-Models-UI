@@ -18,7 +18,9 @@ describe 'controllers | Team-New-Controller', ->
       inject ($httpBackend, $location)=>
         @.status .assert_Is 'Creating new team'
         $httpBackend.flush()
-        @.data  .assert_Is { status: 'Ok', team_Name: 'team-cvqrg' }
+
+        @.data.status    .assert_Is 'Ok'
+        @.data.team_Name .assert_Contains 'team-'
         @.status.assert_Is 'Team created ok, redirecting...'
         $location.url().assert_Is "/view/#{project}/#{@.data.team_Name}/table"
 

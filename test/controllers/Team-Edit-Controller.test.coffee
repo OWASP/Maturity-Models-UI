@@ -30,10 +30,10 @@ describe 'controllers | Team-Edit-Controller', ->
 
         @.domains.keys().assert_Is ['Governance', 'Intelligence',  'SSDL Touchpoints', 'Deployment' ]
 
-        @.domains['Governance'      ]['SM.1.1'].assert_Is 'Yes'
-        @.domains['Intelligence'    ]['AM.1.2'].assert_Is 'Maybe'
-        @.domains['SSDL Touchpoints']['AA.1.1'].assert_Is 'Yes'
-        @.domains['Deployment'      ]['PT.1.1'].assert_Is 'Yes'
+        @.domains['Governance'      ].assert_Contains 'SM.1.1'
+        @.domains['Intelligence'    ].assert_Contains 'AM.1.2'
+        @.domains['SSDL Touchpoints'].assert_Contains 'AA.1.1'
+        @.domains['Deployment'      ].assert_Contains 'PT.1.1'
 
   it '$controller (with empty $routeParams)',->
     inject ($controller)->

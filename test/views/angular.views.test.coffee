@@ -20,24 +20,20 @@ describe 'angular | views | angular-page', ->
 
       expect(element[2].tagName).to.equal 'LINK'
       expect(element[2].rel    ).to.equal 'stylesheet'
-      expect(element[2].href   ).to.contain '/lib/foundation/css/foundation.min.css'
+      expect(element[2].href   ).to.contain '/ui/css/app.css'
 
-      expect(element[3].tagName).to.equal 'LINK'
-      expect(element[3].rel    ).to.equal 'stylesheet'
-      expect(element[3].href   ).to.contain '/ui/css/app.css'
 
+      expect(element[3].tagName).to.equal 'SCRIPT'
+      expect(element[3].src    ).to.contain '/ui/js/libs.js'
 
       expect(element[4].tagName).to.equal 'SCRIPT'
-      expect(element[4].src    ).to.contain '/lib/angular/angular.js'
-
-      expect(element[5].tagName).to.equal 'SCRIPT'
-      expect(element[5].src    ).to.contain '/lib/angular-route/angular-route.js'
+      expect(element[4].src    ).to.contain '/ui/js/angular-src.js'
       
-      expect(element[6].tagName).to.equal 'SCRIPT'
-      expect(element[6].src    ).to.contain '/ui/js/angular-src.js'
+      expect(element[5].tagName).to.equal 'SCRIPT'
+      expect(element[5].src    ).to.contain 'ui/js/templates.js'
 
-      #expect(element[5].tagName).to.equal 'SCRIPT'
-      #expect(element[5].src    ).to.contain '/lib/foundation/js/foundation.js'
+      expect(element[6].tagName).to.equal 'BASE'
+      expect(element[6].href   ).to.contain 'view'
 
 
   # todo: rewrite this using better selectors

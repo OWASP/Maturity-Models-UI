@@ -34,7 +34,7 @@ class Render_View
     @.element    = @.ng_View[0].nextSibling
     @.html       = @.element.innerHTML
     @.outer_Html = @.element.outerHTML
-    @.$          = (selector)-> $(@.outer_Html).find(selector)    
+    @.$          = (selector)=> $(@.outer_Html).find(selector)    
     @.$httpBackend.verifyNoOutstandingExpectation()
     @.$httpBackend.verifyNoOutstandingRequest()
     @
