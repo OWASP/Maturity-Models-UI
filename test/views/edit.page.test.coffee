@@ -18,16 +18,16 @@ describe 'views | edit.page', ->
     inject ($templateCache, $compile, $rootScope, $routeParams, $httpBackend)->      
       $routeParams.project = project
       $routeParams.team    = team
-      $templateCache.put '/ui/html/directives/team-menu.html'     , $templateCache.get 'directives/team-menu.html'
-      $templateCache.put '/ui/html/directives/activity-table.html', $templateCache.get 'directives/activity-table.html'
+      #$templateCache.put '/ui/html/directives/team-menu.html'     , $templateCache.get 'directives/team-menu.html'
+      #$templateCache.put '/ui/html/directives/activity-table.html', $templateCache.get 'directives/activity-table.html'
       #$httpBackend.expectGET("/api/v1/team/#{project}/get/#{team}?pretty").respond bsimm_Team
 
       $scope   = $rootScope.$new()
-      raw_Html = $templateCache.get 'pages/edit.page.html'
+      raw_Html = $templateCache.get '/ui/html/pages/edit.page.html'
       element  = $compile(angular.element(raw_Html))($scope)
       $httpBackend.flush()
 
-      $scope = element.scope()
+      $scope = element.scope()      
       html   = element[0].outerHTML
       $html  = $(html)
 
@@ -36,7 +36,7 @@ describe 'views | edit.page', ->
     using $scope, ->
       @.project.assert_Is project
       @.team   .assert_Is team
-      @.status .assert_Is 'data loaded'
+      @.status .assert_Is 'data loaded'      
       @.data.metadata.team.assert_Is 'Team A'      
       @.metadata.assert_Is team : 'Team A'      
       @.domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]

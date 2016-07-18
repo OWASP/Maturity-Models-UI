@@ -50,12 +50,17 @@ class MM_API
   project_Scores: (project,callback)=>
     url = "/api/v1/project/scores/#{project}"
     @.$http.get url
-      .success callback
+           .success callback
+
+  team_New: (project, callback)=>
+    url = "/api/v1/team/#{project}/new"
+    @.$http.get url
+           .success callback
 
   view_Table: (project,team,callback)=>
     url = "/api/v1/table/#{project}/#{team}"
     @.$http.get url
-      .success callback
+           .success callback
 
 
 app.service 'MM_API', ($http)=>

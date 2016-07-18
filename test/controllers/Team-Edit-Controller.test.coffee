@@ -41,7 +41,7 @@ describe 'controllers | Team-Edit-Controller', ->
       $scope.status.assert_Is 'No team provided'
 
   it '$scope.save_Data', ->
-    inject ($httpBackend)->      
+    inject ($httpBackend)->
       $httpBackend.flush()
       
       # test with success return value

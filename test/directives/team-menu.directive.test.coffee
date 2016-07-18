@@ -13,7 +13,7 @@ describe '| directive | team-menu', ->
     inject ($rootScope, $compile, $templateCache, $routeParams)->
       $routeParams.project = project
       $routeParams.team    = team
-      $templateCache.put '/ui/html/directives/team-menu.html', $templateCache.get('directives/team-menu.html')
+      #$templateCache.put '/ui/html/directives/team-menu.html', $templateCache.get('directives/team-menu.html')
       element = angular.element('<teamMenu/>')[0] 
       $scope   = $rootScope.$new()
       $compile(element)($scope)

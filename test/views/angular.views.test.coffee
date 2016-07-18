@@ -5,7 +5,7 @@ describe 'angular | views | angular-page', ->
 
   it 'angular-page.html',->
     inject ($templateCache)->
-      html = $templateCache.get('angular-page.html')
+      html = $templateCache.get('/ui/html/angular-page.html')
       element = angular.element(html)
 
       expect(element[0].tagName).to.equal 'META'

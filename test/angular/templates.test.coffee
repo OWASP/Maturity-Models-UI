@@ -12,6 +12,6 @@ describe 'angular | templates', ->
     inject ($templateCache)->
       $templateCache.get_Keys().size().assert_Is $templateCache.info().size
 
-      $templateCache.get('angular-page.html'       ).assert_Contains 'html'
-      $templateCache.get('index.html'              ).assert_Contains 'html'
-      $templateCache.get('pages/projects.page.html').assert_Contains 'ng-controller'
+      $templateCache.get('/ui/html/angular-page.html'       ).assert_Contains 'html'
+      $templateCache.get('/ui/html/index.html'              ).assert_Contains 'html'
+      $templateCache.get('/ui/html/pages/projects.page.html').assert_Contains 'ng-controller'

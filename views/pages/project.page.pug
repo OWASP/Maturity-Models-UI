@@ -10,8 +10,16 @@
 
                         li
                             a(href='view/project/{{project}}/scores') scores
-                p Teams:
+                p
+                    b Teams:
                 ul
                     ul
                         li(ng-repeat="(key, team) in teams.sort()")
                             a(href='view/{{project}}/{{team}}/table') {{team}}
+
+                p
+                    b Actions:
+                ul
+                    ul
+                        li
+                            a(href='view/project/{{project}}/new-team') new team

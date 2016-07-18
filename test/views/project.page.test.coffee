@@ -6,13 +6,13 @@ describe 'views | project.page', ->
     module('MM_Graph')
     inject ($templateCache)->
       $templateCache.get_Keys()
-                    .assert_Contains 'pages/project.page.html'
-      html = $templateCache.get      'pages/project.page.html'
+                    .assert_Contains '/ui/html/pages/project.page.html'
+      html = $templateCache.get      '/ui/html/pages/project.page.html'
 
   it 'check raw template value',->
     #console.log html
     using $(html), ->
-      @.find('#project' ).text()                 .assert_Is 'Project {{project}}schemascoresTeams:{{team}}'
+      @.find('#project' ).text()                 .assert_Is 'Project {{project}}schemascoresTeams:{{team}}Actions:new team'
       @.find('#project' ).attr('ng-controller')  .assert_Is 'ProjectController'
       @.find('div'      ).length                 .assert_Is 3
       @.find('h4'       ).text()                 .assert_Is 'Project {{project}}'
@@ -31,7 +31,7 @@ describe 'views | project.page', ->
         $httpBackend.flush()
 
         using $(element.find('a')), ->
-          @.length.assert_Is 4
+          @.length.assert_Is 5
           using @.eq(0), ->
             @.attr('href').assert_Is 'view/project/demo/schema'
             @.html().assert_Is 'schema'
@@ -44,5 +44,8 @@ describe 'views | project.page', ->
           using @.eq(3), ->
             @.attr('href').assert_Is 'view/demo/team-B/table'
             @.html().assert_Is 'team-B'
+          using @.eq(4), ->
+            @.attr('href').assert_Is 'view/project/demo/new-team'
+            @.html().assert_Is 'new team'
 
 

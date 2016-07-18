@@ -27,6 +27,7 @@ angular.module('MM_Graph')
       $scope.status = 'loading team data'
       $scope.project = project
       $scope.team    = team
+      
       MM_API.project_Schema project, (schema)->
         $scope.schema = schema
         MM_API.file_Get project, team, (data)->

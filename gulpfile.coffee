@@ -32,7 +32,7 @@ gulp.task 'compile-coffee', ()->
 
 gulp.task 'templateCache', ['compile-pug'], ()->
   gulp.src html_Folder + '/**/*.html'
-      .pipe templateCache( module: 'MM_Graph' )
+      .pipe templateCache( module: 'MM_Graph', root:'/ui/html/' )
       .pipe gulp.dest js_Folder
   
 gulp.task 'concat-css', ()->
