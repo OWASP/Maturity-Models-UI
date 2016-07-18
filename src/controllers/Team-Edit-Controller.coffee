@@ -14,13 +14,19 @@ angular.module('MM_Graph')
           $scope.status = result.status
 
     $scope.map_Domains = (schema, data)->
+#      domains = {}
+#      for domain_Name,domain of schema.domains
+#        values = {}
+#        for practice_Name in domain.practices
+#          for activity_Key in schema.practices[practice_Name].activities
+#            values[activity_Key] = data.activities?[activity_Key]
+#        domains[domain_Name] = values
+#      return domains
       domains = {}
       for domain_Name,domain of schema.domains
-        values = {}
+        domains[domain_Name] = []
         for practice_Name in domain.practices
-          for activity_Key in schema.practices[practice_Name].activities
-            values[activity_Key] = data.activities?[activity_Key]            
-        domains[domain_Name] = values
+          domains[domain_Name] = domains[domain_Name].concat schema.practices[practice_Name].activities
       return domains
       
     if project and team
@@ -30,7 +36,7 @@ angular.module('MM_Graph')
       
       MM_API.project_Schema project, (schema)->
         $scope.schema = schema
-        MM_API.file_Get project, team, (data)->
+        MM_API.team_Get project, team, (data)->
           $scope.status       = 'data loaded'
           $scope.data         = data
           $scope.metadata     = data.metadata

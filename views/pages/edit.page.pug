@@ -16,5 +16,5 @@ div.ng-hide(ng-controller='TeamEditController' ng-show='data')
     .row.fullWidth
         hr
     .row.fullWidth
-        .medium-3.columns(ng-repeat='(key,domain) in domains')
-            activityTable(title='key', data='domain')
+        .medium-3.columns(ng-repeat='(domain, activities) in domains')
+            activityTable(title='domain', activities='activities', data='data')

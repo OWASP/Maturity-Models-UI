@@ -1,7 +1,6 @@
 .activity-table(id='{{title}}')
     .panel.callout.radius.text-center#domain
         b {{title}}
-
     table.fullWidth
         tr
         thead
@@ -11,15 +10,14 @@
                 th No
                 th NA
                 th Maybe
-
         tbody
-            tr.cell(ng-repeat="(key, value) in data", id='{{key}}')
-                td.text-left {{key}}
+            tr.activity(ng-repeat="activity in activities")
+                td.text-left {{activity}}
                 td
-                    input(type="radio" ng-name='key' ng-model="data[key]" value='Yes')
+                    input(type="radio" ng-name='activity' ng-model="data.activities[activity]" value='Yes')
                 td
-                    input(type="radio" ng-name='key' ng-model="data[key]" value='No')
+                    input(type="radio" ng-name='activity' ng-model="data.activities[activity]" value='No')
                 td
-                    input(type="radio" ng-name='key' ng-model="data[key]" value='NA')
+                    input(type="radio" ng-name='activity' ng-model="data.activities[activity]" value='NA')
                 td
-                    input(type="radio" ng-name='key' ng-model="data[key]" value='Maybe')
+                    input(type="radio" ng-name='activity' ng-model="data.activities[activity]" value='Maybe')
