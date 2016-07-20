@@ -27,5 +27,10 @@ describe 'views | routes.page', ->
       @.$('#fixed'  ).attr('id'           ).assert_Is 'fixed'
       @.$('#fixed a').length               .assert_Is_Bigger_Than 40
       @.$('#fixed a').html(               ).assert_Contains "/api/v1/data/"
+      
+      @.$('b').length.assert_Is 2
+      @.$('b').eq(0).html().assert_Is 'Raw'
+      @.$('b').eq(1).html().assert_Is 'Raw'
+      
 
     

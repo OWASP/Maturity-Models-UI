@@ -66,4 +66,14 @@ describe 'views | edit.page', ->
     $scope .metadata.team = 'BBBBB'
     $scope .$digest()
     element.find('input').val().assert_Is 'BBBBB'
+    
+    using $html.find('activitytable tbody tr td'),->
+      @.eq(0).html().assert_Is 'SM.1.1'
+      #console.log @.eq(1)
+      @.eq(1).find('input').val().assert_Is 'Yes'
+      @.eq(2).find('input').val().assert_Is 'No'
+      @.eq(3).find('input').val().assert_Is 'NA'
+      @.eq(4).find('input').val().assert_Is 'Maybe'      
+    
+    $html.find('tr[id="SM.1.1"]').length.assert_Is 1
 

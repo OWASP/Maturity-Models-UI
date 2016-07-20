@@ -11,7 +11,7 @@
                 th NA
                 th Maybe
         tbody
-            tr.activity(ng-repeat="activity in activities")
+            tr.activity(ng-repeat="activity in activities", id='{{activity}}')
                 td.text-left {{activity}}
                 td
                     input(type="radio" ng-name='activity' ng-model="data.activities[activity]" value='Yes')

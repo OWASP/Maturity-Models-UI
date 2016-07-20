@@ -13,7 +13,7 @@ describe 'views | projects.page', ->
     using $(html), ->
       @.find('#projects').text()                 .assert_Is 'Projects{{value}}'
       @.find('#projects').attr('ng-controller')  .assert_Is 'ProjectsController'
-      @.find('div'      ).length                 .assert_Is 3
+      @.find('div'      ).length                 .assert_Is 2
       @.find('h4'       ).text()                 .assert_Is 'Projects'
       @.find('li'       ).eq(0).attr('ng-repeat').assert_Is '(key, value) in projects.sort()'
       @.find('a'        ).eq(0).attr('href')     .assert_Is 'view/project/{{value}}'

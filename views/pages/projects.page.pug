@@ -1,9 +1,8 @@
 .row
     div(ng-controller='ProjectsController')#projects
-        div.callout.large.primary
-            div.row.column
-                h4 Projects
+        div.row.column
+            h4 Projects
+            ul
                 ul
-                    ul
-                        li(ng-repeat="(key, value) in projects.sort()")
-                            a(href='view/project/{{value}}') {{value}}
+                    li(ng-repeat="(key, value) in projects.sort()")
+                        a(href='view/project/{{value}}') {{value}}
