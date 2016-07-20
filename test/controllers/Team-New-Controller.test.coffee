@@ -24,5 +24,10 @@ describe 'controllers | Team-New-Controller', ->
         @.status.assert_Is 'Team created ok, redirecting...'
         $location.url().assert_Is "/view/#{project}/#{@.data.team_Name}/table"
 
+  it '$scope.on_New_Team', ->
+    using $scope, ->
+      @.on_New_Team {}
+      @.data.assert_Is {}
+      @.status.assert_Is 'Error: failed to create team'
 
 

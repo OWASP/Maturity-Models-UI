@@ -57,11 +57,5 @@ class MM_API
     @.$http.get url
            .success callback
 
-  view_Table: (project,team,callback)=>
-    url = "/api/v1/table/#{project}/#{team}"
-    @.$http.get url
-           .success callback
-
-
 app.service 'MM_API', ($http)=>
   return new MM_API $http

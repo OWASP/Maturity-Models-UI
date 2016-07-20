@@ -35,16 +35,23 @@ describe 'services | MM_API', ->
         data.assert_Is ['bsimm','samm']
       $http.flush()
 
-  it 'team_New', ->
+  it 'project_Scores', ->
     using mm_API, ->
+      @.project_Scores project, (data)->
+        console.log 'data'
+        data['empty']['level_1'].assert_Is { value: 0, percentage: '0%', activities: 38 }
+      $http.flush()
+
+  it 'routes', ->
+    using mm_API, ->
+      @.routes (data)->
+        data.raw.assert_Contains ['/ping']
+      $http.flush()
+
+  it 'team_New', ->
+    using mm_API, ->                      
       @.team_New project, (data)->
         data.status.assert_Is 'Ok'
         data.team_Name.assert_Contains 'team-'
         data.team_Name.length.assert_Is 10
-      $http.flush()
-      
-  it 'routes', ()->    
-    using mm_API, ->
-      @.routes (data)->
-        data.raw.assert_Contains ['/ping']
       $http.flush()

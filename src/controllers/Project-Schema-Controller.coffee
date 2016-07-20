@@ -38,13 +38,3 @@
         $scope.data = data
         $scope.rows = $scope.create_Table_Rows data
 
-#        count   = 1
-#        items = {}
-#        for key,value of data
-#          if (not level) or value.level is level
-#            value.index = count++
-#            items[key] = value
-#
-#        $scope.total = count - 1
-#        $scope.items = items
-
