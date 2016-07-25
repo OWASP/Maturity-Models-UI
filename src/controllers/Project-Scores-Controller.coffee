@@ -9,7 +9,6 @@ angular.module('MM_Graph')
     $scope.map_Colors = (data)->
       $scope.data = data
       for team, scores of data
-        console.log scores
         if scores.level_1
           if scores.level_1.value > 12
             scores.level_1.color = 'green'
@@ -43,5 +42,5 @@ angular.module('MM_Graph')
 
     if project
       $scope.project = project
-      MM_API.project_Scores project, -> 
-        $scope.map_Colors()
+      MM_API.project_Scores project, (data)->
+        $scope.map_Colors data

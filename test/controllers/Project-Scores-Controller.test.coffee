@@ -17,14 +17,13 @@ describe 'controllers | Project-Scores', ->
 
       $httpBackend.flush()
 
-  xit 'constructor',->
+  it 'constructor',->
 
     using $scope, ->
-      @.project.assert_Is 'bsimm'
-      @.data.empty.level_1.assert_Is { value: 0, percentage: '0%', activities: 38, color: 'black' }
+      @.project.assert_Is 'bsimm'                  
       @.data['team-A'].level_1.assert_Is { value: 18.4, percentage: '48%', activities: 38, color: 'green' }      
       @.data['team-A'].level_2.assert_Is { value: 14.4, percentage: '35%', activities: 41, color: 'green' }
-      @.data['team-A'].level_3.assert_Is { value: 4.8, percentage: '15%', activities: 33, color: 'red' }
+      @.data['team-A'].level_3.assert_Is { value: 4.8 , percentage: '15%', activities: 33, color: 'red'   }
        
   it '$scope.get_Style', ->
     $scope.get_Style().assert_Is 'green'

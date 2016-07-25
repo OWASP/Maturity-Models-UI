@@ -38,8 +38,7 @@ describe 'services | MM_API', ->
   it 'project_Scores', ->
     using mm_API, ->
       @.project_Scores project, (data)->
-        console.log 'data'
-        data['empty']['level_1'].assert_Is { value: 0, percentage: '0%', activities: 38 }
+        data['team-A']['level_1'].assert_Is { value: 18.4, percentage: '48%', activities: 38 }
       $http.flush()
 
   it 'routes', ->
