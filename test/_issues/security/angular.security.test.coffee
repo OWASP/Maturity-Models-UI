@@ -1,5 +1,7 @@
 describe '_issues | security | Issue 153 - AngularJS Sandbox Bypass Collection', ->
 
+  return if window.wallaby   # this tests leaves Angular in a weird state in Wallaby (Karma is ok with them)
+
   _$compile   = null
   _$rootScope = null
   alert_Param = null
@@ -40,8 +42,8 @@ describe '_issues | security | Issue 153 - AngularJS Sandbox Bypass Collection',
       $scope.test.assert_Is '123'
 
   describe 'exploit tests', ->
-    it 'Confirm Angular version (1.5.7)' ,->
-      angular.version.full.assert_Is '1.5.7'                                                                          # confirm that we are in angular version 1.5.7
+    it 'Confirm Angular version (1.5.8)' ,->
+      angular.version.full.assert_Is '1.5.8'                                                                          # confirm that we are in angular version 1.5.7
 
     it 'Confirm window.alert call can be captured', ->
       alert('xss')                                                                                                    # the alert function has been captured where the
@@ -78,8 +80,8 @@ describe '_issues | security | Issue 153 - AngularJS Sandbox Bypass Collection',
             for line,index in lines
               error.stackArray[index].sourceURL.assert_Contains 'bower_components/angular/angular.js'
               error.stackArray[index].line.assert_Is line
-          check_StackArray [14345, 14096, 14559,15488,15653,17444]
-        error.line.assert_Is 14345
+          check_StackArray [14557, 14308, 14771, 15700, 15865, 17682]
+        error.line.assert_Is 14557
         error.message.assert_Contains '[$parse:syntax] Syntax Error: Token ',' is an unexpected token at column 2 of the expression [a,alert(1),a] starting at [,alert(1),a].'
 
 

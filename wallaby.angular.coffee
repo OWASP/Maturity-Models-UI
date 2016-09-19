@@ -25,6 +25,10 @@ module.exports = (wallaby)->
     bootstrap:  ()->
       window.expect = chai.expect;
 
+    #workers:
+    #  initial: 1,
+    #  regular: 1
+
     #testFramework: 'mocha'
 
   return config

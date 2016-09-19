@@ -11,7 +11,7 @@ describe 'views | raw.page', ->
   view = null
 
 
-  beforeEach ()->
+  beforeEach ()->  
     module('MM_Graph')
     inject ($injector)->
       view = $injector.get('Render_View')(options).run()

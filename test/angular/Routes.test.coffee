@@ -55,7 +55,7 @@ describe 'angular | Routes ', ->
         '/view'                                 : 'welcome.page.html'
         '/view/projects'                        : 'projects.page.html'
         '/view/project/:project'                : 'project.page.html'
-        '/view/project/:project/schema'         : 'project-schema.page.html'      # there is a bug with the current logic since this request below will not be triggered
+        '/view/projest/:project/schema'         : 'project-schema.page.html'      # there is a bug with the current logic since this request below will not be triggered
 #        '/view/project/:project/schema/:level'  : 'project-schema.page.html'     # since it is using the same urlTemplate value
         '/view/all/radar'                       : 'all-radar.page.html'
         '/view/routes'                          : 'routes.page.html'
