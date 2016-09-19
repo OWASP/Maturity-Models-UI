@@ -11,8 +11,10 @@ describe 'controllers | Table-Controller', ->
     inject ($controller, $rootScope, $httpBackend)->
       $scope = $rootScope.$new()
       routeParams = project : project , team: team
-      $controller('TableController', { $scope: $scope, $routeParams : routeParams })
+      $controller('TeamDataController', { $scope: $scope, $routeParams : routeParams })   # load data via Team-Data-Controller
       $httpBackend.flush()
+      $controller('TableController', { $scope: $scope, $routeParams : routeParams })
+
 
   it '$controller',->
     using $scope, ->

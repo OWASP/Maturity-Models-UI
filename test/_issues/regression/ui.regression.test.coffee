@@ -61,11 +61,21 @@ describe '_issues | regression', ->
 
     inject ($injector)->
       $injector.get('Render_View')(options)
-               .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}
-               .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}
-               .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}
-               .set_Expect_Get "/api/v1/team/#{project}/get/#{team}"  , {}
-               .set_Expect_Get "/api/v1/team/#{project}/get/#{team}"  , {}
-               .set_Expect_Get "/api/v1/team/#{project}/get/#{team}"  , {}
+               .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}      # there were 3 of these (before #140 fix)
+               .set_Expect_Get "/api/v1/team/#{project}/get/#{team}"  , {}      # there were 3 of these (before #140 fix)
+               .run()
+               .html.assert_Contains('<div id="teamMenu">')
+
+  it 'Issues 140 - View team is loading schema 3 times', ->
+    project       = 'bsimm'
+    team          = 'aaaaaa-bbb'
+    options =
+      url_Location    : "/view/#{project}/#{team}/table"
+      url_Template_Key: 'pages/.page.html'
+
+    inject ($injector)->
+      $injector.get('Render_View')(options)
+               .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}      # there were 3 of these (before fix)
+               .set_Expect_Get "/api/v1/team/#{project}/get/#{team}"  , {}      # there were 3 of these (before fix)
                .run()
                .html.assert_Contains('<div id="teamMenu">')
