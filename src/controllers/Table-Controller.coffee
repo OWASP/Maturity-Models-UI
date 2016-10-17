@@ -2,6 +2,7 @@ angular.module('MM_Graph')
   .controller 'TableController', ($scope, $routeParams, Team_Data)->
 
     level   = $scope.level?.toString()        # todo: this value shouldn't be set here
+    filter  = $routeParams.filter
 
     $scope.map_Rows = ()->
       
@@ -22,6 +23,9 @@ angular.module('MM_Graph')
                 row = [domain_Name, practice_Name, activity_Key, activity.level, activity.name]
 
                 value = data.activities?[activity_Key]
+                if filter                               # if filter value is set
+                  if (not (filter.contains value))      # and it contains the current value
+                    continue
 
                 switch value
                   when 'Yes'   then row.push true , false, false, false

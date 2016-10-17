@@ -4,5 +4,6 @@ angular.module('MM_Graph')
     using Team_Data, ->
       @.load_From_Cache $routeParams.project, $routeParams.team
 
-
+    $scope.current_Filter = ->
+      return $routeParams.filter
 

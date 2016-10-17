@@ -1,5 +1,16 @@
 div(ng-controller='TeamDataController')
     teamMenu
+    ul
+        small
+            b &#32;&#32; filter by: &#32;&#32;
+            a(href='view/{{project}}/{{team}}/table?filter=Yes'  ) Yes   &#32;
+            a(href='view/{{project}}/{{team}}/table?filter=No'   ) No    &#32;
+            a(href='view/{{project}}/{{team}}/table?filter=NA'   ) NA    &#32;
+            a(href='view/{{project}}/{{team}}/table?filter=Maybe') Maybe &#32;
+
+            span(ng-show='current_Filter()')
+                span &#32;|&#32;
+                a(href='view/{{project}}/{{team}}/table?filter='     ) (remove '{{current_Filter()}}' filter)
     teamTable(level='1')
     teamTable(level='2')
     teamTable(level='3')
