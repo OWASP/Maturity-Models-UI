@@ -1,5 +1,5 @@
 #to be deleted
-describe '| directive | team-menu', ->
+describe '| directive | team-table', ->
   project = 'bsimm'
   team    = 'team-A'
   element = null
@@ -10,11 +10,14 @@ describe '| directive | team-menu', ->
     module('MM_Graph')
 
   beforeEach ->
-    inject ($rootScope, $compile, $templateCache, $routeParams)->
+    inject ($rootScope, $controller, $compile, $templateCache, $routeParams)->
       $routeParams.project = project
       $routeParams.team    = team
-      element = angular.element('<teamMenu/>')[0] 
       $scope   = $rootScope.$new()
+      $controller('TeamDataController', { $scope: $scope, $routeParams : $routeParams })   # load data via Team-Data-Controller
+
+      element = angular.element('<teamMenu/>')[0] 
+
       $compile(element)($scope)
       $scope.$apply()
       html     = element.outerHTML
@@ -32,14 +35,8 @@ describe '| directive | team-menu', ->
       links[index++].text.assert_Is text
 
     check_Link "/view/project/#{project}"        , project
-    #check_Link "/view/#{project}/#{team}"        , 'view'
     check_Link "/view/#{project}/#{team}/table"  , 'table'
     check_Link "/view/#{project}/#{team}/radar"  , 'radar'
     check_Link "/view/#{project}/#{team}/edit"   , 'edit'
     check_Link "/view/#{project}/#{team}/raw"    , 'raw'
-
-  #it 'check menu active status', ->
-  #  inject ($location)->
-  #    console.log $location.path()
-
-
+    check_Link "/view/project/#{project}/schema" , 'schema'
