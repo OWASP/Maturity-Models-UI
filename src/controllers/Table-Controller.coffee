@@ -1,17 +1,16 @@
 angular.module('MM_Graph')
-  .controller 'TableController', ($scope, $routeParams, MM_API)->
-    #project = $routeParams.project
-    #team    = $routeParams.team
-    level   = $scope.level?.toString()
+  .controller 'TableController', ($scope, $routeParams, Team_Data)->
+
+    level   = $scope.level?.toString()        # todo: this value shouldn't be set here
 
     $scope.map_Rows = ()->
+      
+      data       = Team_Data.data
+      schema     = Team_Data.schema
 
-      data       = $scope.data
-      schema     = $scope.schema
-      activities = schema.activities
+      return if (not data) or (not schema)
+        
       mappings = []
-
-      #console.log schema
 
       for domain_Name, domain of schema.domains
         for practice_Name in domain.practices
@@ -33,24 +32,15 @@ angular.module('MM_Graph')
                 row.push ''  # proof value
                 mappings.push row
 
-      return mappings
 
-    using $scope, ->
-      if @.scores and @.data and @.schema
-        @.rows = @.map_Rows()
-        @.score = @.scores["level_#{level}"]?.percentage
-        #$scope.show = true
+      $scope.rows = mappings
+      $scope.score = Team_Data.scores["level_#{level}"]?.percentage
+      $scope.show = true
 
-    if false and project and team
-      #$scope.project = project
-      #$scope.team    = team
-      MM_API.project_Schema project, (schema)->
-        $scope.schema = schema
-        MM_API.data_Score project, team, (scores)->
-          $scope.scores = scores
-          $scope.score = scores["level_#{level}"]?.percentage
+    using Team_Data, ->
+      @.subscribe $scope, =>                  # register to receive notification when data is available
+        $scope.map_Rows()
+      @.notify()                              # trigger notification if it already exists
 
-          MM_API.team_Get project, team, (data)->
-            $scope.data = data
-            $scope.rows = $scope.map_Rows()
-            $scope.show = true
+
+
