@@ -11,8 +11,6 @@ angular.module('MM_Graph')
     $scope.save_Data = ()->
       $scope.status = 'saving data ....'
       Team_Data.save (result)->
-
-#      MM_API.file_Save project,team , $scope.data, (result)->
         if result.error
           $scope.messageClass = 'alert'
           $scope.status = result.error

@@ -1,39 +1,25 @@
 angular.module('MM_Graph')
-  .controller 'TeamEditController', ($scope, $routeParams,  MM_API)->
-    project = $routeParams.project
-    team    = $routeParams.team  
+  .controller 'TeamEditController', ($scope, $routeParams,  Team_Data)->
     $scope.messageClass = 'secondary'
-#    $scope.save_Data = ()->
-#      #$scope.status = 'saving data ....'
-#      MM_API.file_Save project,team , $scope.data, (result)->
-#        if result.error
-#          $scope.messageClass = 'alert'
-#          $scope.status = result.error
-#        else
-#          $scope.messageClass = 'success'
-#          $scope.status = result.status
 
-    $scope.map_Domains = (schema, data)->
-      domains = {}
-      for domain_Name,domain of schema.domains
-        domains[domain_Name] = []
-        for practice_Name in domain.practices
-          domains[domain_Name] = domains[domain_Name].concat schema.practices[practice_Name].activities
-      return domains
-      
-    if project and team
-      $scope.status = 'loading team data'
-      $scope.project = project
-      $scope.team    = team
-      
-      MM_API.project_Schema project, (schema)->
-        $scope.schema = schema
-        MM_API.team_Get project, team, (data)->
-          data.metadata      ?= { team: ''}                    #todo: set default value. This should be done on the backend
-          $scope.status       = 'data loaded'
-          $scope.data         = data
-          $scope.metadata     = data.metadata
-          $scope.domains      = $scope.map_Domains schema , data
-    else
-      $scope.status = 'No team provided'
+    $scope.map_Domains = ()->
+      if Team_Data.schema
+        schema      = Team_Data.schema
+        domains     = {}
+        for domain_Name,domain of schema.domains
+          domains[domain_Name] = []
+          for practice_Name in domain.practices
+            domains[domain_Name] = domains[domain_Name].concat schema.practices[practice_Name].activities
+
+        $scope.team_Data = Team_Data
+        $scope.domains   = domains
+        $scope.data      = Team_Data.data
+        $scope.data      = Team_Data.data
+
+        Team_Data.data.metadata      ?= { team: ''} # todo: set default value. This should be done on the backend
+
+    using Team_Data, ->
+      @.subscribe $scope, =>                  # register to receive notification when data is available
+        $scope.map_Domains()
+      @.notify()
 

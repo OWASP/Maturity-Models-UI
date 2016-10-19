@@ -18,10 +18,6 @@ describe 'views | edit.page', ->
     inject ($templateCache, $compile, $rootScope, $routeParams, $httpBackend)->      
       $routeParams.project = project
       $routeParams.team    = team
-      #$templateCache.put '/ui/html/directives/team-menu.html'     , $templateCache.get 'directives/team-menu.html'
-      #$templateCache.put '/ui/html/directives/activity-table.html', $templateCache.get 'directives/activity-table.html'
-      #$httpBackend.expectGET("/api/v1/team/#{project}/get/#{team}?pretty").respond bsimm_Team
-
       $scope   = $rootScope.$new()
       raw_Html = $templateCache.get '/ui/html/pages/edit.page.html'
       element  = $compile(angular.element(raw_Html))($scope)
@@ -34,11 +30,9 @@ describe 'views | edit.page', ->
  
   it 'check with Controller', ()->
     using $scope, ->
-      #@.project.assert_Is project
-      #@.team   .assert_Is team
-      @.status .assert_Is 'data loaded'      
-      @.data.metadata.team.assert_Is 'Team A'      
-      @.metadata.assert_Is team : 'Team A'      
+      @.project.assert_Is project
+      @.team   .assert_Is team
+      @.team_Data.data.metadata.team.assert_Is 'Team A'
       @.domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
 
     using element,->
@@ -46,7 +40,6 @@ describe 'views | edit.page', ->
     
       @.find('input').val().assert_Is 'Team A'
       $html.find('a.button'     ).html().assert_Is 'save'
-      $html.find('#status-label').html().assert_Is 'loading team data'
 
       @.find('activityTable').length.assert_Is 4
       $html.find('#Governance').length.assert_Is 1
@@ -54,22 +47,9 @@ describe 'views | edit.page', ->
 
 
   it 'should keep input value inSync with scope', ->
-
-    #$scope. metadata.team.assert_Is 'Team A'
-    #element.find('input').val().assert_Is 'Team A'
-
-    #element.find('input').val('AAAAA').triggerHandler('input')
-    #$scope. $digest()
-    #element.find('input').val().assert_Is 'AAAAA'
-    #$scope .metadata.team.assert_Is 'AAAAA'
-
-    #$scope .metadata.team = 'BBBBB'
-    #$scope .$digest()
-    #element.find('input').val().assert_Is 'BBBBB'
     
     using $html.find('activitytable tbody tr td'),->
       @.eq(0).html().assert_Is 'SM.1.1'
-      #console.log @.eq(1)
       @.eq(1).find('input').val().assert_Is 'Yes'
       @.eq(2).find('input').val().assert_Is 'No'
       @.eq(3).find('input').val().assert_Is 'NA'

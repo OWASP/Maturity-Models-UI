@@ -8,37 +8,28 @@ describe 'controllers | Team-Edit-Controller', ->
     module('MM_Graph')
 
   beforeEach ->
-    inject ($controller, $rootScope)->
+    inject ($controller, $rootScope, $httpBackend)->
       $scope      = $rootScope.$new()
-      routeParams = project : project , team: team      
+      routeParams = project : project , team: team
+      $controller('TeamDataController', { $scope: $scope, $routeParams : routeParams })
+      $httpBackend.flush()
       $controller('TeamEditController', { $scope: $scope, $routeParams : routeParams })
 
   it '$controller (with project and team on $routeParams)',->
     using $scope, ->
-      @.messageClass.assert_Is 'secondary'
-      @.status      .assert_Is 'loading team data'
-      @.project     .assert_Is project
-      @.team        .assert_Is team
+      @.team_Data.data.metadata.assert_Is 'team': 'Team A'
+      @.team_Data.schema.domains.keys().first().assert_Is 'Governance'
 
-    inject ($httpBackend)->      
-      $httpBackend.flush()
-      using $scope, ->
-        @.status       .assert_Is 'data loaded'
-        @.data.metadata.assert_Is 'team': 'Team A'
-        @.metadata      .assert_Is 'team': 'Team A'
-        @.schema.domains.keys().first().assert_Is 'Governance'  
+      @.domains.keys().assert_Is ['Governance', 'Intelligence',  'SSDL Touchpoints', 'Deployment' ]
 
-        @.domains.keys().assert_Is ['Governance', 'Intelligence',  'SSDL Touchpoints', 'Deployment' ]
-
-        @.domains['Governance'      ].assert_Contains 'SM.1.1'
-        @.domains['Intelligence'    ].assert_Contains 'AM.1.2'
-        @.domains['SSDL Touchpoints'].assert_Contains 'AA.1.1'
-        @.domains['Deployment'      ].assert_Contains 'PT.1.1'
+      @.domains['Governance'      ].assert_Contains 'SM.1.1'
+      @.domains['Intelligence'    ].assert_Contains 'AM.1.2'
+      @.domains['SSDL Touchpoints'].assert_Contains 'AA.1.1'
+      @.domains['Deployment'      ].assert_Contains 'PT.1.1'
 
   it '$controller (with empty $routeParams)',->
     inject ($controller)->
       $controller('TeamEditController', { $scope: $scope, $routeParams : {} })
-      $scope.status.assert_Is 'No team provided'
 
 
 
