@@ -23,11 +23,11 @@
                 td {{cells[3]}}
                 td {{cells[4]}}
                 td
-                    input(type='radio' ng-checked= 'cells[5]')
+                    input(type='radio' ng-checked= 'cells[5]' ng-model="data.activities[cells[2]]" value='Yes')
                 td
-                    input(type='radio' ng-checked= 'cells[6]')
+                    input(type='radio' ng-checked= 'cells[6]' ng-model="data.activities[cells[2]]" value='No')
                 td
-                    input(type='radio' ng-checked= 'cells[7]')
+                    input(type='radio' ng-checked= 'cells[7]' ng-model="data.activities[cells[2]]" value='NA')
                 td
-                    input(type='radio' ng-checked= 'cells[8]')
+                    input(type='radio' ng-checked= 'cells[8]' ng-model="data.activities[cells[2]]" value='Maybe')
                 td.hide-for-medium-down  {{cells[9]}}

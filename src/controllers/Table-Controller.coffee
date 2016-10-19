@@ -37,9 +37,10 @@ angular.module('MM_Graph')
                 mappings.push row
 
 
-      $scope.rows = mappings
+      $scope.data = Team_Data.data                                     # used to sync values to real objects (so that it can be saved)
+      $scope.rows  = mappings
       $scope.score = Team_Data.scores["level_#{level}"]?.percentage
-      $scope.show = true
+      $scope.show  = true
 
     using Team_Data, ->
       @.subscribe $scope, =>                  # register to receive notification when data is available
