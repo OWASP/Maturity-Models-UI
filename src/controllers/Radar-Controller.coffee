@@ -15,10 +15,21 @@ angular.module('MM_Graph')
       if project and team
         $scope.project = project
         $scope.team    = team
-  
-        MM_API.data_Radar project, team,(data)->
-          $scope.radar_Data = data
-          $scope.show_Radar data, $scope.get_Radar_Config()
+
+        data = []
+        console.log data
+
+        MM_API.data_Radar_Fields project, (data_Fields)=>
+          data.push data_Fields
+          MM_API.data_Radar_Team project, team,(team_Data)->
+            data.push team_Data
+
+            MM_API.data_Radar_Team project, 'level-1',(team_Data)->
+              data.push team_Data
+              console.log team_Data
+
+              $scope.radar_Data = data
+              $scope.show_Radar data, $scope.get_Radar_Config()
 
     $scope.show_Radar = (data, config)->
       div    = $scope.radar_Div

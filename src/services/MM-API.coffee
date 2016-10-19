@@ -10,21 +10,25 @@ class MM_API
     @.$http.get url
            .success callback
 
-  data_Radar: (project, team, callback)=>
+  data_Radar_Team: (project, team, callback)=>
     url = "#{@.version}/data/#{project}/#{team}/radar"
     @.$http.get url
-      .success callback
+           .success callback
+
+  data_Radar_Fields: (project, callback)=>
+    url = "#{@.version}/data/#{project}/radar/fields"
+    @.$http.get url
+           .success callback
 
   data_Score: (project, team, callback)=>
     url = "#{@.version}/data/#{project}/#{team}/score"
     @.$http.get url
-      .success callback
+           .success callback
 
   team_Get: (project, team,callback)=>
     url = "/api/v1/team/#{project}/get/#{team}"
     @.$http.get url
-      .success callback
-
+           .success callback
 
   file_Save: (project,team,data, callback)=>
     url = "/api/v1/team/#{project}/save/#{team}"

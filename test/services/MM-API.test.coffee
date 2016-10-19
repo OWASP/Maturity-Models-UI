@@ -1,4 +1,4 @@
-describe 'services | MM_API', ->
+describe 'services | MM-API', ->
 
   mm_API  = null
   $http   = null
@@ -21,12 +21,16 @@ describe 'services | MM_API', ->
       $httpBackend.verifyNoOutstandingExpectation()
       $httpBackend.verifyNoOutstandingRequest()
 
-  it 'data_Radar', ->
-    expected_Data = [ { "axes": []}]
+  it 'data_Radar_Team', ->
     using mm_API, ->
-      $http.expectGET("#{version}/data/#{project}/#{team}/radar").respond expected_Data
-      @.data_Radar project, team, (data)->
-        data.assert_Is expected_Data
+      @.data_Radar_Team project, team, (data)->
+        data.axes.first().value.assert_Is 0.75
+      $http.flush()
+
+  it 'data_Radar_Fields', ->
+    using mm_API, ->
+      @.data_Radar_Fields project, (data)->
+        data.axes.first().assert_Is { axis: 'Strategy & Metrics', xOffset: 1, value: 0 }
       $http.flush()
 
   it 'project_List', ->

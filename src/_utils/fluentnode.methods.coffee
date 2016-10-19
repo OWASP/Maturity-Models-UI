@@ -9,9 +9,8 @@ Array::contains = (value)->
   else
   (value in @)
 
-Array::first  = ->
-  @.item(0)
-
+Array::first  = -> @.item(0)
+Array::second = -> @.item(1)
 
 Array::item = (index)->
   if typeof(index) is 'number'

@@ -4,7 +4,6 @@ describe 'controllers | Radar', ->
   project        = null
   team           = null
   version        = null
-  expected_Data = [ { "axes": []}]
 
   beforeEach ->
     module('MM_Graph')
@@ -20,7 +19,6 @@ describe 'controllers | Radar', ->
       $scope = $rootScope.$new()
       $controller('RadarController', { $scope: $scope })
 
-      $httpBackend.expectGET("#{version}/data/#{project}/#{team}/radar").respond expected_Data
       $httpBackend.flush()
 
   afterEach ->
@@ -41,7 +39,8 @@ describe 'controllers | Radar', ->
 
   it '$scope.load_Data',->
     using $scope, ->
-      @.radar_Data.assert_Is expected_Data
+      @.radar_Data.first().axes.first().assert_Is { axis: 'Strategy & Metrics', xOffset: 1, value: 0 }
+      @.radar_Data.second().axes.first().assert_Is { value: 0.75 }
       @.project   .assert_Is project
       @.team      .assert_Is team
 
@@ -49,12 +48,9 @@ describe 'controllers | Radar', ->
     window.RadarChart =
       draw: (div, data, config)->
         div.assert_Is $scope.radar_Div
-        data.assert_Is expected_Data
+        data.first().axes.first().assert_Is { axis: 'Strategy & Metrics', xOffset: 1, value: 0 }
+        data.second().axes.first().assert_Is { value: 0.75 }
         config.levels.assert_Is 6
-
     $scope.radar_Div.assert_Is '.chart-container' 
     
     $scope.show_Radar()
-    #inject ($httpBackend)->
-    #  $.timeout ->
-    #    $httpBackend.flush()
