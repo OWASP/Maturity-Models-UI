@@ -3,7 +3,7 @@ describe '_issues | regression', ->
   beforeEach ->
     module('MM_Graph')
 
-  it 'Issues 139 - View team is broken for new teams (edit page)', ->
+  xit 'Issues 139 - View team is broken for new teams (edit page)', ->
     project       = 'bsimm'
     team          = 'aaaaaa-bbb'
     team_Data_Url = "/api/v1/team/#{project}/get/#{team}"
@@ -19,7 +19,7 @@ describe '_issues | regression', ->
                       .run()
                       .html.assert_Contains('TeamEditController')
 
-  it 'Issue 120 - Save is broken', ->
+  xit 'Issue 120 - Save is broken', ->
     project       = 'bsimm'
     team          = 'aaaaaa-bbb'
     options =

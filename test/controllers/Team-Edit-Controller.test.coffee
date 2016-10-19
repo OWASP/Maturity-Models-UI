@@ -40,27 +40,6 @@ describe 'controllers | Team-Edit-Controller', ->
       $controller('TeamEditController', { $scope: $scope, $routeParams : {} })
       $scope.status.assert_Is 'No team provided'
 
-  it '$scope.save_Data', ->
-    inject ($httpBackend)->
-      $httpBackend.flush()
-      
-      # test with success return value
-      $scope.save_Data() 
-      $httpBackend.expectPOST("/api/v1/team/#{project}/save/#{team}", $scope.data).respond status: 'ok-status'
-      $httpBackend.flush()
-      using $scope, ->
-        @.messageClass.assert_Is 'success'
-        @.status .assert_Is      'ok-status'
-
-      # test with error return value  
-      $scope.save_Data()  
-      $httpBackend.expectPOST("/api/v1/team/#{project}/save/#{team}", $scope.data).respond error: 'an-error'
-
-      $httpBackend.flush()
-      using $scope, ->
-        @.messageClass.assert_Is 'alert'
-        @.status .assert_Is      'an-error'
-
 
 
 xdescribe 'controllers | Edit-Data-Controller (SAMM data)', ->

@@ -3,15 +3,15 @@ angular.module('MM_Graph')
     project = $routeParams.project
     team    = $routeParams.team  
     $scope.messageClass = 'secondary'
-    $scope.save_Data = ()->         
-      #$scope.status = 'saving data ....'
-      MM_API.file_Save project,team , $scope.data, (result)->
-        if result.error
-          $scope.messageClass = 'alert'
-          $scope.status = result.error
-        else
-          $scope.messageClass = 'success'
-          $scope.status = result.status
+#    $scope.save_Data = ()->
+#      #$scope.status = 'saving data ....'
+#      MM_API.file_Save project,team , $scope.data, (result)->
+#        if result.error
+#          $scope.messageClass = 'alert'
+#          $scope.status = result.error
+#        else
+#          $scope.messageClass = 'success'
+#          $scope.status = result.status
 
     $scope.map_Domains = (schema, data)->
       domains = {}

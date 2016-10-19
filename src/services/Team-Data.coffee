@@ -5,6 +5,7 @@ class Team_Data
     @.$rootScope = $rootScope
     @.MM_API     = MM_API
     @.project    = null
+    @.data       = null
     @.team       = null
     @.schema     = null
 
@@ -18,15 +19,18 @@ class Team_Data
             @.scores = scores
             @.schema = schema
             @.data = data
-
             @.notify()
 
   load_From_Cache: (project, team)=>
       if @.project is project and @.team is team                    # check if project and team have changed
         if @.scores and @.schema and @.data                         # check if data has been loaded
           return @.notify()
-
       @.load project, team
+
+
+  save: (callback)=>
+    @.MM_API.file_Save @.project, @.team , @.data, callback
+
 
   notify: ()=>
     @.$rootScope.$emit('team-data-event');

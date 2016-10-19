@@ -1,17 +1,8 @@
 div.ng-hide(ng-controller='TeamEditController' ng-show='data')
+    div(ng-controller='TeamDataController')
     teamMenu
     br
-    .row.fullWidth
-        .small-2.columns
-            label.right.inline
-                b Team Name:
-        .small-4.columns
-            input#team-name(type="text" ng-model='metadata.team')
-        .small-1.columns
-            a.button.postfix#save-data(ng-click='save_Data()') save
-        .small-1.columns
-        .small-4.columns
-            .center.label.round#message(ng-class='messageClass') {{status}}
+    teamSave
 
     .row.fullWidth
         hr

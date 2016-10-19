@@ -15,9 +15,9 @@ describe 'views | table.page', ->
     module('MM_Graph')
     inject ($injector, $httpBackend)->
       using ($httpBackend),->
-        @.expectGET("/api/v1/project/schema/#{project}"    ).respond({});
-        @.expectGET("/api/v1/data/#{project}/#{team}/score").respond({});
-        @.expectGET("/api/v1/team/#{project}/get/#{team}"  ).respond({});
+        @.expectGET("/api/v1/project/schema/#{project}"    )
+        @.expectGET("/api/v1/data/#{project}/#{team}/score")
+        @.expectGET("/api/v1/team/#{project}/get/#{team}"  )
 
       view = $injector.get('Render_View')(options).run()
 
@@ -29,10 +29,5 @@ describe 'views | table.page', ->
 
       @.$('table'    ).length.assert_Is 3     # tables
       @.$('th'       ).length.assert_Is 33    # table headers
-      @.$('tr'       ).length.assert_Is 3     # todo: rows - WRONG value
-      @.$('td'       ).length.assert_Is 0     # todo: cells - WRONG value
-
-      #@.$('tr'       ).length.assert_Is 115   # rows
-      #@.$('td'       ).length.assert_Is 1232  # cells
-      #console.log  (item.innerHTML for item in @.$('.callout'))
-      #(item.innerHTML for item in @.$('.callout')).assert_Is [ 'Level 1 - 48%', 'Level 2 - 35%', 'Level 3 - 15%' ]
+      @.$('tr'       ).length.assert_Is 115   # rows
+      @.$('td'       ).length.assert_Is 1232  # cells
