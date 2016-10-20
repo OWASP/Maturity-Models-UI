@@ -3,7 +3,7 @@ describe 'angular | Routes ', ->
   beforeEach ()->
     module('MM_Graph')
 
-  it '$routeProvider routers',->
+  it '$routeProvider routers (check list)',->
     inject ($route)->
       $route.keys().assert_Is [ 'routes', 'reload', 'updateParams' ]
       #console.log $route.routes.keys()
@@ -15,7 +15,7 @@ describe 'angular | Routes ', ->
         '/view/project/:project/scores'
         '/view/project/:project/schema'
         '/view/project/:project/schema/:level'
-        '/view/all/radar'
+        #'/view/all/radar'
         '/view/routes'
         #'/view/:project/:team'
         '/view/:project/:team/edit'
@@ -33,6 +33,11 @@ describe 'angular | Routes ', ->
       for route in $route.routes.keys()                 # this makes it easier to debug which route is missing
         #console.log route
         expected_Routes.assert_Contains route
+
+      for route in expected_Routes
+        #console.log route
+        $route.routes.keys().assert_Contains route
+
       $route.routes.keys().assert_Is expected_Routes
 
 
