@@ -32,7 +32,6 @@ describe '| directive | team-table', ->
       status_Label  = find_Element_By_Id element.html(), 'status-label'
 
       $scope = element.find('div').eq(0).scope()
-      console.log $scope.messageClass
 
   it 'check scope status', ->
     $scope.messageClass.assert_Is 'secondary'

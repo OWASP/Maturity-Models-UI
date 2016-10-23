@@ -12,11 +12,11 @@ angular.module('MM_Graph')
       #.when '/view/all/radar'                       , templateUrl: "#{pages}/all-radar.page.html"
       .when '/view/routes'                          , templateUrl: "#{pages}/routes.page.html"      
       #.when '/view/:project/:team'                  , templateUrl: "#{pages}/view.page.html"
-      .when '/view/:project/:team/edit'             , templateUrl: "#{pages}/edit.page.html"
-      .when '/view/:project/:team/radar'            , templateUrl: "#{pages}/radar.page.html"
-      .when '/view/:project/:team/raw'              , templateUrl: "#{pages}/raw.page.html"
-      .when '/view/:project/:team/table'            , templateUrl: "#{pages}/table.page.html"
-      .when '/view/:project/:team/table/:level'     , templateUrl: "#{pages}/table.page.html"
+      .when '/view/:project/:team/edit'             , templateUrl: "#{pages}/team/edit.html"
+      .when '/view/:project/:team/radar'            , templateUrl: "#{pages}/team/radar.html"
+      .when '/view/:project/:team/raw'              , templateUrl: "#{pages}/team/raw.html"
+      .when '/view/:project/:team/table'            , templateUrl: "#{pages}/team/table.html"
+      .when '/view/:project/:team/table/:level'     , templateUrl: "#{pages}/team/table.html"
 
       .otherwise templateUrl: "#{pages}/404.page.html"
 

@@ -30,7 +30,7 @@ describe 'services | MM-API', ->
   it 'data_Radar_Fields', ->
     using mm_API, ->
       @.data_Radar_Fields project, (data)->
-        data.axes.first().assert_Is { axis: 'Strategy & Metrics', xOffset: 1, value: 0 }
+        data.axes.first().assert_Is { axis: 'Strategy & Metrics', key: 'SM', xOffset: 1, value: 0 }
       $http.flush()
 
   it 'project_List', ->
@@ -42,7 +42,7 @@ describe 'services | MM-API', ->
   it 'project_Scores', ->
     using mm_API, ->
       @.project_Scores project, (data)->
-        data['team-A']['level_1'].assert_Is { value: 18.4, percentage: '48%', activities: 38 }
+        data['team-A']['level_1'].assert_Is { value: 19.4, percentage: '50%', activities: 39 }
       $http.flush()
 
   it 'routes', ->

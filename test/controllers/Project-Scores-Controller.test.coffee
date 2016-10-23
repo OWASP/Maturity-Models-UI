@@ -18,11 +18,10 @@ describe 'controllers | Project-Scores', ->
       $httpBackend.flush()
 
   it 'constructor',->
-
     using $scope, ->
-      @.project.assert_Is 'bsimm'                  
-      @.data['team-A'].level_1.assert_Is { value: 18.4, percentage: '48%', activities: 38, color: 'green' }      
-      @.data['team-A'].level_2.assert_Is { value: 14.4, percentage: '35%', activities: 41, color: 'green' }
+      @.project.assert_Is 'bsimm'
+      @.data['team-A'].level_1.assert_Is { value: 19.4, percentage: '50%', activities: 39, color: 'green' }
+      @.data['team-A'].level_2.assert_Is { value: 13.4, percentage: '34%', activities: 40, color: 'green' }
       @.data['team-A'].level_3.assert_Is { value: 4.8 , percentage: '15%', activities: 33, color: 'red'   }
        
   it '$scope.get_Style', ->
