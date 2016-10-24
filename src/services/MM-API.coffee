@@ -56,10 +56,17 @@ class MM_API
     @.$http.get url
            .success callback
 
+  team_Delete: (project, team, callback)=>
+    url = "/api/v1/team/#{project}/delete/#{team}"
+    @.$http.get url
+           .success callback
+
   team_New: (project, callback)=>
     url = "/api/v1/team/#{project}/new"
     @.$http.get url
            .success callback
+
+
 
 app.service 'MM_API', ($http)=>
   return new MM_API $http

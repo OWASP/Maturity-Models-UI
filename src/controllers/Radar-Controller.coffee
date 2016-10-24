@@ -1,12 +1,20 @@
 angular.module('MM_Graph')
-  .controller 'RadarController', ($scope, $routeParams, MM_API)->
-    $scope.radar_Div = '.chart-container'
+  .controller 'RadarController', ($scope, $routeParams, MM_API, $attrs)->
+
+    radar_Size  = $attrs.radarSize  || 450
+    extra_Level = $attrs.extraLevel || 'level-1'
+    target_Div  = $attrs.targetDiv  || '.chart-container'
+
+    console.log extra_Level
+    console.log target_Div
+
+    $scope.radar_Div = target_Div
 
     $scope.get_Radar_Config = ()->
       config =
         color   : (index)-> return ['black', 'orange', 'green'][index];
-        w       : 450,
-        h       : 450,
+        w       : radar_Size #450,
+        h       : radar_Size #450,
         levels  : 6,
         maxValue: 3.0
       config       
@@ -23,7 +31,7 @@ angular.module('MM_Graph')
           MM_API.data_Radar_Team project, team,(team_Data)->
             data.push team_Data
 
-            MM_API.data_Radar_Team project, 'level-1',(team_Data)->
+            MM_API.data_Radar_Team project, extra_Level,(team_Data)->
               data.push team_Data
 
               $scope.radar_Data = data
@@ -35,6 +43,7 @@ angular.module('MM_Graph')
       config = $scope.get_Radar_Config()
 
       RadarChart?.draw div, data, config
+
 
     $scope.load_Data $routeParams.project, $routeParams.team
   

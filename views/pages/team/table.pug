@@ -1,8 +1,49 @@
-div(ng-controller='TeamDataController')
+div
+    style
+        |@media print {
+        |    div.columns {
+        |        float:left!important;
+        |        padding-left:0.9375em!important;
+        |    padding-right:0.9375em!important;
+        |    width:33%!important;
+        |}
+        |}
+
     teamMenu
     hr
-    teamSave
-    ul
+    .row.column
+        .small-3.columns
+            .text-center
+                    b vs level 1
+        .small-3.columns
+            .text-center
+                    b vs level 2
+        .small-3.columns
+            .text-center
+                    b vs level 3
+        .small-3.columns
+
+    .row
+        .small-4.columns
+            br
+            div(ng-controller='RadarController' radar-size='200' extra-level="level-1" , target-div='.chart-level-1')
+                div.chart-level-1
+
+        .small-4.columns
+            br
+            div(ng-controller='RadarController' radar-size='200' extra-level="level-2", target-div='.chart-level-2')
+                div.chart-level-2
+
+        .small-4.columns
+            br
+            div(ng-controller='RadarController' radar-size='200' extra-level="level-3", target-div='.chart-level-3')
+                div.chart-level-3
+
+
+
+div(ng-controller='TeamDataController')
+    hr
+    ul.hide-for-print
         small
             b &#32;&#32; filter by: &#32;&#32;
             a(href='view/{{project}}/{{team}}/table?filter=Yes'  ) Yes   &#32;
