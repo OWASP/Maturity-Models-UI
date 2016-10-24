@@ -39,4 +39,4 @@ describe '| directive | team-table', ->
     check_Link "/view/#{project}/#{team}/radar"  , 'radar'
     check_Link "/view/#{project}/#{team}/edit"   , 'edit'
     check_Link "/view/#{project}/#{team}/raw"    , 'raw'
-    check_Link "/view/project/#{project}/schema" , 'schema'
+    check_Link "/view/#{project}/#{team}/admin"  , 'admin'

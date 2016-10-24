@@ -15,30 +15,33 @@ describe 'angular | Routes ', ->
         '/view/project/:project/scores'
         '/view/project/:project/schema'
         '/view/project/:project/schema/:level'
-        #'/view/all/radar'
         '/view/routes'
-        #'/view/:project/:team'
+        '/view/:project/:team/admin'
         '/view/:project/:team/edit'
         '/view/:project/:team/radar'
         '/view/:project/:team/raw'
-        '/view/:project/:team/table',
-        '/view/:project/:team/table/:level']
+        '/view/:project/:team/table'
+        '/view/:project/:team/table/:level'
+      ]
       
       expected_Routes = []      
-      for route in routes                               # handle case where angular adds an extra route with / at the end
+      for route in routes                                         # handle case where angular adds an extra route with / at the end
         expected_Routes.push route
         expected_Routes.push route + '/'
       expected_Routes.push 'null'
 
-      for route in $route.routes.keys()                 # this makes it easier to debug which route is missing
+      real_Routes = $route.routes.keys()
+
+      for route in real_Routes                                    # this makes it easier to debug which route is missing
         #console.log route
         expected_Routes.assert_Contains route
 
-      for route in expected_Routes
+      for route,index in expected_Routes
         #console.log route
-        $route.routes.keys().assert_Contains route
+        real_Routes.assert_Contains route                         # confirm it exists
+        real_Routes[index].assert_Is expected_Routes[index]       # confirm order is correct
 
-      $route.routes.keys().assert_Is expected_Routes
+      $route.routes.keys().assert_Is expected_Routes              # final check to make sure they match
 
 
   #todo: fix this test which is not working as originally designed after the fix to the $templateCache

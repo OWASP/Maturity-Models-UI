@@ -19,7 +19,7 @@ describe 'views | edit.page', ->
       $routeParams.project = project
       $routeParams.team    = team
       $scope   = $rootScope.$new()
-      raw_Html = $templateCache.get '/ui/html/pages/edit.page.html'
+      raw_Html = $templateCache.get '/ui/html/pages/team/edit.html'
       element  = $compile(angular.element(raw_Html))($scope)
       $httpBackend.flush()
 

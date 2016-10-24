@@ -48,7 +48,7 @@ describe 'services | Render-View', ->
       team            : team
       url_Data        : path :"/api/v1/team/#{project}/get/#{team}" , value: { metadata: 42}
       url_Location    : "/view/#{project}/#{team}/raw"
-      url_Template_Key: 'pages/raw.page.html'
+      url_Template_Key: 'pages/team/raw.html'
       
     inject ($injector)->
       using $injector.get('Render_View')(options), ->
@@ -68,7 +68,7 @@ describe 'services | Render-View', ->
   it 'run (with values manually set)', ->
     using render_View, ->
       @.set_Url_Location     "/view/#{@.project}/#{@.team}/raw"
-       .set_Url_Template_Key 'pages/raw.page.html'
+       .set_Url_Template_Key 'pages/team/raw.html'
        .run()
             
       @.element.innerHTML.assert_Is @.html

@@ -21,5 +21,6 @@ angular.module('MM_Graph')
         { text: 'radar' , path: "#{base_Path}/radar"             , class: $scope.is_Active('radar')}
         { text: 'edit'  , path: "#{base_Path}/edit"              , class: $scope.is_Active('edit')}
         { text: 'raw'   , path: "#{base_Path}/raw"               , class: $scope.is_Active('raw')}
-        { text: 'schema', path: "/view/project/#{project}/schema", class: $scope.is_Active('schema')}
+        #{ text: 'schema', path: "/view/project/#{project}/schema", class: $scope.is_Active('schema')}
+        { text: 'admin'  , path: "#{base_Path}/admin"             , class: $scope.is_Active('admin')}
       ]
