@@ -1,5 +1,5 @@
 #to be deleted
-describe '| directive | team-table', ->
+describe 'directive | team-table', ->
   project = 'bsimm'
   team    = 'team-A'
   element = null

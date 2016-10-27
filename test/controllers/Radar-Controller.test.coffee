@@ -17,7 +17,8 @@ describe 'controllers | Radar', ->
       $routeParams.team    = team
 
       $scope = $rootScope.$new()
-      $attrs = {}
+      $attrs = {
+      }
       $controller('RadarController', { $scope: $scope, $attrs:$attrs })
 
       $httpBackend.flush()
@@ -48,10 +49,9 @@ describe 'controllers | Radar', ->
   it '$scope.show_Radar', ->
     window.RadarChart =
       draw: (div, data, config)->
-        div.assert_Is $scope.radar_Div
+        $scope.radar_Div.assert_Is '.chart-container'
         data.first().axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics',key: 'SM', xOffset: 20, value: 0 }
         data.second().axes.first().assert_Is { value: 0.75 }
         config.levels.assert_Is 6
-    $scope.radar_Div.assert_Is '.chart-container'
     
     $scope.show_Radar()

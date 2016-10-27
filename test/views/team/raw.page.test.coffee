@@ -6,7 +6,6 @@ describe 'views | raw.page', ->
     project         : project
     team            : team
     url_Location    : "/view/#{project}/#{team}/raw"
-    url_Template_Key: 'pages/raw.page.html'
 
   view = null
 

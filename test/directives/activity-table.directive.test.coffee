@@ -1,5 +1,5 @@
 #to be deleted
-describe '| directive | activity-table', ->
+describe 'directive | activity-table', ->
 
   element = null
   $scope  = null

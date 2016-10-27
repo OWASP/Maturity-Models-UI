@@ -3,7 +3,7 @@ find_Element_By_Id = (html, name)->
   angular.element($(html).find("##{name}").eq(0))
 
 
-describe '| directive | team-table', ->
+describe 'directive | team-table', ->
   $scope       = null
   element      = null
   save_Button  = null

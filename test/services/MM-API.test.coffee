@@ -30,7 +30,7 @@ describe 'services | MM-API', ->
   it 'data_Radar_Fields', ->
     using mm_API, ->
       @.data_Radar_Fields project, (data)->
-        data.axes.first().assert_Is { axis: 'Strategy & Metrics', key: 'SM', xOffset: 1, value: 0 }
+        data.axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 }
       $http.flush()
 
   it 'project_List', ->

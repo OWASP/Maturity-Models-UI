@@ -15,7 +15,7 @@ describe 'views | routes.page', ->
     inject ($httpBackend)->
       $httpBackend.verifyNoOutstandingExpectation()
       
-  it 'pages/view.page.html', ->
+  it 'pages/team/table.html', ->
     using view, ->            
       @.$('h4'      ).html(               ).assert_Is 'API methods'
       @.$('div'     ).attr('ng-controller').assert_Is 'RoutesController'

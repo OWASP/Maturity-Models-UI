@@ -14,10 +14,8 @@ describe 'controllers | Team-Delete-Controller', ->
       $controller('TeamDataController', { $scope: $scope, $routeParams : routeParams })
       $httpBackend.flush()
       $controller('TeamAdminController', { $scope: $scope })
-      #$httpBackend.flush()
 
-  it 'check $scope values',->
-    console.log  $scope.project
+  it 'check $scope values',->    $scope.project
     using $scope, ->
       @.project     .assert_Is project
       @.team        .assert_Is team

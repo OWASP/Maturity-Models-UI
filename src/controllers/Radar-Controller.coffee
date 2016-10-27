@@ -5,9 +5,6 @@ angular.module('MM_Graph')
     extra_Level = $attrs.extraLevel || 'level-1'
     target_Div  = $attrs.targetDiv  || '.chart-container'
 
-    console.log extra_Level
-    console.log target_Div
-
     $scope.radar_Div = target_Div
 
     $scope.get_Radar_Config = ()->
