@@ -13,8 +13,8 @@ angular.module('MM_Graph')
     $scope.get_Radar_Config = ()->
       config =
         color   : (index)-> return ['black', 'orange', 'green'][index];
-        w       : radar_Size #450,
-        h       : radar_Size #450,
+        w       : radar_Size
+        h       : radar_Size
         levels  : 6,
         maxValue: 3.0
       config       
@@ -37,7 +37,7 @@ angular.module('MM_Graph')
               $scope.radar_Data = data
               $scope.show_Radar data, $scope.get_Radar_Config()
 
-    $scope.show_Radar = (data, config)->
+    $scope.show_Radar = (data)->
       div    = $scope.radar_Div
       data   = $scope.radar_Data
       config = $scope.get_Radar_Config()
@@ -46,4 +46,3 @@ angular.module('MM_Graph')
 
 
     $scope.load_Data $routeParams.project, $routeParams.team
-  

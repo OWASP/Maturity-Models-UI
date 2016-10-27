@@ -1,11 +1,8 @@
 angular.module('MM_Graph')
   .controller 'TeamAdminController', ($scope,  MM_API, Team_Data, $routeParams)->
 
-    $scope.project = $routeParams.project    # todo: should be using Team_Data here
-    $scope.team    = $routeParams.team
-
-    #$scope.project = Team_Data.project
-    #$scope.team    = Team_Data.team
+    $scope.project = $routeParams.project  || Team_Data.project  # todo: should only be using Team_Data here
+    $scope.team    = $routeParams.team     || Team_Data.team
 
 
     $scope.delete_Team = ->

@@ -57,6 +57,9 @@ describe '_issues | regression', ->
 
     inject ($injector)->
       $injector.get('Render_View')(options)
+               .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}      # todo: add bug about fact that radar is opened 3 times
+               .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
+               .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
                .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}      # there were 3 of these (before #140 fix)
                .set_Expect_Get "/api/v1/team/#{project}/get/#{team}"  , {}      # there were 3 of these (before #140 fix)
                .run()
@@ -71,6 +74,9 @@ describe '_issues | regression', ->
 
     inject ($injector)->
       $injector.get('Render_View')(options)
+               .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
+               .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
+               .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
                .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}      # there were 3 of these (before fix)
                .set_Expect_Get "/api/v1/team/#{project}/get/#{team}"  , {}      # there were 3 of these (before fix)
                .run()

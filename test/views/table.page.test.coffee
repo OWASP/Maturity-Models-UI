@@ -28,6 +28,6 @@ describe 'views | table.page', ->
       @.$('.callout' ).length.assert_Is 3
 
       @.$('table'    ).length.assert_Is 3     # tables
-      @.$('th'       ).length.assert_Is 33    # table headers
+      @.$('th'       ).length.assert_Is 30    # table headers
       @.$('tr'       ).length.assert_Is 115   # rows
       @.$('td'       ).length.assert_Is 1232  # cells

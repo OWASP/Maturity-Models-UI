@@ -17,6 +17,7 @@ describe 'controllers | Team-Delete-Controller', ->
       #$httpBackend.flush()
 
   it 'check $scope values',->
+    console.log  $scope.project
     using $scope, ->
       @.project     .assert_Is project
       @.team        .assert_Is team
