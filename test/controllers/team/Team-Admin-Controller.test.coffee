@@ -15,7 +15,7 @@ describe 'controllers | Team-Delete-Controller', ->
       $httpBackend.flush()
       $controller('TeamAdminController', { $scope: $scope })
 
-  it 'check $scope values',->    $scope.project
+  it 'check $scope values',->
     using $scope, ->
       @.project     .assert_Is project
       @.team        .assert_Is team
