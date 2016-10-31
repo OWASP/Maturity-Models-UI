@@ -9,13 +9,13 @@ describe 'angular | Routes ', ->
       #console.log $route.routes.keys()
       routes = [
         '/view'
+        '/view/routes'
         '/view/projects'
         '/view/project/:project'
         '/view/project/:project/new-team'
         '/view/project/:project/scores'
         '/view/project/:project/schema'
         '/view/project/:project/schema/:level'
-        '/view/routes'
         '/view/:project/:team/admin'
         '/view/:project/:team/edit'
         '/view/:project/:team/radar'

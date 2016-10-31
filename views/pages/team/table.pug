@@ -42,6 +42,8 @@ div
 
 div(ng-controller='TeamDataController')
     hr
+    br
+    teamSave
     ul.hide-for-print
         small
             b &#32;&#32; filter by: &#32;&#32;
@@ -53,6 +55,8 @@ div(ng-controller='TeamDataController')
             span(ng-show='current_Filter()')
                 span &#32;|&#32;
                 a(href='view/{{project}}/{{team}}/table?filter='     ) (remove '{{current_Filter()}}' filter)
+
+
 
     teamTable(level='1')
     teamTable(level='2')

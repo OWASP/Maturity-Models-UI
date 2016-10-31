@@ -6,8 +6,8 @@ describe 'views | project.page', ->
     module('MM_Graph')
     inject ($templateCache)->
       $templateCache.get_Keys()
-                    .assert_Contains '/ui/html/pages/project.page.html'
-      html = $templateCache.get      '/ui/html/pages/project.page.html'
+                    .assert_Contains '/ui/html/pages/project/project.html'
+      html = $templateCache.get      '/ui/html/pages/project/project.html'
 
   it 'check raw template value',->
     #console.log html
