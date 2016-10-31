@@ -35,8 +35,8 @@ describe 'controllers | Radar', ->
       @.levels  .assert_Is 6
       @.maxValue.assert_Is 3.0
       @.color(0).assert_Is 'black'
-      @.color(1).assert_Is 'orange'
-      @.color(2).assert_Is 'green'
+      @.color(1).assert_Is 'green'
+      @.color(2).assert_Is 'orange'
       (@.color(3) is undefined).assert_Is_True()
 
   it '$scope.load_Data',->
