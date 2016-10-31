@@ -9,7 +9,7 @@ angular.module('MM_Graph')
 
     $scope.get_Radar_Config = ()->
       config =
-        color   : (index)-> return ['black', 'orange', 'green'][index];
+        color   : (index)-> return ['black', 'green', 'orange'][index];
         w       : radar_Size
         h       : radar_Size
         levels  : 6,
