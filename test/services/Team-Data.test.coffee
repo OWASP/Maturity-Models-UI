@@ -32,7 +32,7 @@ describe 'services | Team-Data', ->
       @.subscribe $scope, =>
         @.project.assert_Is project
         @.team.assert_Is team
-        @.schema.keys().assert_Is [ 'domains', 'practices', 'activities' ]
+        @.schema.keys().assert_Is [ 'metadata', 'domains', 'practices', 'activities' ]
         @.scores.keys().assert_Is [ 'level_1', 'level_2', 'level_3'      ]
         @.data.keys(  ).assert_Is [ 'metadata', 'activities' ]
         done()
@@ -75,7 +75,7 @@ describe 'services | Team-Data', ->
         call_Count++
 
         if call_Count is 1
-          @.schema.keys().assert_Is [ 'domains', 'practices', 'activities' ]
+          @.schema.keys().assert_Is [ 'metadata', 'domains', 'practices', 'activities' ]
           @.schema = {'abc': '123'}
 
         if call_Count is 2
@@ -83,7 +83,7 @@ describe 'services | Team-Data', ->
           @.schema = null
 
         if call_Count is 3
-          @.schema.keys().assert_Is [ 'domains', 'practices', 'activities' ]
+          @.schema.keys().assert_Is [ 'metadata', 'domains', 'practices', 'activities' ]
           return @.$rootScope.$destroy()
 
         @.load_From_Cache project, team

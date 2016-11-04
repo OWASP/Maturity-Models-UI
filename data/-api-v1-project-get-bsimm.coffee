@@ -1,0 +1,1 @@
+angular.module('MM_Graph').run ($httpBackend)-> $httpBackend.whenGET('/api/v1/project/get/bsimm').respond ["save-test","level-1","level-2","level-3","team-bsdxz","team-gjrem","team-jlzcv","team-rgxmn","team-xbqtc","team-A","team-B","team-C","team-random"]

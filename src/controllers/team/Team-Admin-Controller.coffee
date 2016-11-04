@@ -3,7 +3,7 @@ angular.module('MM_Graph')
 
     $scope.project = $routeParams.project  || Team_Data.project  # todo: should only be using Team_Data here
     $scope.team    = $routeParams.team     || Team_Data.team
-
+    $scope.status  = ""
 
     $scope.delete_Team = ->
       $scope.status = "deleting team"

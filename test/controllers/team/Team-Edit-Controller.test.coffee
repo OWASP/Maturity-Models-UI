@@ -31,6 +31,13 @@ describe 'controllers | Team-Edit-Controller', ->
     inject ($controller)->
       $controller('TeamEditController', { $scope: $scope, $routeParams : {} })
 
+  it '$scope.map_Domains (with no metadata)', ->
+    inject (Team_Data)->
+      saved_Metadata          = Team_Data.data.metadata             # save object
+      Team_Data.data.metadata = null
+      $scope.map_Domains()
+      Team_Data.data.metadata.assert_Is { team: ''}
+      Team_Data.data.metadata = saved_Metadata                      # restore object
 
 
 xdescribe 'controllers | Edit-Data-Controller (SAMM data)', ->

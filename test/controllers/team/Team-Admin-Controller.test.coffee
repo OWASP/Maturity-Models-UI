@@ -22,6 +22,16 @@ describe 'controllers | Team-Delete-Controller', ->
       (typeof @.delete_Team).assert_Is 'function'
       @.delete_Button_Message.assert_Is 'Delete team team-A'
 
+  it '$scope.delete_Team', ->
+    using $scope, ->
+      @.status.assert_Is ""
+      @.delete_Team()
+      @.status.assert_Is 'deleting team'
+      inject ($httpBackend)->
+        $httpBackend.expectGET("/api/v1/team/#{project}/delete/#{team}").respond { status: 'deleted'}
+        $httpBackend.flush()
+      @.status.assert_Is { status: 'deleted'}
+
 
 
 

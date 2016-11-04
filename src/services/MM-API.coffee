@@ -1,6 +1,6 @@
 app = angular.module('MM_Graph')
 
-class MM_API
+class MM_API                               # Rename MM-API class (in ui project) #183
   constructor: (http)->
     @.$http   = http
     @.version = '/api/v1'

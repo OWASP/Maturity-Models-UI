@@ -33,11 +33,18 @@ describe 'services | MM-API', ->
         data.axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 }
       $http.flush()
 
+  it 'project_Get', ->
+    using mm_API, ->
+      @.project_Get project, (data)->
+        data.assert_Contains ['level-1', 'level-2','level-3']
+      $http.flush()
+
   it 'project_List', ->
     using mm_API, ->      
       @.project_List (data)->
         data.assert_Is ['bsimm','samm']
       $http.flush()
+
 
   it 'project_Scores', ->
     using mm_API, ->
@@ -57,4 +64,12 @@ describe 'services | MM-API', ->
         data.status.assert_Is 'Ok'
         data.team_Name.assert_Contains 'team-'
         data.team_Name.length.assert_Is 10
+      $http.flush()
+
+    it 'team_New', ->
+    using mm_API, ->
+      inject ($httpBackend)->
+        $httpBackend.expectGET("/api/v1/team/#{project}/delete/#{team}").respond { status: 'ok'}
+      @.team_Delete project, team, (data)->
+        data.assert_Is { status: 'ok'}
       $http.flush()
