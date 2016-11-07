@@ -15,6 +15,6 @@ div(ng-controller='TeamDataController')
                     tbody
                         tr(ng-repeat="(key,value) in data.metadata", id='{{value}}')
                             td {{key}}
-                            td
-                                input(ng-model='data.metadata[key]')
+                            td.input-metadata
+                                input(type='text' ng-model='data.metadata[key]')
             .small-2.columns

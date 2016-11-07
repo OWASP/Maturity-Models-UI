@@ -21,10 +21,10 @@ angular.module('MM_Graph')
             if activity
               if (not level) or activity.level is level
                 row = [domain_Name, practice_Name, activity_Key, activity.level, activity.name]
-
-                value = data.activities?[activity_Key]
-                if filter                               # if filter value is set
-                  if (not (filter.contains value))      # and it contains the current value
+                activity_Data = data.activities?[activity_Key]
+                value         = activity_Data?.value
+                if filter                                         # if filter value is set
+                  if (not (filter.contains value))                # and it contains the current value
                     continue
 
                 switch value

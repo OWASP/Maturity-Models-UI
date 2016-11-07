@@ -19,6 +19,18 @@
             margin :0px !important;
     }
 
+.input-field input[type="text"] {
+    padding: 0px !important;
+    valign: center !important;
+    font-size:10px !important;
+    width: 200px !important;
+    height: 20px !important;
+    margin-bottom:0; !important;
+}
+
+.input-metadata input[type="text"] {
+    margin-bottom:0; !important;
+}
 
 @media print {
     .panel.callout {border: solid; border-width: 2; background-color: #c0c0c0;}

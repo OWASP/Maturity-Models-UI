@@ -1,3 +1,4 @@
+
 .row.fullWidth.activity-table(ng-show='show', id='level-{{level}}')
     .panel.callout.radius.text-center Level {{level}} - {{score}}
     table
@@ -23,11 +24,13 @@
                 td {{cells[3]}}
                 td {{cells[4]}}
                 td
-                    input(type='radio' ng-checked= 'cells[5]' ng-model="data.activities[cells[2]]" value='Yes')
+                    input(type='radio' ng-checked= 'cells[5]' ng-model="data.activities[cells[2]].value" value='Yes')
                 td
-                    input(type='radio' ng-checked= 'cells[6]' ng-model="data.activities[cells[2]]" value='No')
+                    input(type='radio' ng-checked= 'cells[6]' ng-model="data.activities[cells[2]].value" value='No')
                 td
-                    input(type='radio' ng-checked= 'cells[7]' ng-model="data.activities[cells[2]]" value='NA')
+                    input(type='radio' ng-checked= 'cells[7]' ng-model="data.activities[cells[2]].value" value='NA')
                 td
-                    input(type='radio' ng-checked= 'cells[8]' ng-model="data.activities[cells[2]]" value='Maybe')
-                td.hide-for-medium-down  {{cells[9]}}
+                    input(type='radio' ng-checked= 'cells[8]' ng-model="data.activities[cells[2]].value" value='Maybe')
+                td.hide-for-medium-down.input-field.hide-for-print
+                    //{{cells[9]}}
+                    input(type='text'  ng-model='data.activities[cells[2]].proof')

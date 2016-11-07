@@ -17,8 +17,7 @@ describe 'controllers | Radar', ->
       $routeParams.team    = team
 
       $scope = $rootScope.$new()
-      $attrs = {
-      }
+      $attrs = {}
       $controller('RadarController', { $scope: $scope, $attrs:$attrs })
 
       $httpBackend.flush()
