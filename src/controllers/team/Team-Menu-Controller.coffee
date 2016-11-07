@@ -16,10 +16,11 @@ angular.module('MM_Graph')
       
     $scope.links =
       [
-        { text: 'table'     , path: "#{base_Path}/table"             , class: $scope.is_Active('table'    )}
-        { text: 'radar'     , path: "#{base_Path}/radar"             , class: $scope.is_Active('radar'    )}
-        { text: 'edit'      , path: "#{base_Path}/edit"              , class: $scope.is_Active('edit'     )}
-        { text: 'raw'       , path: "#{base_Path}/raw"               , class: $scope.is_Active('raw'      )}
-        { text: 'metadata'  , path: "#{base_Path}/metadata"          , class: $scope.is_Active('metadata' )}
-        { text: 'admin'     , path: "#{base_Path}/admin"             , class: $scope.is_Active('admin'    )}
+        { text: 'table'      , path: "#{base_Path}/table"             , class: $scope.is_Active('table'      )}
+        { text: 'radar'      , path: "#{base_Path}/radar"             , class: $scope.is_Active('radar'      )}
+        { text: 'yes answers', path: "#{base_Path}/yes-answers"       , class: $scope.is_Active('yes-answers')}
+        { text: 'edit'       , path: "#{base_Path}/edit"              , class: $scope.is_Active('edit'       )}
+        { text: 'metadata'   , path: "#{base_Path}/metadata"          , class: $scope.is_Active('metadata'   )}
+        { text: 'raw'        , path: "#{base_Path}/raw"               , class: $scope.is_Active('raw'        )}
+        { text: 'admin'      , path: "#{base_Path}/admin"             , class: $scope.is_Active('admin'      )}
       ]

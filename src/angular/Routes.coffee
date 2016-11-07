@@ -14,6 +14,7 @@ angular.module('MM_Graph')
       .when '/view/:project/:team/edit'             , templateUrl: "#{pages}/team/edit.html"
       .when '/view/:project/:team/radar'            , templateUrl: "#{pages}/team/radar.html"
       .when '/view/:project/:team/metadata'         , templateUrl: "#{pages}/team/metadata.html"
+      .when '/view/:project/:team/yes-answers'      , templateUrl: "#{pages}/team/yes-answers.html"
       .when '/view/:project/:team/raw'              , templateUrl: "#{pages}/team/raw.html"
       .when '/view/:project/:team/table'            , templateUrl: "#{pages}/team/table.html"
       .when '/view/:project/:team/table/:level'     , templateUrl: "#{pages}/team/table.html"

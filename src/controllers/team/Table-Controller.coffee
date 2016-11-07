@@ -1,8 +1,10 @@
 angular.module('MM_Graph')
-  .controller 'TableController', ($scope, $routeParams, Team_Data)->
+  .controller 'TableController', ($scope, $routeParams, Team_Data, $attrs)->
 
-    level   = $scope.level?.toString()        # todo: this value shouldn't be set here
-    filter  = $routeParams.filter
+    level   = $scope.level?.toString()                  # todo: this value shouldn't be set here
+    filter  = $routeParams.filter || $attrs.filter      # get value from url params or from element that consumed this controller
+
+    console.log $attrs
 
     $scope.map_Rows = ()->
       

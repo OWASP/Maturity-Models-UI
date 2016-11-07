@@ -1,0 +1,26 @@
+div(ng-controller='TeamDataController')
+    teamMenu
+    br
+    p These are all activites that are currently marked with YES
+    div(ng-controller='TableController' filter="Yes")
+        .row.fullWidth.activity-table(ng-show='show', id='level-{{level}}')
+            table.yes-answers
+                thead
+                    tr
+                        th.hide-for-print #
+                        th Activity
+                        //th.hide-for-print  Level
+                        th Question
+                        //th Yes
+                        th  Proof
+                tbody
+                    tr(ng-repeat="(index, cells) in rows", id='{{cells[2]}}')
+                        td.hide-for-print  {{index + 1}}
+                        //td.hide-for-print  {{cells[2]}}
+                        td {{cells[3]}}
+                        td.td-text-left {{cells[4]}}
+                        //td
+                            input(type='radio' ng-checked= 'cells[5]' ng-model="data.activities[cells[2]].value" value='Yes')
+                        td
+                            input(type='text'  ng-model='data.activities[cells[2]].proof')
+    teamSave.hide-for-print

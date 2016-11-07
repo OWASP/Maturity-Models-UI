@@ -32,6 +32,17 @@
     margin-bottom:0; !important;
 }
 
+td.td-text-left  {
+    text-align: left !important;
+}
+
+.yes-answers input[type="text"] {
+    margin-bottom:0; !important;
+    width: 25pc !important;
+    height: 20px !important;
+    font-size:12px !important;
+}
+
 @media print {
     .panel.callout {border: solid; border-width: 2; background-color: #c0c0c0;}
 }
