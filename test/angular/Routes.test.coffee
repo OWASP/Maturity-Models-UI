@@ -19,6 +19,7 @@ describe 'angular | Routes ', ->
         '/view/:project/:team/admin'
         '/view/:project/:team/edit'
         '/view/:project/:team/radar'
+        '/view/:project/:team/metadata'
         '/view/:project/:team/raw'
         '/view/:project/:team/table'
         '/view/:project/:team/table/:level'

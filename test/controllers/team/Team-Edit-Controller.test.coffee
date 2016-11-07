@@ -17,7 +17,7 @@ describe 'controllers | Team-Edit-Controller', ->
 
   it '$controller (with project and team on $routeParams)',->
     using $scope, ->
-      @.team_Data.data.metadata.assert_Is 'team': 'Team A'
+      @.team_Data.data.metadata.team.assert_Is 'Team A'
       @.team_Data.schema.domains.keys().first().assert_Is 'Governance'
 
       @.domains.keys().assert_Is ['Governance', 'Intelligence',  'SSDL Touchpoints', 'Deployment' ]
