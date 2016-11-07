@@ -1,12 +1,14 @@
 div(ng-controller='TeamSaveController')
     .row.fullWidth
-        .small-2.columns
+        //.small-2.columns
             label.right.inline
                 b Team Name:
-        .small-4.columns
-            input#team-name(type="text" ng-model='metadata.team')
+        //.small-4.columns
+        //    input#team-name(type="text" ng-model='metadata.team')
+        .small-1.columns
         .small-1.columns
             a.button.postfix#save-button(ng-click='save_Data()') save
         .small-1.columns
         .small-4.columns
             .center.label.round#status-label(ng-class='messageClass') {{status}}
+        .small-5.columns
