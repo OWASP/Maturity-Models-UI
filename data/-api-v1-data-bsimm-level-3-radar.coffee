@@ -1,1 +1,1 @@
-angular.module('MM_Graph').run ($httpBackend)-> $httpBackend.whenGET('/api/v1/data/bsimm/level-3/radar').respond {"axes":[{"value":3},{"value":3},{"value":3},{"value":3},{"value":3},{"value":3},{"value":3},{"value":3},{"value":3},{"value":3},{"value":3},{"value":3}]}
+angular.module('MM_Graph').run ($httpBackend)-> $httpBackend.whenGET('/api/v1/data/bsimm/level-3/radar').respond {"axes":[{"value":3},{"value":2.4545},{"value":1.25},{"value":1.8},{"value":0.8571},{"value":0.9},{"value":1},{"value":1.3636},{"value":0.6667},{"value":1.2857},{"value":1},{"value":0.6667}]}
