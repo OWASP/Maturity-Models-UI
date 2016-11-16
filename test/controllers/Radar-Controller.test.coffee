@@ -40,8 +40,8 @@ describe 'controllers | Radar', ->
 
   it '$scope.load_Data',->
     using $scope, ->
-      @.radar_Data.first().axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 }
-      @.radar_Data.second().axes.first().assert_Is { value: 0.75 }
+      @.radar_Data.first().axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 , size: 11}
+      @.radar_Data.second().axes.first().assert_Is { value: 0.4091 }
       @.project   .assert_Is project
       @.team      .assert_Is team
 
@@ -49,8 +49,8 @@ describe 'controllers | Radar', ->
     window.RadarChart =
       draw: (div, data, config)->
         $scope.radar_Div.assert_Is '.chart-container'
-        data.first().axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics',key: 'SM', xOffset: 20, value: 0 }
-        data.second().axes.first().assert_Is { value: 0.75 }
+        data.first().axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics',key: 'SM', xOffset: 20, value: 0 , size: 11}
+        data.second().axes.first().assert_Is { value: 0.4091 }
         config.levels.assert_Is 6
     
     $scope.show_Radar()

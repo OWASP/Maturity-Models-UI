@@ -24,13 +24,13 @@ describe 'services | MM-API', ->
   it 'data_Radar_Team', ->
     using mm_API, ->
       @.data_Radar_Team project, team, (data)->
-        data.axes.first().value.assert_Is 0.75
+        data.axes.first().value.assert_Is 0.4091
       $http.flush()
 
   it 'data_Radar_Fields', ->
     using mm_API, ->
       @.data_Radar_Fields project, (data)->
-        data.axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 }
+        data.axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 , size: 11}
       $http.flush()
 
   it 'project_Get', ->

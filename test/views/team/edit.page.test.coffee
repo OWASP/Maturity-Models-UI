@@ -38,8 +38,8 @@ describe 'views | team | edit.page', ->
     using element,->
       @.find('teamMenu').find('a')[0].href.assert_Contains "/view/project/#{project}"
     
-      @.find('input').val().assert_Is 'Team A'
-      $html.find('a.button'     ).html().assert_Is 'save'
+      @.find('input').val().assert_Is 'Yes'
+      $html.find('a.button').html().assert_Is 'save'
 
       @.find('activityTable').length.assert_Is 4
       $html.find('#Governance').length.assert_Is 1

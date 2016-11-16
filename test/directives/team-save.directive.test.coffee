@@ -44,17 +44,13 @@ describe 'directive | team-table', ->
 
     element.find('div').eq(0).attr('ng-controller').assert_Is 'TeamSaveController'
 
-    team_Name   .attr('type'    ).assert_Is 'text'
-    team_Name   .attr('ng-model').assert_Is 'metadata.team'
     save_Button .attr('ng-click').assert_Is 'save_Data()'
     save_Button .html(          ).assert_Is 'save'
     status_Label.attr('ng-class').assert_Is 'messageClass'
     status_Label.html(          ).assert_Is 'data loaded'
 
-    element.find('div').eq(7).attr('ng-class').assert_Is 'messageClass' # bug: should be secondary
+    element.find('div').eq(6).attr('ng-class').assert_Is 'messageClass' # bug: should be secondary
 
-  it 'should show team title', ->
-    element.find('input').eq(0).val().assert_Is "Team A"
 
   it 'should save data', ->
     inject ($httpBackend)->

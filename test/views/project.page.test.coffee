@@ -12,13 +12,16 @@ describe 'views | project.page', ->
   it 'check raw template value',->
     #console.log html
     using $(html), ->
-      @.find('#project' ).text()                 .assert_Is 'Project {{project}}schemascoresTeams:{{team}}Actions:new team'
+      @.find('#project' ).text()                 .assert_Is 'Project {{project}}schemascoresobservedTeams:{{team}}Actions:new team'
       @.find('#project' ).attr('ng-controller')  .assert_Is 'ProjectController'
       @.find('div'      ).length                 .assert_Is 3
       @.find('h4'       ).text()                 .assert_Is 'Project {{project}}'
-      @.find('li'       ).eq(2).attr('ng-repeat').assert_Is '(key, team) in teams.sort()'
-      @.find('a'        ).eq(2).attr('href')     .assert_Is 'view/{{project}}/{{team}}/table'
-      @.find('a'        ).eq(2).html()           .assert_Is '{{team}}'
+      @.find('li'       ).eq(0).text().assert_Is 'schema'
+      @.find('li'       ).eq(1).text().assert_Is 'scores'
+      @.find('li'       ).eq(2).text().assert_Is 'observed'
+      @.find('li'       ).eq(3).attr('ng-repeat').assert_Is '(key, team) in teams.sort()'
+      @.find('a'        ).eq(3).attr('href')     .assert_Is 'view/{{project}}/{{team}}/table'
+      @.find('a'        ).eq(3).html()           .assert_Is '{{team}}'
 
 
   it 'check with Controller', ->
@@ -31,7 +34,7 @@ describe 'views | project.page', ->
         $httpBackend.flush()
 
         using $(element.find('a')), ->
-          @.length.assert_Is 5
+          @.length.assert_Is 6
           using @.eq(0), ->
             @.attr('href').assert_Is 'view/project/demo/schema'
             @.html().assert_Is 'schema'
@@ -39,12 +42,15 @@ describe 'views | project.page', ->
             @.attr('href').assert_Is 'view/project/demo/scores'
             @.html().assert_Is 'scores'
           using @.eq(2), ->
+            @.attr('href').assert_Is 'view/project/demo/observed'
+            @.html().assert_Is 'observed'
+          using @.eq(3), ->
             @.attr('href').assert_Is 'view/demo/team-A/table'
             @.html().assert_Is 'team-A'
-          using @.eq(3), ->
+          using @.eq(4), ->
             @.attr('href').assert_Is 'view/demo/team-B/table'
             @.html().assert_Is 'team-B'
-          using @.eq(4), ->
+          using @.eq(5), ->
             @.attr('href').assert_Is 'view/project/demo/new-team'
             @.html().assert_Is 'new team'
 

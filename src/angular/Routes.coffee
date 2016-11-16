@@ -8,6 +8,7 @@ angular.module('MM_Graph')
       .when '/view/project/:project'                , templateUrl: "#{pages}/project/project.html"
       .when '/view/project/:project/new-team'       , templateUrl: "#{pages}/project/new-team.html"
       .when '/view/project/:project/scores'         , templateUrl: "#{pages}/project/scores.html"
+      .when '/view/project/:project/observed'       , templateUrl: "#{pages}/project/observed.html"
       .when '/view/project/:project/schema'         , templateUrl: "#{pages}/project/schema.html"
       .when '/view/project/:project/schema/:level'  , templateUrl: "#{pages}/project/schema.html"
       .when '/view/:project/:team/admin'            , templateUrl: "#{pages}/team/admin.html"

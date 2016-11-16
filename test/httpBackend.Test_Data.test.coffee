@@ -24,7 +24,7 @@ describe 'httpBackend | Test_Data', ->
       MM_API.team_Get 'bsimm', 'team-A', (data)->
         data.metadata.team.assert_Is 'Team A'
         data.activities.keys().assert_Contains 'SM.1.1'
-        data.activities.keys().size().assert_Is 74
+        data.activities.keys().size().assert_Is 120
       $httpBackend.flush()
 
   it 'team/samm/get/team-E', ->
@@ -32,5 +32,5 @@ describe 'httpBackend | Test_Data', ->
       MM_API.team_Get 'samm', 'team-E', (data)->
         data.metadata.team.assert_Is 'SAMM - Team E'
         data.activities.keys().assert_Contains 'SM.1.A'
-        data.activities.keys().size().assert_Is 77
+        data.activities.keys().size().assert_Is 78
       $httpBackend.flush()
