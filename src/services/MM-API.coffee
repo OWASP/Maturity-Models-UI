@@ -36,6 +36,11 @@ class MM_API                               # Rename MM-API class (in ui project)
            .success (data)->
               callback data
 
+  project_Activities: (project,callback)=>
+    url = "/api/v1/project/activities/#{project}"
+    @.$http.get url
+           .success callback
+
   project_List: (callback)=>
     url = "/api/v1/project/list"
     @.$http.get url

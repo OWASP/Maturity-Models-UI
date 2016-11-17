@@ -2,6 +2,34 @@ div(ng-controller='ObservedController')
     teamMenu
     .row
         .row.fullWidth(ng-cloak)
-            h1 Observe (table)
-            pre#data.
-                ....... 123
+            h1 Observed
+
+    .row.fullWidth
+        hr
+    .row.fullWidth
+        .medium-3.columns(ng-repeat='(domain, activities) in domains')
+            .panel.callout.radius.text-center#domain
+                b {{domain}}
+            table.fullWidth
+                tr
+                thead
+                    tr
+                        th ID
+                        th Yes
+                        th No
+                        th NA
+                        th Maybe
+                tbody
+                    tr.activity(ng-repeat="activity in activities", id='{{activity}}')
+                        td.text-left {{activity}}
+                        td
+                            span {{project_Activities[activity]['Yes'].length }}
+                            //input(type="radio" ng-name='activity' ng-model="data.activities[activity].value" value='Yes')
+                        td
+                            span {{project_Activities[activity]['No'].length }}
+                            //input(type="radio" ng-name='activity' ng-model="data.activities[activity].value" value='No')
+                        td
+                            span {{project_Activities[activity]['No'].length }}
+                            //input(type="radio" ng-name='activity' ng-model="data.activities[activity].value" value='NA')
+                        td
+                            span {{project_Activities[activity]['Maybe'].length }}
