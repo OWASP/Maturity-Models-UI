@@ -31,5 +31,5 @@ describe 'views | project | observed.page', ->
     #console.log $html.find('div').eq(0).attr('ng-controller')
     #console.log $scope
     #console.log html
-    $scope.activities.keys().assert_Contains 'SM.1.2'
+    $scope.project_Activities.keys().assert_Contains 'SM.1.2'
     console.log $scope.domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
