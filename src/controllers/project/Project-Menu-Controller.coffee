@@ -14,7 +14,8 @@ angular.module('MM_Graph')
       
     $scope.links =
       [
-        { text: 'schema'     , path: "#{base_Path}/schema"            , class: $scope.is_Active('schema'      )}
-        { text: 'scores'     , path: "#{base_Path}/scores"            , class: $scope.is_Active('scores'      )}
-        { text: 'observed'   , path: "#{base_Path}/observed"          , class: $scope.is_Active('observed'    )}
+        { text: 'schema'            , path: "#{base_Path}/schema"            , class: $scope.is_Active('schema'            )}
+        { text: 'scores'            , path: "#{base_Path}/scores"            , class: $scope.is_Active('scores'            )}
+        { text: 'observed'          , path: "#{base_Path}/observed"          , class: $scope.is_Active('observed'          )}
+        { text: 'observed (details)', path: "#{base_Path}/observed-details"  , class: $scope.is_Active('observed (details)')}
       ]

@@ -32,11 +32,15 @@ describe 'views | project | observed.page', ->
     $scope.domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
 
 
-  it '$scope.set_Colors', ()->
-    $scope.domains['Governance'].color.assert_Is '#8FC740'
+  it '$scope.map_Data', ()->
     $scope.domains['Governance'].activities[0].assert_Is 'SM.1.1'
+    (data.index for domain, data of $scope.domains                   ).assert_Is [0, 1, 2, 3]
+    (data.title for domain, data of $scope.domains                   ).assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
+    (data.title for domain, data of $scope.project_Activities).take(4).assert_Is [ 'SM.1.1', 'SM.1.2', 'SM.1.3', 'SM.1.4' ]
 
-    (data.color for domain,data of $scope.domains).assert_Is ['#8FC740' ,'#E17626' , '#1E609D' ,'#51803C']
-    (data.index for domain,data of $scope.domains).assert_Is [0, 1, 2, 3]
-    (data.title for domain,data of $scope.domains).assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
 
+    using $scope.project_Activities['SM.1.1'], ->
+      @.title.assert_Is 'SM.1.1'
+      @.level.assert_Is '1'
+      @.name.assert_Is  'Publish process (roles, responsibilities, plan), evolve as necessary'
+      @.activities.keys().assert_Contains 'No'

@@ -15,6 +15,7 @@ describe 'angular | Routes ', ->
         '/view/project/:project/new-team'
         '/view/project/:project/scores'
         '/view/project/:project/observed'
+        '/view/project/:project/observed-details'
         '/view/project/:project/schema'
         '/view/project/:project/schema/:level'
         '/view/:project/:team/admin'
