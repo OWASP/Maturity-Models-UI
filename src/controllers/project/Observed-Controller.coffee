@@ -13,12 +13,19 @@ angular.module('MM_Graph')
 
         $scope.domains   = domains
 
+    $scope.set_Colors = ()->
+      colors = ['#8FC740' ,'#E17626' , '#1E609D' ,'#51803C']
+      index = 0
+      for domain,activities of $scope.domains
+        $scope.domains[domain] = title: domain, index: index++, color: colors.shift(), activities: activities
+
+
     if project
-      MM_API.project_Schema project, (schema)->
-        $scope.map_Domains schema
-        #console.log schema
+      $scope.project = project
 
-
-        MM_API.project_Activities project, (data)->
-          $scope.project_Activities = data
-          #console.log $scope.activities
+      using MM_API,->
+        @.project_Schema project, (schema)=>
+          $scope.map_Domains schema
+          @.project_Activities project, (data)->
+            $scope.project_Activities = data
+            $scope.set_Colors()

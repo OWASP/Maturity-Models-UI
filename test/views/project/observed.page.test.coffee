@@ -28,8 +28,15 @@ describe 'views | project | observed.page', ->
 
 
   it 'check with Controller', ()->
-    #console.log $html.find('div').eq(0).attr('ng-controller')
-    #console.log $scope
-    #console.log html
     $scope.project_Activities.keys().assert_Contains 'SM.1.2'
-    console.log $scope.domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
+    $scope.domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
+
+
+  it '$scope.set_Colors', ()->
+    $scope.domains['Governance'].color.assert_Is '#8FC740'
+    $scope.domains['Governance'].activities[0].assert_Is 'SM.1.1'
+
+    (data.color for domain,data of $scope.domains).assert_Is ['#8FC740' ,'#E17626' , '#1E609D' ,'#51803C']
+    (data.index for domain,data of $scope.domains).assert_Is [0, 1, 2, 3]
+    (data.title for domain,data of $scope.domains).assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
+

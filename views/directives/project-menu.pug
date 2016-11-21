@@ -1,0 +1,9 @@
+div(ng-controller='ProjectMenuController')#projectMenu
+    br
+    .hide-for-print
+        dl.sub-nav(ng-cloak)
+            dt
+                b
+                    a(href='/view/project/{{project}}') {{project}}
+            dd(ng-repeat='link in links', class='{{link.class}}', id='{{link.text}}')
+                    a(href='{{link.path}}') {{link.text}}

@@ -1,0 +1,30 @@
+.observed-table td {
+    padding: 2px !important;
+    text-align: center !important;
+    font-size:12px !important;
+}
+
+.observed-domain td {
+    padding: 2px !important;
+    text-align: center !important;
+    font-size:15px !important;
+    background-color: #F0F0F0;
+    color: white;
+}
+
+.observed-title td {
+    font-size:10px !important;
+    color: gray;
+}
+
+.observed-column-0 td {   background-color: #8FC740 }
+.observed-column-1 td {   background-color: #E17626 }
+.observed-column-2 td {   background-color: #1E609D }
+.observed-column-3 td {   background-color: #51803C }
+
+    /*8FC740 ,E17626 , 1E609D ,51803C*/
+
+.observed-column-1 td {
+    background-color: #E17626;
+}
+
