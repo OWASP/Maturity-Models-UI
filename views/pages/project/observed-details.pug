@@ -18,11 +18,11 @@ div(ng-controller='ObservedController')
                     td Observed (#)
                     td Observed (Yes)
                     td Observed (No)
-                tr(ng-repeat="data in project_Activities", id='{{data.title}}')
+                tr(ng-repeat="data in project_Activities", id='{{data.title}}' ng-show='data.title')
                     td {{data.title}}
                     td.text-center {{data.level}}
                     td {{data.name}}
-                    td.text-center {{data.activities.Yes.length}}
+                    td.text-center(ng-class="'observed-size-' + data.observed ") {{data.observed}}
                     td
                         a(ng-repeat="team in data.activities.Yes" href="/view/{{project}}/{{team}}/table" target='_blank') {{team}}
                             span &#32;

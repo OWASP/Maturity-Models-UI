@@ -31,4 +31,4 @@ describe 'views | raw.page', ->
 
         #value.html()
       names.assert_Is [ 'team', 'security-champion', 'source-code-repo', 'issue-tracking',
-                        'wiki', 'ci-server'        , 'created-by'                          ]
+                        'wiki', 'ci-server'        , 'created-by'      , 'hide-from-stats']

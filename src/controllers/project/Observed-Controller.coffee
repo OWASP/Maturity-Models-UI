@@ -30,6 +30,7 @@ angular.module('MM_Graph')
               level: schema_Activity?.level
               name : schema_Activity?.name
               activities: activities
+              observed: activities['Yes']?.length ? 0
 
     if project
       $scope.project = project

@@ -6,20 +6,19 @@ div(ng-controller='ObservedController')
             h4 Observed activities for project: {{project}}
 
     .row
-
         .medium-3.columns(ng-repeat='(domain, data) in domains')
             table.fullWidth.observed-table
                 tr.observed-domain(ng-class="'observed-column-' + data.index")
                     td(colspan='3') {{data.title}}
                 tr.observed-title
                     td Activity
-                    td Level
-                    td Observed
-                tr.activity(ng-repeat="activity in data.activities", id='{{activity}}')
-                    td.text-left {{activity}}
-                    td
+                    td.text-center Level
+                    td.text-center Observed
+                tr.activity(ng-repeat="activity in data.activities", id='{{activity}}' ng-show='project_Activities[activity].level')
+                    td.text-left
+                        span {{activity}}
+                            i.hide-for-medium-up &#32;- {{schema.activities[activity].name}}
+                    td.text-center(ng-class="'observed-column-0'")
                         span {{project_Activities[activity].level }}
-                    //td
-                        span {{project_Activities[activity].name }}
-                    td
-                        span {{project_Activities[activity].activities['Yes'].length }}
+                    td.text-center(ng-class="'observed-size-' + project_Activities[activity].observed ")
+                        span {{project_Activities[activity].observed }}

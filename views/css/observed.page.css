@@ -22,6 +22,13 @@
 .observed-column-2 td {   background-color: #1E609D }
 .observed-column-3 td {   background-color: #51803C }
 
+.observed-size-0      {   background-color: #ff5d67 }
+.observed-size-1      {   background-color: #e19a4f }
+.observed-size-2      {   background-color: #418062 }
+.observed-size-3      {   background-color: #418062 }
+.observed-size-4      {   background-color: #418062 }
+.observed-size-5      {   background-color: #418062 }
+
 /*.text-center {
     text-align: left !important;
 }*/
