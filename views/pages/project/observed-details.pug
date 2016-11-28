@@ -24,10 +24,10 @@ div(ng-controller='ObservedController')
                     td {{data.name}}
                     td.text-center {{data.activities.Yes.length}}
                     td
-                        a(ng-repeat="team in data.activities.Yes" href="/view/bsimm/{{team}}/table" target='_blank') {{team}}
+                        a(ng-repeat="team in data.activities.Yes" href="/view/{{project}}/{{team}}/table" target='_blank') {{team}}
                             span &#32;
                     td
-                        a(ng-repeat="team in data.activities.No" href="/view/bsimm/{{team}}/table" target='_blank') {{team}}
+                        a(ng-repeat="team in data.activities.No" href="/view/{{project}}/{{team}}/table" target='_blank') {{team}}
                             span &#32;
 
 

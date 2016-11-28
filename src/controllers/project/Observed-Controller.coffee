@@ -1,6 +1,7 @@
 angular.module('MM_Graph')
   .controller 'ObservedController', ($scope, $routeParams, MM_API)->
     project = $routeParams.project
+    level   = $routeParams.level
 
 
     $scope.map_Domains = (schema)->
@@ -22,12 +23,13 @@ angular.module('MM_Graph')
           activities: activities
 
       for activity, activities of $scope.project_Activities
-        schema_Activity = $scope.schema.activities[activity]
-        $scope.project_Activities[activity] =
-          title: activity
-          level: schema_Activity?.level
-          name : schema_Activity?.name
-          activities: activities
+          schema_Activity = $scope.schema.activities[activity]
+          if (not level) or schema_Activity?.level is level
+            $scope.project_Activities[activity] =
+              title: activity
+              level: schema_Activity?.level
+              name : schema_Activity?.name
+              activities: activities
 
     if project
       $scope.project = project
