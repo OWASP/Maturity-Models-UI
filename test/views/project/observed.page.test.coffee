@@ -24,17 +24,21 @@ describe 'views | project | observed.page', ->
   beforeEach ()->
     module('MM_Graph')
     project = 'bsimm'
-    inject ($routeParams)->
-      $routeParams.project = project        # dependency inject project value
-      run_Controller()
+
 
 
   it 'check with Controller', ()->
+    inject ($routeParams)->
+      $routeParams.project = project        # dependency inject project value
+      run_Controller()
     $scope.project_Activities.keys().assert_Contains 'SM.1.2'
     $scope.domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
 
 
   it '$scope.map_Data', ()->
+    inject ($routeParams)->
+      $routeParams.project = project        # dependency inject project value
+      run_Controller()
     $scope.domains['Governance'].activities[0].assert_Is 'SM.1.1'
     (data.index for domain, data of $scope.domains                   ).assert_Is [0, 1, 2, 3]
     (data.title for domain, data of $scope.domains                   ).assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
@@ -49,18 +53,18 @@ describe 'views | project | observed.page', ->
       @.activities.keys().assert_Contains 'No'
 
   it '$scope.map_Data (level  aaaa)', ()->
-
     inject ($routeParams)->
-      $routeParams.assert_Is project : project
+      $routeParams.project = project
       $routeParams.level   = 'aaaa'       # dependency inject level value 'aaaa'
+
       run_Controller()
       ($scope.project_Activities['SM.1.1'].title is undefined).assert_Is_True()
       keys_In_Level_aaaa =  (data.title for domain, data of $scope.project_Activities when data.title)
       keys_In_Level_aaaa.assert_Is []
 
   it '$scope.map_Data (level 1)', ()->
-
     inject ($routeParams)->
+      $routeParams.project = project
       $routeParams.level   = '1'       # dependency inject level value '1'
       run_Controller()
       $scope.project_Activities['SM.1.1'].title.assert_Is 'SM.1.1'
@@ -71,6 +75,7 @@ describe 'views | project | observed.page', ->
   it '$scope.map_Data (level 2)', ()->
 
     inject ($routeParams)->
+      $routeParams.project = project
       $routeParams.level   = '2'       # dependency inject level value '2'
       run_Controller()
       $scope.project_Activities['SM.2.1'].title.assert_Is 'SM.2.1'

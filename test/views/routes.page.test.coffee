@@ -21,6 +21,7 @@ describe 'views | routes.page', ->
       @.$('div'     ).attr('ng-controller').assert_Is 'RoutesController'
 
       @.$('#raw'    ).attr('id'           ).assert_Is 'raw'
+
       @.$('#raw a'  ).length               .assert_Is_Bigger_Than 16
       @.$('#raw a'  ).html(               ).assert_Is "/api/v1/data/:project/:team/radar"
 
