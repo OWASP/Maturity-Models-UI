@@ -1,4 +1,4 @@
-describe 'controllers | Projects', ->
+describe 'controllers | team | Team-Menu-Controller', ->
   $scope      = null
   routeParams = null
   project     = 'bsimm'

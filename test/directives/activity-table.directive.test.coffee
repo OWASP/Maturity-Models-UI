@@ -15,4 +15,7 @@ describe 'directive | activity-table', ->
       $compile(template)($scope);
       $scope.$apply();
       element = template
+
+  it 'check html', ->
+    element.html().assert_Contains 'class="activity-table"'
     

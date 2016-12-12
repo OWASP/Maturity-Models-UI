@@ -6,8 +6,6 @@ angular.module('MM_Graph')
     $scope.base_Path = base_Path
 
     $scope.is_Active = (text)->
-      if text is 'view' and base_Path is $location.url()
-        return 'active'
       if "#{base_Path}/#{text}" is $location.url()
         return 'active'
       return ''
