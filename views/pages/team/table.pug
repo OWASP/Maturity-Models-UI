@@ -10,51 +10,72 @@ div
         |}
 
     teamMenu
-    hr
-    .row.column
-        .small-3.columns
-            .text-center
-                    b vs level 1
-        .small-3.columns
-            .text-center
-                    b vs level 2
-        .small-3.columns
-            .text-center
-                    b vs level 3
-        .small-3.columns
 
-    .row
-        .small-4.columns
-            br
-            div(ng-controller='RadarController' radar-size='200' extra-level="level-1" , target-div='.chart-level-1')
-                div.chart-level-1
+    div
+        hr
+        //.row.column
+            .small-4.columns
+                .text-center
+                        b vs level 1
+            .small-4.columns
+                .text-center
+                        b vs level 2
+            .small-4.columns
+                .text-center
+                        b vs level 3
 
-        .small-4.columns
+        .row
+            //.large-9.columns
+            b {{team}} data (in green) compared to levels 1,2 3 data (in orange)
             br
-            div(ng-controller='RadarController' radar-size='200' extra-level="level-2", target-div='.chart-level-2')
-                div.chart-level-2
+            br
+        .row(style='background:#F0F0F0')
+            .small-4.columns
+                div(ng-controller='RadarController' radar-size='200' extra-level="level-1" , target-div='.chart-level-1')
+                    b level 1:
+                    br
+                    br
+                    div.chart-level-1
 
-        .small-4.columns
-            br
-            div(ng-controller='RadarController' radar-size='200' extra-level="level-3", target-div='.chart-level-3')
-                div.chart-level-3
+            .small-4.columns
+                div(ng-controller='RadarController' radar-size='200' extra-level="level-2", target-div='.chart-level-2')
+                    b level 2:
+                    br
+                    br
+                    div.chart-level-2
+
+            .small-4.columns
+                div(ng-controller='RadarController' radar-size='200' extra-level="level-3", target-div='.chart-level-3')
+                    b level 3:
+                    br
+                    br
+                    div.chart-level-3
+
 
 
 div(ng-controller='TeamDataController')
-    hr
-    br
-    teamSave
-    ul.hide-for-print
-        small
-            b &#32;&#32; filter by: &#32;&#32;
-            a(href='view/{{project}}/{{team}}/table?filter=Yes'  ) Yes   &#32;
-            a(href='view/{{project}}/{{team}}/table?filter=No'   ) No    &#32;
-            a(href='view/{{project}}/{{team}}/table?filter=NA'   ) NA    &#32;
-            a(href='view/{{project}}/{{team}}/table?filter=Maybe') Maybe &#32;
 
-            span(ng-show='current_Filter()')
-                span &#32;|&#32;
-                a(href='view/{{project}}/{{team}}/table?filter='     ) (remove '{{current_Filter()}}' filter)
+
+
+    hr
+    .row
+        b {{team}} data
+        br
+        br
+        teamSave
+
+
+        ul.hide-for-print
+            small
+                b &#32;&#32; filter by: &#32;&#32;
+                a(href='view/{{project}}/{{team}}/table?filter=Yes'  ) Yes   &#32;
+                a(href='view/{{project}}/{{team}}/table?filter=No'   ) No    &#32;
+                a(href='view/{{project}}/{{team}}/table?filter=NA'   ) NA    &#32;
+                a(href='view/{{project}}/{{team}}/table?filter=Maybe') Maybe &#32;
+
+                span(ng-show='current_Filter()')
+                    span &#32;|&#32;
+                    a(href='view/{{project}}/{{team}}/table?filter='     ) (remove '{{current_Filter()}}' filter)
 
 
 

@@ -4,6 +4,9 @@ angular.module('MM_Graph')
     level   = $routeParams.level
 
 
+    $scope.current_Level = ()->
+      level
+
     $scope.map_Domains = (schema)->
       if schema
         domains     = {}

@@ -4,8 +4,20 @@ div(ng-controller='ObservedController')
         projectMenu
         .medium-12
             h4 Observed activities for project: {{project}}
+                span(ng-show='current_Level()') &#32; (just level {{current_Level()}})
 
     .row
+        ul.hide-for-print
+            small
+                b &#32;&#32; filter by: &#32;&#32;
+                a(href='view/project/{{project}}/observed?level=1'   ) level 1   &#32;
+                a(href='view/project/{{project}}/observed?level=2'   ) level 2   &#32;
+                a(href='view/project/{{project}}/observed?level=3'   ) level 3   &#32;
+
+                span(ng-show='current_Level()')
+                    span &#32;|&#32;
+                    a(href='view/project/{{project}}/observed'     ) (remove)
+
         .medium-3.columns(ng-repeat='(domain, data) in domains')
             table.fullWidth.observed-table
                 tr.observed-domain(ng-class="'observed-column-' + data.index")
