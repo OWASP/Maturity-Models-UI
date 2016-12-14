@@ -24,7 +24,7 @@ describe 'controllers | Team-Raw-Controller', ->
 
   it '$scope.map_Activities', ->
     using $scope, ->
-      @.activities.first().id.assert_Is 'SM.1.1'
+      @.activities.assert_Contains 'SM.1.1'
 
 
 

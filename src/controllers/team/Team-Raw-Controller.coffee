@@ -1,19 +1,25 @@
+
+
 angular.module('MM_Graph')
   .controller 'TeamRawController', ($scope, $routeParams,  API)->
     project = $routeParams.project
-    team    = $routeParams.team  
+    team    = $routeParams.team
 
+    pad = (value, length) ->
+      if value
+        padding = length - value.length + 1
+        if (padding > 1)
+          value + Array(padding + 1).join(' ')
+#        else
+#          value
 
     $scope.map_Activities = (data, schema)->
-      mappings = []
+      mapping = ''
       for key,value of data?.activities
         activity_Schema = schema?.activities[key]
-        mappings.push
-          id   : key
-          name : activity_Schema?.name
-          value: value
+        mapping += "#{pad(key,10)} | #{pad(activity_Schema?.name, 92)} | #{value.value} \n"
 
-      $scope.activities = mappings
+      $scope.activities = mapping
 
     if project and team      
       $scope.project = project

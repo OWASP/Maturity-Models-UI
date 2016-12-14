@@ -2,7 +2,8 @@ div(ng-controller='TeamRawController')
     teamMenu
     .row
         h4 Activities list (in pipe delimited format)
-        pre.panel#activities {{ schema }}
+
+        pre.panel#activities {{ activities }}
     .row
         h4 Raw json file (for the current team)
         pre.panel#data {{data}}
