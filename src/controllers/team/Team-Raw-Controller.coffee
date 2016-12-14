@@ -3,13 +3,23 @@ angular.module('MM_Graph')
     project = $routeParams.project
     team    = $routeParams.team  
 
+
+    $scope.map_Activities = (data, schema)->
+      mappings = []
+      for key,value of data?.activities
+        activity_Schema = schema?.activities[key]
+        mappings.push
+          id   : key
+          name : activity_Schema?.name
+          value: value
+
+      $scope.activities = mappings
+
     if project and team      
       $scope.project = project
       $scope.team    = team
-      API.project_Schema project, (schema)->
-        API.team_Get project, team, (data)->
+      API.team_Get project, team, (data)->
+        API.project_Schema project, (schema)->
           $scope.raw_Data = data
           $scope.data     = JSON.stringify(data  , null, 4)
-          $scope.schema   = JSON.stringify(schema, null, 4)
-          #console.log schema
-          window.scope    = $scope
+          $scope.map_Activities data, schema

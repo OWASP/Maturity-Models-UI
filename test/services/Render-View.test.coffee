@@ -53,8 +53,8 @@ describe 'services | Render-View', ->
 
     inject ($injector)->
       using $injector.get('Render_View')(options), ->
-        @.set_Expect_Get options.url_schema.path, options.url_schema.value
         @.set_Expect_Get options.url_Data.path  , options.url_Data.value
+        @.set_Expect_Get options.url_schema.path, options.url_schema.value
         @.run()
     
         @.element.innerHTML        .assert_Is @.html

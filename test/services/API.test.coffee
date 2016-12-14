@@ -55,11 +55,13 @@ describe 'services | API', ->
   it '_POST (bad route)', ()->
     inject ($httpBackend)->
       post_Data = value: 42
-      $httpBackend.whenPOST('/a/bad/url', post_Data).respond  404, an: 'error'
+      $httpBackend.whenPOST('/a/bad/url', post_Data).respond 404, an: 'error'
+
       mm_API._POST '/a/bad/url', post_Data, (data, error, status)->
         (data is null).assert_Is_True()
         error.assert_Is an: 'error'
         status.assert_Is 404
+
       $httpBackend.flush()
 
 

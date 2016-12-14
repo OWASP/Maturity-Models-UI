@@ -1,25 +1,25 @@
 app = angular.module('MM_Graph')
 
-class API                                                                # refactor: Rename MM-API class (in ui project) #183
+class API
   constructor: (http)->
     @.$http   = http
     @.version = '/api/v1'
 
   _GET: (url, callback)=>
     @.$http.get url
-           .then (response)->                                               # response object also has: statusText, headers() and config
+           .then (response)->                                               # note: response object also has: statusText, headers() and config
               callback response.data, response.status
-           .catch (response)->
-              console.log "Error in request: '#{url}': #{response.data}"    # risk: Client site API errors are not handled #200
-              callback null, response.data, response.status
+           .catch (error)->
+              console.log "Error in request: '#{url}': #{error?.data}"      # risk: Client site API errors are not handled #200
+              callback null, error?.data, error?.status
 
   _POST: (url, data, callback)=>
     @.$http.post(url, data)
-           .then (response)->                                               # response object also has: status, statusText, headers() and config
+           .then (response)->
               callback response.data, response.status
-           .catch (response)->
-              console.log "Error in request: '#{url}': #{response.data}"    # Client site API errors are not handled #200
-              callback null, response.data, response.status
+           .catch (error)->
+              console.log "Error in request: '#{url}': #{error?.data}"     # risk: Client site API errors are not handled #200
+              callback null, error?.data, error?.status
 
   # GET requests
   data_Radar_Fields : (project,       callback)=> @._GET "#{@.version}/data/#{project}/radar/fields"   , callback
