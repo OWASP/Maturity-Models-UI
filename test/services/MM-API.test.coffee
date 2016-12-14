@@ -15,11 +15,28 @@ describe 'services | MM-API', ->
       $http = $httpBackend
       mm_API = $injector.get('MM_API')
 
-
   afterEach ->
     inject ($httpBackend)->
       $httpBackend.verifyNoOutstandingExpectation()
       $httpBackend.verifyNoOutstandingRequest()
+
+  it '_GET (ok route)', ->
+    inject ($httpBackend)->
+      $httpBackend.expectGET('/a/good/url').respond  status: 42
+      mm_API._GET '/a/good/url', (data, status)->
+        data.assert_Is status: 42
+        status.assert_Is 200
+      $httpBackend.flush()
+
+  it '_GET (bad route)', ()->
+    inject ($httpBackend)->
+      $httpBackend.whenGET('/a/bad/url').respond  404, an: 'error'
+      mm_API._GET '/a/bad/url', (data, error, status)->
+        (data is null).assert_Is_True()
+        error.assert_Is an: 'error'
+        status.assert_Is 404
+      $httpBackend.flush()
+
 
   it 'data_Radar_Team', ->
     using mm_API, ->

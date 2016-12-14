@@ -47,12 +47,16 @@ describe 'services | Render-View', ->
       project         : project
       team            : team
       url_Data        : path :"/api/v1/team/#{project}/get/#{team}" , value: { metadata: 42}
+      url_schema      : path :"/api/v1/project/schema/#{project}"   , value: { schema: 42  }
       url_Location    : "/view/#{project}/#{team}/raw"
       url_Template_Key: 'pages/team/raw.html'
-      
+
     inject ($injector)->
       using $injector.get('Render_View')(options), ->
-        @.set_Expect_Get options.url_Data.path, options.url_Data.value
+        @.set_Expect_Get options.url_schema.path, options.url_schema.value
+        @.set_Expect_Get options.url_Data.path  , options.url_Data.value
+
+        console.log  options.url_schema
         @.run()
     
         @.element.innerHTML        .assert_Is @.html
@@ -62,7 +66,7 @@ describe 'services | Render-View', ->
         @.route.params             .assert_Is { project: 'abc', team: '123' }
         @.route.$$route.templateUrl.assert_Is @.url_Template
         @.$('div').length          .assert_Is 6
-        @.scope.$$listenerCount    .assert_Is { '$routeChangeSuccess': 1 }
+        @.scope.$$listenerCount    .assert_Is { '$routeChangeSuccess': 1}
 
 
   it 'run (with values manually set)', ->

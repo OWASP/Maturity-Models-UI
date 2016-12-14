@@ -1,9 +1,18 @@
 app = angular.module('MM_Graph')
 
-class MM_API                               # Rename MM-API class (in ui project) #183
+class MM_API                                                          # Rename MM-API class (in ui project) #183
   constructor: (http)->
     @.$http   = http
     @.version = '/api/v1'
+
+  _GET: (url, callback)=>
+    @.$http.get url
+           .then (response)->                                         # response object also has: status, statusText, headers() and config
+              callback response.data, response.status
+           .catch (response)->
+              console.log "Error in request: '#{url}': #{response.data}"      # Client site MM_API errors are not handled #200
+              callback null, response.data, response.status
+
 
   routes: (callback)=>
     url = "/api/v1/routes"
@@ -50,10 +59,16 @@ class MM_API                               # Rename MM-API class (in ui project)
     @.$http.get url
            .then (response)-> callback response.data
 
+
   project_Schema: (project,callback)=>
     url = "/api/v1/project/schema/#{project}"
-    @.$http.get url
-           .then (response)-> callback response.data
+
+    @._GET url, callback
+    return
+#    @.$http.get url
+#           .then (response)-> callback response.data
+#           .catch (error)->
+#              console.log error
 
   project_Scores: (project,callback)=>
     url = "/api/v1/project/scores/#{project}"
