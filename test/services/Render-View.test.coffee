@@ -55,8 +55,6 @@ describe 'services | Render-View', ->
       using $injector.get('Render_View')(options), ->
         @.set_Expect_Get options.url_schema.path, options.url_schema.value
         @.set_Expect_Get options.url_Data.path  , options.url_Data.value
-
-        console.log  options.url_schema
         @.run()
     
         @.element.innerHTML        .assert_Is @.html

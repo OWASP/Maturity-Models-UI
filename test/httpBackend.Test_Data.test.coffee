@@ -13,8 +13,6 @@ describe 'httpBackend | Test_Data', ->
   it '/project/schema/samm', ->
     inject ($httpBackend, MM_API)->
       MM_API.project_Schema 'samm', (data)->
-        console.log data.domains.keys()
-        console.log data.practices.keys()
         data.keys()              .assert_Is       [ 'config', 'metadata','domains', 'practices', 'activities']
         data.domains.keys()      .assert_Is       [ 'Governance', 'Construction', 'Verification', 'Operations' ]
         data.practices.keys()    .assert_Contains ['Strategy & Metrics', 'Policy & Compliance','Education & Guidance']

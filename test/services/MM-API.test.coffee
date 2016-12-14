@@ -37,6 +37,24 @@ describe 'services | MM-API', ->
         status.assert_Is 404
       $httpBackend.flush()
 
+  it '_POST (ok route)', ->
+    inject ($httpBackend)->
+      post_Data = value: 42
+      $httpBackend.expectPOST('/a/good/url', post_Data).respond  status: 42
+      mm_API._POST '/a/good/url', post_Data,  (data, status)->
+        data.assert_Is status: 42
+        status.assert_Is 200
+      $httpBackend.flush()
+
+  it '_POST (bad route)', ()->
+    inject ($httpBackend)->
+      post_Data = value: 42
+      $httpBackend.whenPOST('/a/bad/url', post_Data).respond  404, an: 'error'
+      mm_API._POST '/a/bad/url', post_Data, (data, error, status)->
+        (data is null).assert_Is_True()
+        error.assert_Is an: 'error'
+        status.assert_Is 404
+      $httpBackend.flush()
 
   it 'data_Radar_Team', ->
     using mm_API, ->

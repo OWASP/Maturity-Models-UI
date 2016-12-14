@@ -7,7 +7,7 @@ describe 'controllers | Team-New-Controller', ->
     module('MM_Graph')
 
   beforeEach ->
-    inject ($controller, $rootScope, $httpBackend)->
+    inject ($controller, $rootScope)->
       $scope      = $rootScope.$new()
       routeParams = project : project
       $controller('TeamNewController', { $scope: $scope, $routeParams : routeParams })

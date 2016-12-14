@@ -64,7 +64,7 @@ describe 'directive | team-table', ->
 
       # test with error return value
       $scope.save_Data()
-      $httpBackend.expectPOST("/api/v1/team/#{project}/save/#{team}").respond error: 'an-error'
+      $httpBackend.whenPOST("/api/v1/team/#{project}/save/#{team}").respond error: 'an-error'
 
       $httpBackend.flush()
       using $scope, ->
