@@ -1,4 +1,4 @@
-describe 'services | MM-API', ->
+describe 'services | API', ->
 
   mm_API  = null
   $http   = null
@@ -13,7 +13,8 @@ describe 'services | MM-API', ->
     version = '/api/v1'
     inject ($injector, $httpBackend)->
       $http = $httpBackend
-      mm_API = $injector.get('MM_API')
+      mm_API = $injector.get('API')
+
 
   afterEach ->
     inject ($httpBackend)->

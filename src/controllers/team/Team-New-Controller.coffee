@@ -1,5 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'TeamNewController', ($scope, $routeParams,  $location, MM_API)->
+  .controller 'TeamNewController', ($scope, $routeParams,  $location, API)->
     project = $routeParams.project
     
     $scope.on_New_Team = (data)->      
@@ -13,5 +13,5 @@ angular.module('MM_Graph')
     if project
       $scope.project = project
       $scope.status  = 'Creating new team'
-      MM_API.team_New project, $scope.on_New_Team
+      API.team_New project, $scope.on_New_Team
       

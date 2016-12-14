@@ -1,5 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'ObservedController', ($scope, $routeParams, MM_API)->
+  .controller 'ObservedController', ($scope, $routeParams, API)->
     project = $routeParams.project
     level   = $routeParams.level
 
@@ -38,7 +38,7 @@ angular.module('MM_Graph')
     if project
       $scope.project = project
 
-      using MM_API,->
+      using API,->
         @.project_Schema project, (schema)=>
           $scope.schema = schema
           $scope.map_Domains schema

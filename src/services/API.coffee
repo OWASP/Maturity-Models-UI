@@ -1,6 +1,6 @@
 app = angular.module('MM_Graph')
 
-class MM_API                                                                # refactor: Rename MM-API class (in ui project) #183
+class API                                                                # refactor: Rename MM-API class (in ui project) #183
   constructor: (http)->
     @.$http   = http
     @.version = '/api/v1'
@@ -10,7 +10,7 @@ class MM_API                                                                # re
            .then (response)->                                               # response object also has: statusText, headers() and config
               callback response.data, response.status
            .catch (response)->
-              console.log "Error in request: '#{url}': #{response.data}"    # risk: Client site MM_API errors are not handled #200
+              console.log "Error in request: '#{url}': #{response.data}"    # risk: Client site API errors are not handled #200
               callback null, response.data, response.status
 
   _POST: (url, data, callback)=>
@@ -18,7 +18,7 @@ class MM_API                                                                # re
            .then (response)->                                               # response object also has: status, statusText, headers() and config
               callback response.data, response.status
            .catch (response)->
-              console.log "Error in request: '#{url}': #{response.data}"    # Client site MM_API errors are not handled #200
+              console.log "Error in request: '#{url}': #{response.data}"    # Client site API errors are not handled #200
               callback null, response.data, response.status
 
   # GET requests
@@ -38,5 +38,5 @@ class MM_API                                                                # re
   # POST requests
   file_Save         : (project,team, data, callback)=> @._POST "#{@.version}/team/#{project}/save/#{team}", data, callback
 
-app.service 'MM_API', ($http)=>
-  return new MM_API $http
+app.service 'API', ($http)=>
+  return new API $http

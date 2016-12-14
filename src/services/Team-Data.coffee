@@ -1,9 +1,9 @@
 app = angular.module('MM_Graph')
 
 class Team_Data
-  constructor: ($rootScope, MM_API)->
+  constructor: ($rootScope, API)->
     @.$rootScope = $rootScope
-    @.MM_API     = MM_API
+    @.API     = API
     @.project    = null
     @.data       = null
     @.team       = null
@@ -13,9 +13,9 @@ class Team_Data
     @.project = project
     @.team    = team
     if @.project and @.team
-      @.MM_API.project_Schema project, (schema)=>
-        @.MM_API.data_Score @.project, @.team, (scores)=>
-          @.MM_API.team_Get @.project, @.team, (data)=>
+      @.API.project_Schema project, (schema)=>
+        @.API.data_Score @.project, @.team, (scores)=>
+          @.API.team_Get @.project, @.team, (data)=>
             @.scores = scores
             @.schema = schema
             @.data = data
@@ -29,7 +29,7 @@ class Team_Data
 
 
   save: (callback)=>
-    @.MM_API.file_Save @.project, @.team , @.data, callback
+    @.API.file_Save @.project, @.team , @.data, callback
 
 
   notify: ()=>
@@ -42,5 +42,5 @@ class Team_Data
 
 
 
-app.service 'Team_Data', ($rootScope, MM_API)=>
-  return new Team_Data $rootScope, MM_API
+app.service 'Team_Data', ($rootScope, API)=>
+  return new Team_Data $rootScope, API

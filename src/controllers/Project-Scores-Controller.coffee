@@ -1,5 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'ProjectScoresController', ($scope, $routeParams, MM_API)->
+  .controller 'ProjectScoresController', ($scope, $routeParams, API)->
 
     project = $routeParams.project
 
@@ -42,5 +42,5 @@ angular.module('MM_Graph')
 
     if project
       $scope.project = project
-      MM_API.project_Scores project, (data)->
+      API.project_Scores project, (data)->
         $scope.map_Colors data
