@@ -20,6 +20,11 @@ describe 'services | MM-API', ->
       $httpBackend.verifyNoOutstandingExpectation()
       $httpBackend.verifyNoOutstandingRequest()
 
+  call_API = (method, params, callback)->
+    mm_API[method].apply null, params.concat(callback)
+    $http.flush()
+
+
   it '_GET (ok route)', ->
     inject ($httpBackend)->
       $httpBackend.expectGET('/a/good/url').respond  status: 42
@@ -56,55 +61,21 @@ describe 'services | MM-API', ->
         status.assert_Is 404
       $httpBackend.flush()
 
-  it 'data_Radar_Team', ->
-    using mm_API, ->
-      @.data_Radar_Team project, team, (data)->
-        data.axes.first().value.assert_Is 0.4091
-      $http.flush()
 
-  it 'data_Radar_Fields', ->
-    using mm_API, ->
-      @.data_Radar_Fields project, (data)->
-        data.axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 , size: 11}
-      $http.flush()
-
-  it 'project_Get', ->
-    using mm_API, ->
-      @.project_Get project, (data)->
-        data.assert_Contains ['level-1', 'level-2','level-3']
-      $http.flush()
-
-  it 'project_List', ->
-    using mm_API, ->      
-      @.project_List (data)->
-        data.assert_Is ['bsimm','samm']
-      $http.flush()
-
-
-  it 'project_Scores', ->
-    using mm_API, ->
-      @.project_Scores project, (data)->
-        data['team-A']['level_1'].assert_Is { value: 19.4, percentage: '50%', activities: 39 }
-      $http.flush()
-
-  it 'routes', ->
-    using mm_API, ->
-      @.routes (data)->
-        data.raw.assert_Contains ['/ping']
-      $http.flush()
+  it 'data_Radar_Team'  , -> call_API "data_Radar_Team"  , [project, team], (data)-> data.axes.first().value.assert_Is 0.4091
+  it 'data_Radar_Fields', -> call_API "data_Radar_Fields", [project      ], (data)-> data.axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 , size: 11}
+  it 'project_Get'      , -> call_API "project_Get"      , [project      ], (data)-> data.assert_Contains ['level-1', 'level-2','level-3']
+  it 'project_List'     , -> call_API "project_List"     , [             ], (data)-> data.assert_Is ['bsimm','samm']
+  it 'project_Scores'   , -> call_API "project_Scores"   , [project      ], (data)-> data['team-A']['level_1'].assert_Is { value: 19.4, percentage: '50%', activities: 39 }
+  it 'routes'           , -> call_API "routes"           , [             ], (data)-> data.raw.assert_Contains ['/ping']
+  it 'team_Delete', ->
+    inject ($httpBackend)->
+      $httpBackend.expectGET("/api/v1/team/#{project}/delete/#{team}").respond { status: 'ok'}
+      call_API "team_Delete", [ project,team ], (data)->
+        data.assert_Is { status: 'ok'}
 
   it 'team_New', ->
-    using mm_API, ->                      
-      @.team_New project, (data)->
-        data.status.assert_Is 'Ok'
-        data.team_Name.assert_Contains 'team-'
-        data.team_Name.length.assert_Is 10
-      $http.flush()
-
-    it 'team_New', ->
-    using mm_API, ->
-      inject ($httpBackend)->
-        $httpBackend.expectGET("/api/v1/team/#{project}/delete/#{team}").respond { status: 'ok'}
-      @.team_Delete project, team, (data)->
-        data.assert_Is { status: 'ok'}
-      $http.flush()
+    call_API "team_New", [ project ], (data)->
+      data.status.assert_Is 'Ok'
+      data.team_Name.assert_Contains 'team-'
+      data.team_Name.length.assert_Is 10
