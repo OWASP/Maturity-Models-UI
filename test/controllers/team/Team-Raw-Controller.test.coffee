@@ -25,6 +25,12 @@ describe 'controllers | Team-Raw-Controller', ->
   it '$scope.map_Activities', ->
     using $scope, ->
       @.activities.assert_Contains 'SM.1.1'
+                  .assert_Contains 'SM.2.2'
+                  .assert_Contains 'CP.3.2'
+                  .assert_Contains 'Level 2'
+                  .assert_Contains 'Level 3'
+
+      @.activities.split('\n').first().assert_Is 'Level 1'
 
 
 
