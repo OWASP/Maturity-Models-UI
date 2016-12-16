@@ -19,9 +19,7 @@ describe 'controllers | Project-Schema', ->
   it 'constructor',->
     using $scope, ->
       @.project.assert_Is 'bsimm'
-      (@.level is null).assert_Is_True() 
-
-      @.data.domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
+      (@.level is null).assert_Is_True()
       @.rows.length.assert_Is 112
 
       @.rows[0][0].assert_Is value: 'Governance'        , rowspan: 34, id: 'Governance'

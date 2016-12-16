@@ -1,7 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'ProjectScoresController', ($scope, $routeParams, API)->
-
-    project = $routeParams.project
+  .controller 'ProjectScoresController', ($scope, $routeParams, project_Data)->
 
     $scope.get_Style = ()->
       'green'
@@ -40,7 +38,7 @@ angular.module('MM_Graph')
             else
               scores.level_3.color = 'red'
 
-    if project
-      $scope.project = project
-      API.project_Scores project, (data)->
-        $scope.map_Colors data
+    using project_Data, ->
+      @.load_Data =>
+        $scope.project = @.project
+        $scope.map_Colors @.scores

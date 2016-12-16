@@ -32,17 +32,4 @@
       @.load_Data =>
         $scope.project = @.project
         $scope.level   = $routeParams.level || null
-        $scope.data    = @.schema                           # rename $scope.data to $scope.schema
         $scope.rows    = $scope.create_Table_Rows @.schema
-
-
-#    project = $routeParams.project
-#    level   = $routeParams.level
-#
-#    if project
-#      $scope.project = project
-#      $scope.level   = level
-#      API.project_Schema project, (data)->
-#        $scope.data = data
-#        $scope.rows = $scope.create_Table_Rows data
-

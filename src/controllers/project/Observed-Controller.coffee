@@ -1,7 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'ObservedController', ($scope, $routeParams, API)->
-    project = $routeParams.project
-    level   = $routeParams.level
+  .controller 'ObservedController', ($scope, $routeParams, project_Data)->
 
 
     $scope.current_Level = ()->
@@ -35,6 +33,17 @@ angular.module('MM_Graph')
               activities: activities
               observed: activities['Yes']?.length ? 0
 
+    project = $routeParams.project
+    level   = $routeParams.level
+
+    using project_Data, ->
+      @.load_Data =>
+        $scope.schema = @.schema
+        $scope.project_Activities = @.activities
+        $scope.map_Domains @.schema
+        $scope.map_Data()
+
+    return
     if project
       $scope.project = project
 

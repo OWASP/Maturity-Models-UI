@@ -9,8 +9,9 @@ describe 'controllers | Project-Scores', ->
   beforeEach ->
     project = 'bsimm'
     
-    inject ($controller, $rootScope, $httpBackend)->
-      $routeParams = project:project , level:level
+    inject ($controller, $rootScope, $httpBackend, $routeParams)->
+      $routeParams.project = project
+      $routeParams.level   = level
       
       $scope = $rootScope.$new()
       $controller('ProjectScoresController', { $routeParams: $routeParams, $scope: $scope })
