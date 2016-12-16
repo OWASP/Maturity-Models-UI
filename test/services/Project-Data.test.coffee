@@ -10,7 +10,6 @@ describe 'services | Project-Data', ->
     project = 'bsimm'
     inject ($injector)->
       project_Data = $injector.get('project_Data')
-
       $rootScope = $injector.get('$rootScope');
       $scope     = $rootScope.$new()
 
@@ -23,7 +22,11 @@ describe 'services | Project-Data', ->
 
   it 'constructor', ->
     using project_Data, ->
-      (@.project is null).assert_Is_True()
+      (@.activities is null).assert_Is_True()
+      (@.project    is null).assert_Is_True()
+      (@.schema     is null).assert_Is_True()
+      (@.scores     is null).assert_Is_True()
+      (@.teams      is null).assert_Is_True()
       @.API.keys().assert_Contains 'team_New'
       @.$routeParams.assert_Is {}
 
@@ -38,6 +41,7 @@ describe 'services | Project-Data', ->
         @.activities.keys().assert_Contains('SM.1.1')
         @.scores.keys().assert_Contains('team-A')
         @.schema.config.schema.assert_Is project
+        @.teams.assert_Contains ['team-A', 'team-B']
 
      inject ($httpBackend)->
        $httpBackend.flush()
@@ -65,6 +69,6 @@ describe 'services | Project-Data', ->
           @.schema.config.schema.assert_Is 'OwaspSAMM'
           @.activities.keys().assert_Contains('SM.1.A')
           @.scores.keys().assert_Contains('team-E')
-
+          @.teams.assert_Contains ['team-A', 'team-E']
     inject ($httpBackend)->
       $httpBackend.flush()

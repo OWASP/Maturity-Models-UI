@@ -1,7 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'ProjectController', ($scope, $routeParams, API)->
-    project = $routeParams.project
-    if project
-      $scope.project = project
-      API.project_Get project, (data)->
-        $scope.teams = data
+  .controller 'ProjectController', ($scope, $routeParams, API, project_Data)->
+    project_Data.load_Data ->
+      $scope.project = project_Data.project
+      $scope.teams = project_Data.teams
