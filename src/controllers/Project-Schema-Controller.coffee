@@ -1,12 +1,9 @@
   angular.module('MM_Graph')
-  .controller 'ProjectSchemaController', ($scope, $routeParams, API)->
-
-    project = $routeParams.project
-    level   = $routeParams.level
+  .controller 'ProjectSchemaController', ($scope, $routeParams, API, project_Data)->
 
     $scope.create_Table_Rows = (data)->
       rows = []
-      for domain_Name, domain of data.domains
+      for domain_Name, domain of data?.domains
         practices   = domain.practices
         domain_Data = value: domain_Name , rowspan:0, id: domain_Name
         domain_Row  = [ domain_Data]
@@ -31,10 +28,21 @@
             practice_Row = []
       return rows
 
-    if project
-      $scope.project = project
-      $scope.level   = level
-      API.project_Schema project, (data)->
-        $scope.data = data
-        $scope.rows = $scope.create_Table_Rows data
+    using project_Data, ->
+      @.load_Data =>
+        $scope.project = @.project
+        $scope.level   = $routeParams.level || null
+        $scope.data    = @.schema                           # rename $scope.data to $scope.schema
+        $scope.rows    = $scope.create_Table_Rows @.schema
+
+
+#    project = $routeParams.project
+#    level   = $routeParams.level
+#
+#    if project
+#      $scope.project = project
+#      $scope.level   = level
+#      API.project_Schema project, (data)->
+#        $scope.data = data
+#        $scope.rows = $scope.create_Table_Rows data
 

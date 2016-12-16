@@ -2,7 +2,7 @@
     div(ng-controller='ProjectSchemaController')#project
         projectMenu
         div.callout.large.primary
-            div.row.column(ng-cloak)
+            div.row.column(ng-show='project')
                 h4 Schema for Project {{project}}
                     b(ng-if='level') &#32;for level {{level}}
                     b &#32;- {{rows.size()}} activities
