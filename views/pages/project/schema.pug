@@ -2,7 +2,7 @@
     div(ng-controller='ProjectSchemaController')#project
         projectMenu
         div.callout.large.primary
-            div.row.column
+            div.row.column(ng-cloak)
                 h4 Schema for Project {{project}}
                     b(ng-if='level') &#32;for level {{level}}
                     b &#32;- {{rows.size()}} activities
@@ -15,5 +15,5 @@
                             th Level
                             th Activity
                     tbody
-                        tr(ng-repeat='row in rows', style='vertical-align: top')
+                        tr(ng-repeat='row in ::rows', style='vertical-align: top')
                           td(ng-repeat='cell in row track by $index' rowspan='{{::cell.rowspan}}', id='{{cell.id}}') {{::cell.value}}

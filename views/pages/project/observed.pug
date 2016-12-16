@@ -26,7 +26,7 @@ div(ng-controller='ObservedController')
                     td Activity
                     td.text-center Level
                     td.text-center Observed
-                tr.activity(ng-repeat="activity in data.activities", id='{{activity}}' ng-show='project_Activities[activity].level')
+                tr.activity(ng-repeat="activity in ::data.activities", id='{{activity}}' ng-show='project_Activities[activity].level')
                     td.text-left
                         span {{activity}}
                             i.hide-for-medium-up &#32;- {{schema.activities[activity].name}}

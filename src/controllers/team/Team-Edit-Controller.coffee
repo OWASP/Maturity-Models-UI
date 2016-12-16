@@ -14,9 +14,6 @@ angular.module('MM_Graph')
         $scope.team_Data = Team_Data
         $scope.domains   = domains
         $scope.data      = Team_Data.data
-        #$scope.data      = Team_Data.data
-
-        Team_Data.data.metadata      ?= { team: ''} # todo: set default value. This should be done on the backend
 
     using Team_Data, ->
       @.subscribe $scope, =>                  # register to receive notification when data is available

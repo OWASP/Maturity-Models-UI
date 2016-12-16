@@ -20,7 +20,7 @@ div(ng-controller='ObservedController')
                     td.text-center No
                     td.text-center.hide-for-print Maybe
                     td.text-center.hide-for-print NA
-                tr(ng-repeat="data in project_Activities", id='{{data.title}}' ng-show='data.title')
+                tr(ng-repeat="data in ::project_Activities", id='{{data.title}}' ng-show='data.title')
                     td {{data.title}}
                     td.text-center {{data.level}}
                     td {{data.name}}

@@ -24,7 +24,7 @@ describe 'httpBackend | Test_Data', ->
       API.team_Get 'bsimm', 'team-A', (data)->
         data.metadata.team.assert_Is 'Team A'
         data.activities.keys().assert_Contains 'SM.1.1'
-        data.activities.keys().size().assert_Is 120
+        data.activities.keys().size().assert_Is 112
       $httpBackend.flush()
 
   it 'team/samm/get/team-E', ->
