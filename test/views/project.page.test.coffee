@@ -30,16 +30,16 @@ describe 'views | project.page', ->
       $routeParams.project = 'demo'
       element = $compile(angular.element(html))($rootScope)
 
-      $httpBackend.expectGET('/api/v1/project/get/' + $routeParams.project).respond ['team-A','team-B']
+      $httpBackend.expectGET('/api/v1/project/get/'        + $routeParams.project).respond ['team-A','team-B']
+      $httpBackend.expectGET('/api/v1/project/schema/'     + $routeParams.project).respond {}
+      $httpBackend.expectGET('/api/v1/project/activities/' + $routeParams.project).respond {}
+      $httpBackend.expectGET('/api/v1/project/scores/'     + $routeParams.project).respond {}
+
       $httpBackend.flush()
 
-      console.log element.find('div').eq(0)
-      console.log $(html).find('#project a').eq(0).attr('href')
 
       using $(element.find('a')), ->
         @.length.assert_Is 12
-
-
 
         check_Link = (id, link, value)=>
           using @.eq(id), ->

@@ -1,8 +1,9 @@
-describe 'controllers | Project-Schema', ->
+describe 'controllers | project | Project-Schema-Controller', ->
 
   $scope  = null
   project = null
   level   = null
+
   beforeEach ->
     module('MM_Graph')
 

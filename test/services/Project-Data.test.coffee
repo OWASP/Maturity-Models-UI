@@ -10,12 +10,8 @@ describe 'services | Project-Data', ->
     project = 'bsimm'
     inject ($injector)->
       project_Data = $injector.get('project_Data')
-      $rootScope = $injector.get('$rootScope');
-      $scope     = $rootScope.$new()
 
   afterEach ->
-    $scope.$destroy()
-    $rootScope.$destroy()
     inject ($httpBackend)->
       $httpBackend.verifyNoOutstandingExpectation()
       $httpBackend.verifyNoOutstandingRequest()

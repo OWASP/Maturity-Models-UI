@@ -18,7 +18,7 @@ div(ng-controller='ObservedController')
                     span &#32;|&#32;
                     a(href='view/project/{{project}}/observed'     ) (remove)
 
-        .medium-3.columns(ng-repeat='(domain, data) in domains')
+        .medium-3.columns(ng-repeat='(domain, data) in observed')
             table.fullWidth.observed-table
                 tr.observed-domain(ng-class="'observed-column-' + data.index")
                     td(colspan='3') {{data.title}}
@@ -26,11 +26,11 @@ div(ng-controller='ObservedController')
                     td Activity
                     td.text-center Level
                     td.text-center Observed
-                tr.activity(ng-repeat="activity in ::data.activities", id='{{activity}}' ng-show='project_Activities[activity].level')
+                tr.activity(ng-repeat="activity in ::data.activities", id='{{activity}}' aaaang-show='project_Activities[activity].level')
                     td.text-left
-                        span {{activity}}
-                            i.hide-for-medium-up &#32;- {{schema.activities[activity].name}}
+                        span {{activity.title}}
+                            i.hide-for-medium-up &#32;- {{ activity.name}}
                     td.text-center(ng-class="'observed-column-0'")
-                        span {{project_Activities[activity].level }}
-                    td.text-center(ng-class="'observed-size-' + project_Activities[activity].observed ")
-                        span {{project_Activities[activity].observed }}
+                        span {{ activity.level }}
+                    td.text-center(ng-class="'observed-size-' + activity.observed ")
+                        span {{ activity.observed }}

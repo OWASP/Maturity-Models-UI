@@ -1,5 +1,3 @@
-# todo: figure out why this is needed here
-
 describe 'httpBackend | Test_Data', ->
   beforeEach ()->
     module('MM_Graph')

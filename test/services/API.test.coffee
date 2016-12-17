@@ -36,10 +36,10 @@ describe 'services | API', ->
 
   it '_GET (bad route)', ()->
     inject ($httpBackend)->
-      $httpBackend.whenGET('/a/bad/url').respond  404, an: 'error'
+      $httpBackend.whenGET('/a/bad/url').respond  404, 'error'
       mm_API._GET '/a/bad/url', (data, error, status)->
         (data is null).assert_Is_True()
-        error.assert_Is an: 'error'
+        error.assert_Is 'error'
         status.assert_Is 404
       $httpBackend.flush()
 

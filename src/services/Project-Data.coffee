@@ -12,8 +12,6 @@ class Project_Data
 
   # Load all project data required for the multiple project views
   load_Data: (callback)=>
-    console.log  "in Project_Data.load_Data: " + JSON.stringify(@.$routeParams)
-
     if @.$routeParams.project and @.$routeParams.project != @.project
       @.project = @.$routeParams.project
       @.API.project_Get @.project, (teams)=>

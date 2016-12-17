@@ -7,10 +7,10 @@ class API
 
   _GET: (url, callback)=>
     @.$http.get url
-           .then (response)->                                               # note: response object also has: statusText, headers() and config
+           .then (response)->                                         # note: response object also has: statusText, headers() and config
               callback response.data, response.status
            .catch (error)->
-              console.log "Error in request: '#{url}': #{error?.data}"      # risk: Client site API errors are not handled #200
+              console.log "Error in request: '#{url}': #{error}"      # risk: Client site API errors are not handled #200
               callback null, error?.data, error?.status
 
   _POST: (url, data, callback)=>
@@ -18,7 +18,7 @@ class API
            .then (response)->
               callback response.data, response.status
            .catch (error)->
-              console.log "Error in request: '#{url}': #{error?.data}"     # risk: Client site API errors are not handled #200
+              console.log "Error in request: '#{url}': #{error}"     # risk: Client site API errors are not handled #200
               callback null, error?.data, error?.status
 
   # GET requests
