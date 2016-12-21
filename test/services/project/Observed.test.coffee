@@ -20,9 +20,10 @@ describe 'services | project | Observed', ->
     using observed, ->
       @.project_Data.constructor.name.assert_Is 'Project_Data'
       @.$routeParams.assert_Is project : project
-      (@.domains  is null).assert_Is_True()
-      (@.observed is null).assert_Is_True()
-      (@.schema   is null).assert_Is_True()
+      (@.domains        is null).assert_Is_True()
+      (@.observed       is null).assert_Is_True()
+      (@.observed_By_Id is null).assert_Is_True()
+      (@.schema         is null).assert_Is_True()
 
 
   it 'current_Level', ->
@@ -35,9 +36,20 @@ describe 'services | project | Observed', ->
     using observed, ->
       @.project_Data.load_Data =>
         @.map_Domains()
-        @.map_Observed()
-        using @.get_Observed_By_Id(), ->
-          @.first().title.assert_Is 'SM.1.1'
+         .map_Observed()
+         .map_Observed_By_Id()
+        @.observed_By_Id.first().title.assert_Is 'SM.1.1'
+
+    inject ($httpBackend)=>
+      $httpBackend.flush()
+
+  it 'filter_By_Level', ->
+    using observed, ->
+      @.project_Data.load_Data =>
+        @.map_Domains()
+         .map_Observed()
+         .map_Observed_By_Id()
+        @.filter_By_Level '1'
 
     inject ($httpBackend)=>
       $httpBackend.flush()
@@ -45,8 +57,8 @@ describe 'services | project | Observed', ->
   it 'map_Observed', ->
     using observed, ->
       @.project_Data.load_Data =>
-        @.map_Domains() .assert_Is @.domains
-        @.map_Observed().assert_Is @.observed
+        @.map_Domains()
+         .map_Observed()
 
         @.observed.keys().assert_Is  [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
 
@@ -56,8 +68,8 @@ describe 'services | project | Observed', ->
   it 'map_Domains', ->
     using observed, ->
       @.project_Data.load_Data =>
-          @.map_Domains().assert_Is @.domains
-          @.domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
+          @.map_Domains()
+           .domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
 
 
     inject ($httpBackend)=>

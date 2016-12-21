@@ -26,7 +26,7 @@ describe '_issues | bugs', ->
 
         observed.map_Domains()                                  # call 3 methods that map data
         observed.map_Observed                                   # one of these would cause the problem before
-        observed.get_Observed_By_Id()
+        observed.map_Observed_By_Id()
 
         schema_After      = JSON.stringify @.schema             # capture data after 2nd execution of $scope.map_Data()
         activities_After  = JSON.stringify @.project_Activities

@@ -40,9 +40,10 @@ angular.module('MM_Graph')
         $scope.project            = @.project
         $scope.schema             = @.schema
         $scope.project_Activities = @.activities
-        $scope.domains            = observed.map_Domains()
-        $scope.observed           = observed.map_Observed()
-        $scope.observed_By_Id     = observed.get_Observed_By_Id()
+        using observed.map_Data(), ->
+          $scope.domains            = @.domains
+          $scope.observed           = @.observed
+          $scope.observed_By_Id     = @.observed_By_Id
 
         #$scope.map_Domains @.schema
         #$scope.map_Data()

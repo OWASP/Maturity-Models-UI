@@ -2,22 +2,20 @@ app = angular.module('MM_Graph')
 
 class Observed
   constructor: ($routeParams, project_Data)->
-    @.$routeParams = $routeParams
-    @.project_Data = project_Data
-    @.domains      = null
-    @.observed     = null
-    @.schema       = null
+    @.$routeParams   = $routeParams
+    @.project_Data   = project_Data
+    @.domains        = null
+    @.observed       = null
+    @.observed_By_Id = null
+    @.schema         = null
 
 
   current_Level: ()=>
     @.$routeParams.level || null
 
-  get_Observed_By_Id: ()=>
-      observed_By_Id = []
-      for domain_Name, domain_Data of @.observed
-        for key, activity of domain_Data.activities
-          observed_By_Id.push activity
-      return observed_By_Id
+  filter_By_Level: (level)=>
+    #for
+    console.log 'asd'
 
 # this returns the data in an sorted way, which I don't think is easier to read
 #  get_Observed_By_Id: ()=>
@@ -34,6 +32,11 @@ class Observed
 #
 #    return result
 
+  map_Data: ()=>
+    @.map_Domains()
+     .map_Observed()
+     .map_Observed_By_Id()
+
   map_Domains: ()=>
     schema = @.project_Data.schema
     if schema
@@ -42,7 +45,7 @@ class Observed
         @.domains[domain_Name] = []
         for practice_Name in domain.practices
           @.domains[domain_Name] = @.domains[domain_Name].concat schema.practices[practice_Name].activities
-    @.domains
+    @
 
   map_Observed: (level)=>
     index = 0
@@ -71,7 +74,14 @@ class Observed
         title: domain,                          # domain title
         index: index++,                         # for color coding
         activities: domain_Activities           # mapped activities in domain
+    @
 
+  map_Observed_By_Id: ()=>
+    @.observed_By_Id = []
+    for domain_Name, domain_Data of @.observed
+      for key, activity of domain_Data.activities
+        @.observed_By_Id.push activity
+    @
 
 #    for activity, activities of project_Activities
 #      schema_Activity = schema.activities[activity]
@@ -82,7 +92,7 @@ class Observed
 #          name : schema_Activity?.name
 #          activities: activities
 #          observed: activities['Yes']?.length ? 0
-    @.observed
+    @
 
 
 app.service 'observed', ($routeParams, project_Data)=>
