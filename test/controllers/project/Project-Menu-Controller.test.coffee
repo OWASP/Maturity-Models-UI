@@ -41,3 +41,13 @@ describe 'controllers | project | Project-Menu-controller', ->
         @('schema').assert_Is ''
         @('scores').assert_Is 'active'
         @('observed' ).assert_Is ''
+
+  it 'Issue 211 - Project highlight does not work with request params', ->
+    inject ($location)->
+      base_Path        = "/view/project/#{project}"
+      using $scope.is_Active, ->
+        $location.url(base_Path+'/observed')
+        @('observed' ).assert_Is 'active'
+
+        $location.url(base_Path+'/observed?level=aaaaa')
+        @('observed' ).assert_Is 'active'               # expected value
