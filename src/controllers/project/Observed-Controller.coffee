@@ -37,15 +37,17 @@ angular.module('MM_Graph')
 
     using project_Data, ->
       @.load_Data =>
-        $scope.project            = @.project
-        $scope.schema             = @.schema
-        $scope.project_Activities = @.activities
+        $scope.project    = @.project
+        #$scope.schema             = @.schema
+        #$scope.project_Activities = @.activities
         using observed.map_Data(), ->
-          $scope.domains            = @.domains
-          $scope.observed           = @.observed
-          $scope.observed_By_Id     = @.observed_By_Id
+          $scope.observed = @.observed
 
-        #$scope.map_Domains @.schema
+    $scope.show_Activity = (activity)->
+      return true if not $routeParams.level
+      return activity?.level is $routeParams.level
+
+    #$scope.map_Domains @.schema
         #$scope.map_Data()
 
 #    return

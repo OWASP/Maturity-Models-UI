@@ -13,9 +13,6 @@ class Observed
   current_Level: ()=>
     @.$routeParams.level || null
 
-  filter_By_Level: (level)=>
-    #for
-    console.log 'asd'
 
 # this returns the data in an sorted way, which I don't think is easier to read
 #  get_Observed_By_Id: ()=>
@@ -94,6 +91,11 @@ class Observed
 #          observed: activities['Yes']?.length ? 0
     @
 
+#  observed_By_Level: (level)=>
+#    if @.observed_By_Id and level
+#      return (item for item in @.observed_By_Id when item.level is level)
+#    else
+#      return @.observed_By_Id
 
 app.service 'observed', ($routeParams, project_Data)=>
   return new Observed $routeParams, project_Data

@@ -54,8 +54,8 @@ describe 'views | project | observed.page', ->
     inject ($routeParams)->
       $routeParams.project = project        # dependency inject project value
       run_Controller()
-    $scope.project_Activities.keys().assert_Contains 'SM.1.2'
-    $scope.domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
+    $scope.observed.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
+    $scope.observed['Governance'].activities.keys().assert_Contains 'SM.1.2'
 
 
    # The tests below are failing due to the $requestParams bug
@@ -85,10 +85,7 @@ describe 'views | project | observed.page', ->
 
       run_Controller()
 
-      console.log $scope.project_Activities['SM.1.1'].title
-
       ($scope.project_Activities['SM.1.1'].title is undefined).assert_Is_True()
-
 
       keys_In_Level_aaaa =  (data.title for domain, data of $scope.project_Activities when data.title)
       keys_In_Level_aaaa.assert_Is []

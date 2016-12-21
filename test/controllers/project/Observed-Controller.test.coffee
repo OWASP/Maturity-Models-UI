@@ -19,8 +19,6 @@ describe 'controllers | project | ObservedController', ->
   it 'constructor',->
     using $scope, ->
       @.project.assert_Is 'bsimm'
-      @.schema.keys().assert_Is [ 'config', 'metadata', 'domains', 'practices', 'activities' ]
-      @.project_Activities.keys().assert_Contains 'SM.1.1'
-      @.domains.keys().assert_Is ['Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment']
+      @.observed.keys().assert_Is ['Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment']
 
 
