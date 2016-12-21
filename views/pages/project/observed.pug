@@ -1,6 +1,6 @@
-div(ng-controller='ObservedController')
+projectMenu
 
-    projectMenu
+div(ng-controller='ObservedController')
     .row
         .medium-12
             h4 Observed activities for project: {{project}}
@@ -10,9 +10,9 @@ div(ng-controller='ObservedController')
         ul.hide-for-print
             small
                 b &#32;&#32; filter by: &#32;&#32;
-                a(href='view/project/{{project}}/observed?level=1'   ) level 1   &#32;
-                a(href='view/project/{{project}}/observed?level=2'   ) level 2   &#32;
-                a(href='view/project/{{project}}/observed?level=3'   ) level 3   &#32;
+                a(href='{{page_Link()}}?level=1'   ) level 1   &#32;
+                a(href='{{page_Link()}}?level=2'   ) level 2   &#32;
+                a(href='{{page_Link()}}?level=3'   ) level 3   &#32;
 
                 span(ng-show='current_Level()')
                     span &#32;|&#32;
@@ -26,9 +26,10 @@ div(ng-controller='ObservedController')
                     td Activity
                     td.text-center Level
                     td.text-center Observed
-                tr.activity(ng-repeat="activity in ::data.activities" ng-show='show_Activity(activity)')
+                tr.activity(ng-repeat="activity in ::data.activities" ng-show='show_Activity(activity)' id='{{activity.key}}')
                     td.text-left
-                        span {{activity.title}}
+                        span
+                            a(href='{{page_Link()}}/{{activity.key}}') {{activity.key}}
                             i.hide-for-medium-up &#32;- {{ activity.name}}
                     td.text-center(ng-class="'observed-column-0'")
                         span {{ activity.level }}

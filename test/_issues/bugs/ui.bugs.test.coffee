@@ -23,9 +23,8 @@ describe '_issues | bugs', ->
         schema_Before     = JSON.stringify observed.project_Data.schema    # capture data after 1st execution of $scope.map_Data()
         activities_Before = JSON.stringify observed.project_Data.activities
 
-        observed.map_Domains()                                              # call 3 methods that map data
+        observed.map_Domains()                                              # call methods that map data
         observed.map_Observed                                               # one of these would cause the problem before
-        observed.map_Observed_By_Id()
 
         schema_After      = JSON.stringify observed.project_Data.schema    # capture data after 2nd execution of $scope.map_Data()
         activities_After  = JSON.stringify observed.project_Data.activities

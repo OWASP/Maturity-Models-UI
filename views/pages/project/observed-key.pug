@@ -1,0 +1,10 @@
+projectMenu
+
+div(ng-controller='ObservedController')
+    .row
+        h4 Observed data for: {{key}}
+        pre.panel.
+            {{ observed_By_Id }}
+            {{ observed_By_Id[0] }}
+    .row
+        a(href='javascript:history.back();') back

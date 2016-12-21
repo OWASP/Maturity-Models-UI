@@ -22,3 +22,9 @@ describe 'controllers | project | ObservedController', ->
       @.observed.keys().assert_Is ['Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment']
 
 
+  it '$scope.page_Link',->
+    $scope.page_Link().assert_Is "view/project/#{project}/observed"
+
+  it '$scope.team_Table_Link',->
+    team = 'aaaaa'
+    $scope.team_Table_Link(team).assert_Is "view/#{project}/#{team}/table"

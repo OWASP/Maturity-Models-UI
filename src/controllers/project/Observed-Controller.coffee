@@ -3,15 +3,23 @@ angular.module('MM_Graph')
 
     level   = $routeParams.level || null
 
+    $scope.key = $routeParams.key   || null
+
     $scope.current_Level = ()->
       level
+
+    $scope.page_Link = ()->
+      return "view/project/#{$scope.project}/observed"
+
+    $scope.team_Table_Link = (team)->
+      return "view/#{$scope.project}/#{team}/table"
 
     using project_Data, ->
       @.load_Data =>
         $scope.project    = @.project
         using observed.map_Data(), ->
-          $scope.observed = @.observed
-          $scope.observed_By_Id = @.observed_By_Id
+          $scope.observed    = @.observed
+          $scope.activities  = @.activities
 
     $scope.show_Activity = (activity)->
       return true if not $routeParams.level

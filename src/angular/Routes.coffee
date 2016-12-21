@@ -9,6 +9,7 @@ angular.module('MM_Graph')
       .when '/view/project/:project/new-team'         , templateUrl: "#{pages}/project/new-team.html"
       .when '/view/project/:project/scores'           , templateUrl: "#{pages}/project/scores.html"
       .when '/view/project/:project/observed'         , templateUrl: "#{pages}/project/observed.html"
+      .when '/view/project/:project/observed/:key'    , templateUrl: "#{pages}/project/observed-key.html"
       .when '/view/project/:project/observed-details' , templateUrl: "#{pages}/project/observed-details.html"
       .when '/view/project/:project/schema'           , templateUrl: "#{pages}/project/schema.html"
       .when '/view/project/:project/schema/:level'    , templateUrl: "#{pages}/project/schema.html"
@@ -19,7 +20,7 @@ angular.module('MM_Graph')
       .when '/view/:project/:team/yes-answers'        , templateUrl: "#{pages}/team/yes-answers.html"
       .when '/view/:project/:team/raw'                , templateUrl: "#{pages}/team/raw.html"
       .when '/view/:project/:team/table'              , templateUrl: "#{pages}/team/table.html"
-      .when '/view/:project/:team/table/:level'       , templateUrl: "#{pages}/team/table.html"
+      #.when '/view/:project/:team/table/:level'       , templateUrl: "#{pages}/team/table.html"
 
       .otherwise templateUrl: "#{pages}/404.page.html"
 
