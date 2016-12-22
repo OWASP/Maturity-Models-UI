@@ -1,22 +1,11 @@
 angular.module('MM_Graph')
-  .controller 'TeamEditController', ($scope, $routeParams,  Team_Data)->
+  .controller 'TeamEditController', ($scope, $routeParams,  team_Mappings)->
     $scope.messageClass = 'secondary'
 
-    $scope.map_Domains = ()->
-      if Team_Data.schema
-        schema      = Team_Data.schema
-        domains     = {}
-        for domain_Name,domain of schema.domains
-          domains[domain_Name] = []
-          for practice_Name in domain.practices
-            domains[domain_Name] = domains[domain_Name].concat schema.practices[practice_Name].activities
+    using team_Mappings, ->
+      @.load_Data =>
+        @.team_Edit_Map_Domains()
 
-        $scope.team_Data = Team_Data
-        $scope.domains   = domains
-        $scope.data      = Team_Data.data
-
-    using Team_Data, ->
-      @.subscribe $scope, =>                  # register to receive notification when data is available
-        $scope.map_Domains()
-      @.notify()
-
+        $scope.team_Data = @.team_Data
+        $scope.domains   = @.domains
+        $scope.data      = @.team_Data.data

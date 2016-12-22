@@ -10,14 +10,13 @@ describe 'views | project | observed.page', ->
   $scope     = null
 
   run_Controller = ()->
-    inject ($templateCache, $compile, $httpBackend, $rootScope, $routeParams, observed)->
+    inject ($templateCache, $compile, $httpBackend, $rootScope, observed)->
       $scope   = $rootScope.$new()
       raw_Html = $templateCache.get '/ui/html/pages/project/observed.html'
       element  = $compile(angular.element(raw_Html))($scope)
       $httpBackend.flush()
-
-      $scope = element.scope()
-      html   = element[0].outerHTML
+      $scope = element.eq(1).scope()
+      html   = element[1].outerHTML
       $html  = $(html)
 
   beforeEach ()->

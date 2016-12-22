@@ -1,13 +1,13 @@
 angular.module('MM_Graph')
-  .controller 'TableController', ($scope, $routeParams, Team_Data, $attrs)->
+  .controller 'TableController', ($scope, $routeParams, team_Data, $attrs)->
 
     level   = $scope.level?.toString()                  # todo: this value shouldn't be set here
     filter  = $routeParams.filter || $attrs.filter      # get value from url params or from element that consumed this controller
 
     $scope.map_Rows = ()->
       
-      data       = Team_Data.data
-      schema     = Team_Data.schema
+      data       = team_Data.data
+      schema     = team_Data.schema
 
       return if (not data) or (not schema)
         
@@ -37,15 +37,14 @@ angular.module('MM_Graph')
                 mappings.push row
 
 
-      $scope.data = Team_Data.data                                     # used to sync values to real objects (so that it can be saved)
+      $scope.data = team_Data.data                                     # used to sync values to real objects (so that it can be saved)
       $scope.rows  = mappings
-      $scope.score = Team_Data.scores["level_#{level}"]?.percentage
+      $scope.score = team_Data.scores["level_#{level}"]?.percentage
       $scope.show  = true
 
-    using Team_Data, ->
-      @.subscribe $scope, =>                  # register to receive notification when data is available
+    using team_Data, ->
+      @.load_Data =>
         $scope.map_Rows()
-      @.notify()                              # trigger notification if it already exists
 
 
 

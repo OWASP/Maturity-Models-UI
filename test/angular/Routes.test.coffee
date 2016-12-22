@@ -26,7 +26,6 @@ describe 'angular | Routes ', ->
         '/view/:project/:team/yes-answers'
         '/view/:project/:team/raw'
         '/view/:project/:team/table'
-        '/view/:project/:team/table/:level'
       ]
       
       expected_Routes = []      

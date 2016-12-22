@@ -1,6 +1,5 @@
 describe 'controllers | Team-Edit-Controller', ->
   $scope      = null
-  routeParams = null
   project     = 'bsimm'
   team        = 'team-A'  
   
@@ -8,12 +7,12 @@ describe 'controllers | Team-Edit-Controller', ->
     module('MM_Graph')
 
   beforeEach ->
-    inject ($controller, $rootScope, $httpBackend)->
+    inject ($controller, $rootScope, $httpBackend, $routeParams)->
       $scope      = $rootScope.$new()
-      routeParams = project : project , team: team
-      $controller('TeamDataController', { $scope: $scope, $routeParams : routeParams })
+      $routeParams.project = project
+      $routeParams.team    = team
+      $controller('TeamEditController', { $scope: $scope,  })
       $httpBackend.flush()
-      $controller('TeamEditController', { $scope: $scope, $routeParams : routeParams })
 
   it '$controller (with project and team on $routeParams)',->
     using $scope, ->
@@ -31,12 +30,12 @@ describe 'controllers | Team-Edit-Controller', ->
     inject ($controller)->
       $controller('TeamEditController', { $scope: $scope, $routeParams : {} })
 
-  it '$scope.map_Domains (with no metadata)', ->
-    inject (Team_Data)->
-      saved_Metadata          = Team_Data.data.metadata             # save object
-      Team_Data.data.metadata = null
-      $scope.map_Domains()
-      Team_Data.data.metadata = saved_Metadata                      # restore object
+#  it '$scope.map_Domains (with no metadata)', ->
+#    inject (team_Data)->
+#      saved_Metadata          = team_Data.data.metadata             # save object
+#      team_Data.data.metadata = null
+#      $scope.map_Domains()
+#      team_Data.data.metadata = saved_Metadata                      # restore object
 
 
 xdescribe 'controllers | Edit-Data-Controller (SAMM data)', ->

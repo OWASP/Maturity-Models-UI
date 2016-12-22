@@ -28,3 +28,12 @@ describe 'controllers | project | ObservedController', ->
   it '$scope.team_Table_Link',->
     team = 'aaaaa'
     $scope.team_Table_Link(team).assert_Is "view/#{project}/#{team}/table"
+
+  it '$scope.show_Activity', ->
+    $scope.show_Activity().assert_Is_True()
+    inject ($routeParams)->
+      $routeParams.level = '1'
+      $scope.show_Activity(         ).assert_Is_False()
+      $scope.show_Activity(level:'1').assert_Is_True()
+      $routeParams.level = '2'
+      $scope.show_Activity(level:'1').assert_Is_False()

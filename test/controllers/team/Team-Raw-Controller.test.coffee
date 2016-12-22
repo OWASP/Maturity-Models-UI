@@ -8,10 +8,11 @@ describe 'controllers | Team-Raw-Controller', ->
     module('MM_Graph')
 
   beforeEach ->
-    inject ($controller, $rootScope, $httpBackend)->
+    inject ($controller, $rootScope, $httpBackend, $routeParams)->
       $scope      = $rootScope.$new()
-      routeParams = project : project , team: team      
-      $controller('TeamRawController', { $scope: $scope, $routeParams : routeParams })
+      $routeParams.project = project
+      $routeParams.team    = team
+      $controller('TeamRawController', { $scope: $scope})
       $httpBackend.flush()
 
   it 'check $scope values',->

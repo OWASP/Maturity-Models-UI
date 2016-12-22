@@ -8,17 +8,17 @@ describe 'controllers | Team-Delete-Controller', ->
     module('MM_Graph')
 
   beforeEach ->
-    inject ($controller, $rootScope, $httpBackend)->
+    inject ($controller, $rootScope, $httpBackend, $routeParams)->
       $scope      = $rootScope.$new()
-      routeParams = project : project , team: team
-      $controller('TeamDataController', { $scope: $scope, $routeParams : routeParams })
-      $httpBackend.flush()
+      $routeParams.project = project
+      $routeParams.team    = team
+      #$controller('TeamDataController', { $scope: $scope })
+
       $controller('TeamAdminController', { $scope: $scope })
+      $httpBackend.flush()
 
   it 'check $scope values',->
     using $scope, ->
-      @.project     .assert_Is project
-      @.team        .assert_Is team
       (typeof @.delete_Team).assert_Is 'function'
       @.delete_Button_Message.assert_Is 'Delete team team-A'
 

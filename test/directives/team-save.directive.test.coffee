@@ -17,14 +17,16 @@ describe 'directive | team-table', ->
     module('MM_Graph')
 
   beforeEach ->
-    inject ($rootScope, $controller, $compile, $httpBackend)->
+    inject ($rootScope, $controller, $compile, $httpBackend, $routeParams)->
       $parent_Scope = $rootScope.$new()
-      routeParams   = { project: project , team : team }
+      $routeParams.project = project
+      $routeParams.team    = team
 
-      $controller('TeamDataController', { $scope: $parent_Scope, $routeParams : routeParams })   # load data via Team-Data-Controller
-      $httpBackend.flush()
+#      $controller('TeamDataController', { $scope: $parent_Scope })   # load data via Team-Data-Controller
+#      $httpBackend.flush()
 
       element       = $compile(angular.element('<teamSave/>')[0])($parent_Scope)
+      $httpBackend.flush()
       $parent_Scope.$apply()
 
       save_Button   = find_Element_By_Id element.html(), 'save-button'

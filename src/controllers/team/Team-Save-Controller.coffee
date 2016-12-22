@@ -1,16 +1,16 @@
 angular.module('MM_Graph')
-  .controller 'TeamSaveController', ($scope, Team_Data)->
+  .controller 'TeamSaveController', ($scope, team_Data)->
 
 
     $scope.load_Data = ->
-      if Team_Data.data
-        $scope.metadata = Team_Data.data.metadata
+      if team_Data.data
+        $scope.metadata = team_Data.data.metadata
         $scope.status   = 'data loaded'
 
 
     $scope.save_Data = ()->
       $scope.status = 'saving data ....'
-      Team_Data.save (result)->
+      team_Data.save (result)->
         if result.error
           $scope.messageClass = 'alert'
           $scope.status = result.error
@@ -22,7 +22,10 @@ angular.module('MM_Graph')
     $scope.messageClass = 'secondary'
     $scope.status       = 'loading team data'
 
-    using Team_Data, ->
-      @.subscribe $scope, =>                  # register to receive notification when data is available
-        $scope.load_Data()
-      @.notify()                              # trigger notification if it already exists
+    team_Data.load_Data =>
+      $scope.load_Data()
+
+#    using Team_Data, ->
+#      @.subscribe $scope, =>                  # register to receive notification when data is available
+#        $scope.load_Data()
+#      @.notify()                              # trigger notification if it already exists

@@ -15,6 +15,7 @@ module.exports = function(config) {
             './data/**/*.coffee',
 
             'test/**/*.coffee'
+            //'test/**/API.test.coffee'
         ],
         exclude       : [ ],
         preprocessors : {

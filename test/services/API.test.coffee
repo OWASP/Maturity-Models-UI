@@ -1,6 +1,6 @@
 describe 'services | API', ->
 
-  mm_API  = null
+  api     = null
   $http   = null
   project = null
   team    = null
@@ -13,7 +13,7 @@ describe 'services | API', ->
     version = '/api/v1'
     inject ($injector, $httpBackend)->
       $http = $httpBackend
-      mm_API = $injector.get('API')
+      api = $injector.get('API')
 
 
   afterEach ->
@@ -22,32 +22,38 @@ describe 'services | API', ->
       $httpBackend.verifyNoOutstandingRequest()
 
   call_API = (method, params, callback)->
-    mm_API[method].apply null, params.concat(callback)
+    api[method].apply null, params.concat(callback)
     $http.flush()
 
 
   it '_GET (ok route)', ->
     inject ($httpBackend)->
       $httpBackend.expectGET('/a/good/url').respond  status: 42
-      mm_API._GET '/a/good/url', (data, status)->
+      api._GET '/a/good/url', (data, status)->
         data.assert_Is status: 42
         status.assert_Is 200
       $httpBackend.flush()
 
   it '_GET (bad route)', ()->
+    console_Log = console.log
+    console.log = (message)->                    # overwrite console.log to confirm message
+      message.assert_Is "Error in request: '/a/bad/url': [object Object]"
+
     inject ($httpBackend)->
       $httpBackend.whenGET('/a/bad/url').respond  404, 'error'
-      mm_API._GET '/a/bad/url', (data, error, status)->
+      api._GET '/a/bad/url', (data, error, status)->
         (data is null).assert_Is_True()
         error.assert_Is 'error'
         status.assert_Is 404
+
+        console_Log = console_Log
       $httpBackend.flush()
 
   it '_POST (ok route)', ->
     inject ($httpBackend)->
       post_Data = value: 42
       $httpBackend.expectPOST('/a/good/url', post_Data).respond  status: 42
-      mm_API._POST '/a/good/url', post_Data,  (data, status)->
+      api._POST '/a/good/url', post_Data,  (data, status)->
         data.assert_Is status: 42
         status.assert_Is 200
       $httpBackend.flush()
@@ -57,7 +63,7 @@ describe 'services | API', ->
       post_Data = value: 42
       $httpBackend.whenPOST('/a/bad/url', post_Data).respond 404, an: 'error'
 
-      mm_API._POST '/a/bad/url', post_Data, (data, error, status)->
+      api._POST '/a/bad/url', post_Data, (data, error, status)->
         (data is null).assert_Is_True()
         error.assert_Is an: 'error'
         status.assert_Is 404
@@ -82,3 +88,24 @@ describe 'services | API', ->
       data.status.assert_Is 'Ok'
       data.team_Name.assert_Contains 'team-'
       data.team_Name.length.assert_Is 10
+
+
+  it 'Angular bug $routeParams is lost after API call', ->
+    inject ($routeParams)=>
+      $routeParams.project = 'bsimm'
+      $routeParams.assert_Is project: 'bsimm'           # $routeParams is set
+      call_API 'project_Schema', ['bsimm'], (data)=>    # make request using test API
+        data.config.schema.assert_Is 'bsimm'            # confirm we got data ok
+        $routeParams.assert_Is {}                       # bug: $routeParams data is lost
+
+  it 'Angular bug $routeParams is lost after $http.get call', ->
+    inject ($routeParams, $http, $httpBackend)=>
+      $routeParams.project = 'bsimm'
+      $routeParams.assert_Is project: 'bsimm'           # $routeParams is set
+      url = '/api/v1/project/schema/bsimm'
+      $http.get url                                     # make request using angular's $http object
+        .then (response)->
+          response.data.config.schema.assert_Is 'bsimm' # confirm we got data  ok
+          $routeParams.assert_Is {}                     # bug: $routeParams data is lost
+
+      $httpBackend.flush()
