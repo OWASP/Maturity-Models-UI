@@ -1,5 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'RadarController', ($scope, $routeParams, API, $attrs)->
+  .controller 'RadarController', ($scope, $routeParams, API, $attrs, team_Data)->
 
     radar_Size  = $attrs.radarSize  || 450
     extra_Level = $attrs.extraLevel || 'level-1'
@@ -23,13 +23,15 @@ angular.module('MM_Graph')
 
         data = []
 
-        API.data_Radar_Fields project, (data_Fields)=>
+        #API.data_Radar_Fields project, (data_Fields)=>
+        team_Data.radar_Fields (data_Fields)=>
           data.push data_Fields
-          API.data_Radar_Team project, team,(team_Data)->
-            data.push team_Data
-
-            API.data_Radar_Team project, extra_Level,(team_Data)->
-              data.push team_Data
+          team_Data.radar_Team team, (data_Radar)->
+          #API.data_Radar_Team project, team,(team_Data)->
+            data.push data_Radar
+            team_Data.radar_Team extra_Level, (data_Radar)->
+            #API.data_Radar_Team project, extra_Level,(team_Data)->
+              data.push data_Radar
 
               $scope.radar_Data = data
               $scope.show_Radar data, $scope.get_Radar_Config()
@@ -42,4 +44,5 @@ angular.module('MM_Graph')
       RadarChart?.draw div, data, config
 
 
-    $scope.load_Data $routeParams.project, $routeParams.team
+    team_Data.load_Data ->
+      $scope.load_Data team_Data.project, team_Data.team #$routeParams.project, $routeParams.team

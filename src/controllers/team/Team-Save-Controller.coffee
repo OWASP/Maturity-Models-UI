@@ -2,12 +2,6 @@ angular.module('MM_Graph')
   .controller 'TeamSaveController', ($scope, team_Data)->
 
 
-    $scope.load_Data = ->
-      if team_Data.data
-        $scope.metadata = team_Data.data.metadata
-        $scope.status   = 'data loaded'
-
-
     $scope.save_Data = ()->
       $scope.status = 'saving data ....'
       team_Data.save (result)->
@@ -23,7 +17,10 @@ angular.module('MM_Graph')
     $scope.status       = 'loading team data'
 
     team_Data.load_Data =>
-      $scope.load_Data()
+      if team_Data.data
+        $scope.metadata = team_Data.data.metadata
+        $scope.status   = 'data loaded'
+
 
 #    using Team_Data, ->
 #      @.subscribe $scope, =>                  # register to receive notification when data is available

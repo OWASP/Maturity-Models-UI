@@ -39,7 +39,6 @@ describe 'directive | team-table', ->
     $scope.messageClass.assert_Is 'secondary'
     $scope.status      .assert_Is 'data loaded'
 
-    (typeof $scope.load_Data ).assert_Is 'function'
     (typeof $scope.save_Data ).assert_Is 'function'
 
   it 'check elements contents', ->

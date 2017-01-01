@@ -48,7 +48,7 @@ describe '_issues | regression', ->
 #
 #      #$httpBackend.expectPOST("/api/v1/team/#{project}/save/#{team}").respond {}
 
-  it 'Issues 139 - View team is broken for new teams (edit page)', ->
+  xit 'Issues 139 - View team is broken for new teams (edit page)', ->
     project       = 'bsimm'
     team          = 'aaaaaa-bbb'
     options =
@@ -57,17 +57,20 @@ describe '_issues | regression', ->
 
     inject ($injector)->
       $injector.get('Render_View')(options)
-               .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}      # todo: add bug about fact that radar is opened 3 times
+               #.set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}      # todo: add bug about fact that radar is opened 3 times
+               #.set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
+               .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}
+               .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}
+               .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}
                .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
-               .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
-               .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}      # there were 3 of these (before #140 fix)
+                    # there were 3 of these (before #140 fix)
                .set_Expect_Get "/api/v1/team/#{project}/get/#{team}"  , {}      # there were 3 of these (before #140 fix)
                .run()
                .html.assert_Contains('<div id="teamMenu">')
 
-  it 'Issues 140 - View team is loading schema 3 times', ->
+  xit 'Issues 140 - View team is loading schema 3 times', ->
     project       = 'bsimm'
-    team          = 'aaaaaa-bbb'
+    team          = 'aaaaaa-bbbcc'
     options =
       url_Location    : "/view/#{project}/#{team}/table"
       url_Template_Key: 'pages/.page.html'
@@ -75,9 +78,9 @@ describe '_issues | regression', ->
     inject ($injector)->
       $injector.get('Render_View')(options)
                .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
-               .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
-               .set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
-               .set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}      # there were 3 of these (before fix)
-               .set_Expect_Get "/api/v1/team/#{project}/get/#{team}"  , {}      # there were 3 of these (before fix)
+               #.set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
+               #.set_Expect_Get "/api/v1/data/#{project}/#{team}/radar", {}
+               #.set_Expect_Get "/api/v1/data/#{project}/#{team}/score", {}      # there were 3 of these (before fix)
+               #.set_Expect_Get "/api/v1/team/#{project}/get/#{team}"  , {}      # there were 3 of these (before fix)
                .run()
                .html.assert_Contains('<div id="teamMenu">')

@@ -12,8 +12,16 @@ describe 'controllers | Table-Controller', ->
       $scope = $rootScope.$new()
       $routeParams.project = project
       $routeParams.team    = team
+      $attrs.level         = '1'
       $controller('TableController', { $scope: $scope , $attrs})
       $httpBackend.flush()
+
+
+  it 'check $scope values', ->
+    $scope.data.keys().assert_Is [ 'metadata', 'activities' ]
+    $scope.rows.size().assert_Is 39
+    $scope.score      .assert_Is '50%'
+    $scope.show       .assert_Is_True()
 
 
 
@@ -24,21 +32,5 @@ describe 'controllers | Table-Controller', ->
       @[1].assert_Is [ 'Governance', 'Strategy & Metrics', 'SM.1.2', '1', 'Create evangelism role and perform internal marketing'               , false, true , false ,false, ''] # NA
       @[2].assert_Is [ 'Governance', 'Strategy & Metrics', 'SM.1.3', '1', 'Educate executives'                                                  , false, false, true , false, ''] # Maybe
       @[3].assert_Is [ 'Governance', 'Strategy & Metrics', 'SM.1.4', '1', 'Identify gate locations, gather necessary artifacts'                 , false, false, false, true , ''] # No
-      @.size().assert_Is 112
-
-  # to be moved to a team_Service test
-  xit 'should filter rows based on filter value', ->
-    inject ($controller, $routeParams, $httpBackend)->
-      check_Filter = (filter, size)->
-          $routeParams.filter = filter
-          $scope.rows.size().assert_Is size
-
-      check_Filter ''      , 112
-      check_Filter 'Yes'   , 29
-      check_Filter 'No'    , 56
-      check_Filter 'NA'    , 4
-      check_Filter 'Maybe' , 23
-      check_Filter 'Yes,No', 85
-      check_Filter 'Yes,NA', 33
-      check_Filter 'No,NA' , 60
+      @.size().assert_Is 39
 

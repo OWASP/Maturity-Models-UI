@@ -44,3 +44,42 @@ describe 'services | team | Team', ->
     using team_Mappings, ->
       @.team_Edit_Map_Domains()
       @.domains.keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
+
+  it 'team_Table_Map_Rows - should filter rows based on filter value', ->
+    using team_Mappings, ->
+
+      check_Filter = (filter, size)=>
+        @.team_Table_Map_Rows null, filter
+        @.mappings.size().assert_Is size
+
+      check_Filter ''      , 112
+      check_Filter 'Yes'   , 29
+      check_Filter 'No'    , 56
+      check_Filter 'NA'    , 4
+      check_Filter 'Maybe' , 23
+      check_Filter 'Yes,No', 85
+      check_Filter 'Yes,NA', 33
+      check_Filter 'No,NA' , 60
+
+  it 'team_Table_Map_Rows - should filter rows based on level value', ->
+    using team_Mappings, ->
+
+      check_Filter = (level, size)=>
+        @.team_Table_Map_Rows level, null
+        @.mappings.size().assert_Is size
+
+      check_Filter ''     , 112
+      check_Filter '1'    , 39
+      check_Filter '2'    , 40
+      check_Filter '3'    , 33
+      check_Filter  null  , 112
+      check_Filter  'aaaa', 0
+
+  it 'team_Table_Map_Rows - when there is no team data mapping', ->
+    using team_Mappings, ->
+      (@.mappings is null).assert_Is_True()
+      @.team_Data.schema = null
+      @.team_Table_Map_Rows()
+      @.team_Data.data = null
+      @.team_Table_Map_Rows()
+      (@.mappings is null).assert_Is_True()

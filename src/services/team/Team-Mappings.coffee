@@ -13,6 +13,7 @@ class Team_Mappings
     @.$routeParams   = $routeParams
     @.team_Data      = team_Data
     @.domains        = null
+    @.mappings       = null
 #    @.observed       = null
 #    @.activities     = null
 #    @.schema         = null
@@ -49,6 +50,38 @@ class Team_Mappings
         mapping += "#{pad(key,7)} | #{pad(activity_Schema?.name, 102)} | #{value.value} \n"
     #mapping += "#{pad(key,7)} | #{pad(value.value,4) } | #{pad(activity_Schema?.name, 102)} \n"   # see https://github.com/OWASP/Maturity-Models/issues/202#issuecomment-267292073
     return mapping
+
+  team_Table_Map_Rows: (level, filter)->
+
+    data       = @.team_Data.data
+    schema     = @.team_Data.schema
+
+    return if (not data) or (not schema)
+
+    @.mappings = []
+
+    for domain_Name, domain of schema.domains
+      for practice_Name in domain.practices
+        practice = schema.practices[practice_Name]
+        for activity_Key in practice.activities
+          activity = schema.activities[activity_Key]
+          if activity
+            if (not level) or activity.level is level
+              row = [domain_Name, practice_Name, activity_Key, activity.level, activity.name]
+              activity_Data = data.activities?[activity_Key]
+              value         = activity_Data?.value
+              if filter                                         # if filter value is set
+                if (not (filter.contains value))                # and it contains the current value
+                  continue
+
+              switch value
+                when 'Yes'   then row.push true , false, false, false
+                when 'No'    then row.push false, true , false, false
+                when 'NA'    then row.push false, false, true , false
+                when 'Maybe' then row.push false, false, false, true
+
+              row.push ''  # proof value
+              @.mappings.push row
 
 app.service 'team_Mappings', ($routeParams, team_Data)=>
   return new Team_Mappings($routeParams, team_Data)

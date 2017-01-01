@@ -4,14 +4,16 @@ describe 'services | Team-Data', ->
   $scope        = null
   $rootScope    = null
   $httpBackend$ = null
+  $routeParams$ = null
 
   beforeEach ()->
     module('MM_Graph')
-    inject ($injector, $httpBackend)->
+    inject ($injector, $httpBackend, $routeParams)->
       team_Data     = $injector.get('team_Data')
       $rootScope    = $injector.get('$rootScope');
       $scope        = $rootScope.$new()
       $httpBackend$ = $httpBackend
+      $routeParams$ = $routeParams
 
   afterEach ->
     $scope.$destroy()
@@ -84,6 +86,18 @@ describe 'services | Team-Data', ->
             @.data.keys(  ).assert_Is [ 'metadata', 'activities' ]
             @.load_Data ()=>
         $httpBackend$.flush()
+
+
+  it 'radar_Fields', ->
+    $routeParams$.project = 'bsimm'
+    $routeParams$.team     = 'team-A'
+    using team_Data, ->
+      @.radar_Fields (data_Fields)->
+        (data_Fields is null).assert_Is_True()
+      @.load_Data ()=>
+        @.radar_Fields (data_Fields)->
+          data_Fields.keys().assert_Is ['axes']
+    $httpBackend$.flush()
 
   # to remove
 #  it 'load (valid data)', (done)->
