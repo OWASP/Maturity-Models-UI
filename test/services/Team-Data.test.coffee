@@ -92,8 +92,8 @@ describe 'services | Team-Data', ->
     $routeParams$.project = 'bsimm'
     $routeParams$.team     = 'team-A'
     using team_Data, ->
-      @.radar_Fields (data_Fields)->
-        (data_Fields is null).assert_Is_True()
+      #@.radar_Fields (data_Fields)->
+      #  (data_Fields is null).assert_Is_True()
       @.load_Data ()=>
         @.radar_Fields (data_Fields)->
           data_Fields.keys().assert_Is ['axes']

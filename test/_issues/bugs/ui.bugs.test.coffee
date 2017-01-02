@@ -11,6 +11,7 @@ describe '_issues | bugs', ->
         @.$('b').eq(1).html().assert_Is 'Fixed'
 
 
+  # fixed (commented out lines bellow are from original 'bug test')
   it '#213 - Race condition on multiple calls to Team_Data load', ->
 
     inject ($injector, $routeParams, $httpBackend)->
@@ -23,8 +24,7 @@ describe '_issues | bugs', ->
         #(++sequence).assert_Is 3
         team_Data.data.metadata.team.assert_Is 'Team A'         # confirm data was retrieved
       team_Data.load_Data ()->                                  # 2nd call to load_Data
-        console.log (++sequence)
-        (++sequence).assert_Is 4
+        (++sequence).assert_Is 3
         team_Data.data.metadata.team.assert_Is 'Team A'
         #(++sequence).assert_Is 1                                # confirm this is call first (HERE IS THE BUG)
         #(team_Data.data is null).assert_Is_True()               # confirm we get no data

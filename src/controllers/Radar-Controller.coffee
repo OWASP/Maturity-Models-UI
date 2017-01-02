@@ -23,16 +23,12 @@ angular.module('MM_Graph')
 
         data = []
 
-        #API.data_Radar_Fields project, (data_Fields)=>
         team_Data.radar_Fields (data_Fields)=>
           data.push data_Fields
           team_Data.radar_Team team, (data_Radar)->
-          #API.data_Radar_Team project, team,(team_Data)->
             data.push data_Radar
             team_Data.radar_Team extra_Level, (data_Radar)->
-            #API.data_Radar_Team project, extra_Level,(team_Data)->
               data.push data_Radar
-
               $scope.radar_Data = data
               $scope.show_Radar data, $scope.get_Radar_Config()
 
@@ -45,4 +41,4 @@ angular.module('MM_Graph')
 
 
     team_Data.load_Data ->
-      $scope.load_Data team_Data.project, team_Data.team #$routeParams.project, $routeParams.team
+      $scope.load_Data team_Data.project, team_Data.team

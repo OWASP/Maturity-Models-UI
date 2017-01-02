@@ -8,18 +8,18 @@ class API
   _GET: (url, callback)=>
     @.$http.get url
            .then (response)->                                         # note: response object also has: statusText, headers() and config
-              callback response.data, response.status
+              callback? response.data, response.status
            .catch (error)->
               console.log "Error in request: '#{url}': #{error}"      # risk: Client site API errors are not handled #200
-              callback null, error?.data, error?.status
+              callback? null, error?.data, error?.status
 
   _POST: (url, data, callback)=>
     @.$http.post(url, data)
            .then (response)->
-              callback response.data, response.status
+              callback? response.data, response.status
            .catch (error)->
               console.log "Error in request: '#{url}': #{error}"     # risk: Client site API errors are not handled #200
-              callback null, error?.data, error?.status
+              callback? null, error?.data, error?.status
 
   # GET requests
   data_Radar_Fields : (project,       callback)=> @._GET "#{@.version}/data/#{project}/radar/fields"   , callback

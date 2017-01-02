@@ -47,6 +47,7 @@ describe 'services | API', ->
         status.assert_Is 404
 
         console_Log = console_Log
+
       $httpBackend.flush()
 
   it '_POST (ok route)', ->
