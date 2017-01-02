@@ -13,8 +13,15 @@ describe 'controllers | Team-Data-Controller', ->
       $routeParams.project = project
       $routeParams.team    = team
       $routeParams.level   = 1
-      #$controller('TeamDataController', { $scope: $scope})
+      $controller('TeamDataController', { $scope: $scope})
       #$httpBackend.flush()
+
+  it '$scope.current_Filter', ->
+    ($scope.current_Filter() is undefined).assert_Is_True()
+
+    inject ($routeParams)->
+      $routeParams.filter = 'abc'
+      $scope.current_Filter().assert_Is 'abc'
 
 #  it '$controller()',->
 #    inject (team_Data)->

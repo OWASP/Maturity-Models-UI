@@ -20,7 +20,7 @@ describe 'controllers | team | Team-Menu-Controller', ->
       @.base_Path   .assert_Is "/view/#{project}/#{team}"
       @.links.size().assert_Is 7
       texts = (link.text for link in @.links)
-      texts.assert_Is [ 'table', 'radar', 'yes answers', 'edit', 'metadata', 'raw', 'admin' ]
+      texts.assert_Is [ 'radar', 'table', 'yes answers', 'edit', 'metadata', 'raw', 'admin' ]
 
   it 'is_Active', ->
     inject ($location)->

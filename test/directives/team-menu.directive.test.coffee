@@ -31,8 +31,8 @@ describe 'directive | team-menu', ->
       links[index++].text.assert_Is text
 
     check_Link "/view/project/#{project}"             , project
-    check_Link "/view/#{project}/#{team}/table"       , 'table'        # note these links need to be tested in sequence
-    check_Link "/view/#{project}/#{team}/radar"       , 'radar'
+    check_Link "/view/#{project}/#{team}/radar"       , 'radar'        # note these links need to be tested in sequence
+    check_Link "/view/#{project}/#{team}/table"       , 'table'
     check_Link "/view/#{project}/#{team}/yes-answers" , 'yes answers'
     check_Link "/view/#{project}/#{team}/edit"        , 'edit'
     check_Link "/view/#{project}/#{team}/metadata"    , 'metadata'

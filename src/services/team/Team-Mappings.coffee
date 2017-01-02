@@ -14,13 +14,9 @@ class Team_Mappings
     @.team_Data      = team_Data
     @.domains        = null
     @.mappings       = null
-#    @.observed       = null
-#    @.activities     = null
-#    @.schema         = null
 
   load_Data: (callback)=>
-    @.team_Data.load_Data =>
-      callback()
+    @.team_Data.load_Data callback
 
   project: =>
     @.team_Data.project
@@ -48,11 +44,10 @@ class Team_Mappings
       activity_Schema = schema?.activities[key]
       if activity_Schema?.level is level
         mapping += "#{pad(key,7)} | #{pad(activity_Schema?.name, 102)} | #{value.value} \n"
-    #mapping += "#{pad(key,7)} | #{pad(value.value,4) } | #{pad(activity_Schema?.name, 102)} \n"   # see https://github.com/OWASP/Maturity-Models/issues/202#issuecomment-267292073
+        #mapping += "#{pad(key,7)} | #{pad(value.value,4) } | #{pad(activity_Schema?.name, 102)} \n"   # see https://github.com/OWASP/Maturity-Models/issues/202#issuecomment-267292073
     return mapping
 
-  team_Table_Map_Rows: (level, filter)->
-
+  team_Table_Map_Rows: (level, filter)=>
     data       = @.team_Data.data
     schema     = @.team_Data.schema
 

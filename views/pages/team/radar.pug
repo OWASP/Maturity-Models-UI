@@ -1,4 +1,33 @@
-div(ng-controller='RadarController')
+teamMenu
+
+.row
+    //.large-9.columns
+    b {{team}} data (in green) compared to levels 1,2 3 data (in orange)
+    br
+    br
+.row(style='background:#F0F0F0')
+    .small-4.columns
+        div(ng-controller='RadarController' radar-size='200' extra-level="level-1" , target-div='.chart-level-1')
+            b level 1:
+            br
+            br
+            div.chart-level-1
+
+    .small-4.columns
+        div(ng-controller='RadarController' radar-size='200' extra-level="level-2", target-div='.chart-level-2')
+            b level 2:
+            br
+            br
+            div.chart-level-2
+
+    .small-4.columns
+        div(ng-controller='RadarController' radar-size='200' extra-level="level-3", target-div='.chart-level-3')
+            b level 3:
+            br
+            br
+            div.chart-level-3
+
+//div(ng-controller='RadarController')
     teamMenu
     .row.column
         .small-12.columns
@@ -9,6 +38,7 @@ div(ng-controller='RadarController')
         .small-12.columns
             br
             div.chart-container
+
 
     .row
         .small-1.columns

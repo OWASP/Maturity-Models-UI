@@ -20,7 +20,7 @@ describe 'views | project.page', ->
       @.find('li'       ).eq(1).text().assert_Is 'scores'
       @.find('li'       ).eq(2).text().assert_Is 'observed'
       @.find('li'       ).eq(3).attr('ng-repeat').assert_Is '(key, team) in teams.sort()'
-      @.find('a'        ).eq(3).attr('href')     .assert_Is 'view/{{project}}/{{team}}/table'
+      @.find('a'        ).eq(3).attr('href')     .assert_Is 'view/{{project}}/{{team}}/radar'
       @.find('a'        ).eq(3).html()           .assert_Is '{{team}}'
 
 
@@ -57,7 +57,7 @@ describe 'views | project.page', ->
         check_Link 5 , 'view/project/demo/schema'             , 'schema'
         check_Link 6 , 'view/project/demo/scores'             , 'scores'
         check_Link 7 , 'view/project/demo/observed'           , 'observed'
-        check_Link 8 , 'view/demo/team-A/table'               , 'team-A'
-        check_Link 9 , 'view/demo/team-B/table'               , 'team-B'
+        check_Link 8 , 'view/demo/team-A/radar'               , 'team-A'
+        check_Link 9 , 'view/demo/team-B/radar'               , 'team-B'
         check_Link 10, 'view/project/demo/new-team'           , 'new team'
         check_Link 11, 'api/v1/project/caches/clear'          , 'clear project cache'

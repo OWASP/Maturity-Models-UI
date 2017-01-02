@@ -6,7 +6,7 @@ angular.module('MM_Graph')
       $scope.data   = data
       if data.status is 'Ok'
         $scope.status = 'Team created ok, redirecting...'
-        $location.url("/view/#{project}/#{data.team_Name}/table")
+        $location.url("/view/#{project}/#{data.team_Name}/radar")
       else
         $scope.status = 'Error: failed to create team'
           

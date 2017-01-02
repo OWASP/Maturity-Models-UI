@@ -4,6 +4,7 @@ describe 'controllers | Radar', ->
   project        = null
   team           = null
   version        = null
+  draw_Params    = {}
 
   beforeEach ->
     module('MM_Graph')
@@ -19,7 +20,11 @@ describe 'controllers | Radar', ->
       $scope = $rootScope.$new()
       $attrs = {}
       $controller('RadarController', { $scope: $scope, $attrs:$attrs })
-
+      window.RadarChart =
+        draw: (div, data, config)->                                                  # capture draw method parameters
+          draw_Params['div'   ] = div
+          draw_Params['data'  ] = data
+          draw_Params['config'] = config
       $httpBackend.flush()
 
   afterEach ->
@@ -38,19 +43,14 @@ describe 'controllers | Radar', ->
       @.color(2).assert_Is 'orange'
       (@.color(3) is undefined).assert_Is_True()
 
-  it '$scope.load_Data',->
+  it '$scope.load_Data and show_Radar',->
+
     using $scope, ->
-      @.radar_Data.first().axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 , size: 11}
-      @.radar_Data.second().axes.first().assert_Is { value: 0.4091 }
+      @.radar_Div.assert_Is '.chart-container'
       @.project   .assert_Is project
       @.team      .assert_Is team
 
-  it '$scope.show_Radar', ->
-    window.RadarChart =
-      draw: (div, data, config)->
-        $scope.radar_Div.assert_Is '.chart-container'
-        data.first().axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics',key: 'SM', xOffset: 20, value: 0 , size: 11}
-        data.second().axes.first().assert_Is { value: 0.4091 }
-        config.levels.assert_Is 6
-    
-    $scope.show_Radar()
+    draw_Params['div'].assert_Is '.chart-container'
+    draw_Params['data'].first().axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 , size: 11}
+    draw_Params['data'].second().axes.first().assert_Is { value: 0.4091 }
+    draw_Params['config'].w.assert_Is 450
