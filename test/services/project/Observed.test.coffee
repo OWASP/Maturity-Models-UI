@@ -26,13 +26,11 @@ describe 'services | project | Observed', ->
       (@.observed       is null).assert_Is_True()
       (@.schema         is null).assert_Is_True()
 
-  it 'activity_By_Key', ->
+  it 'activity_For_Key', ->
     using observed, ->
       @.project_Data.load_Data =>
-        @.map_Domains()
-         .map_Observed()
-         .map_Activities()
-        @.activity_By_Key('SM.1.1')
+        @.map_Data()
+        @.activity_For_Key('SM.1.1')
           .assert_Is {
             key     : 'SM.1.1',
             level   : '1',
@@ -43,7 +41,7 @@ describe 'services | project | Observed', ->
             Maybe   : [],
             NA      : []
           }
-        @.activity_By_Key(null)
+        @.activity_For_Key(null)
           .assert_Is {}
       httpBackend.flush()
 
@@ -96,3 +94,12 @@ describe 'services | project | Observed', ->
 
     httpBackend.flush()
 
+  it 'proofs_For_Activity', ->
+    using observed, ->
+      @.project_Data.load_Data =>
+        @.map_Data()
+        activity = @.activity_For_Key('SM.1.1')
+        @.proofs_For_Activity activity, (proofs)->
+          proofs['level-1'].assert_Is { value: 'Yes', proof: '' }
+
+    httpBackend.flush()

@@ -1,8 +1,9 @@
 app = angular.module('MM_Graph')
 
 class Observed
-  constructor: ($routeParams, project_Data)->
+  constructor: ($routeParams, API, project_Data)->
     @.$routeParams   = $routeParams
+    @.API            = API
     @.project_Data   = project_Data
     @.domains        = null
     @.observed       = null
@@ -10,7 +11,7 @@ class Observed
     @.schema         = null
 
 
-  activity_By_Key: (key)=>
+  activity_For_Key: (key)=>
     if key and @.activities
       for activity in @.activities
         if activity.key is key
@@ -70,5 +71,10 @@ class Observed
         activities: domain_Activities           # mapped activities in domain
     @
 
-app.service 'observed', ($routeParams, project_Data)=>
-  return new Observed $routeParams, project_Data
+  proofs_For_Activity: (activity, callback)=>
+    @.API.teams_Proofs @.project_Data?.project, (proofs)=>
+      callback proofs[activity?.key]
+
+
+app.service 'observed', ($routeParams,API, project_Data)=>
+  return new Observed $routeParams, API, project_Data

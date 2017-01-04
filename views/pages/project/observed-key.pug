@@ -6,12 +6,12 @@ div(ng-controller='ObservedController')
         form
             .row
                 .small-8
-                    .row
-                        .small-3.columns
-                            label.right
-                                b key:
-                        .small-9.columns
-                            label.left {{ activity.key }}
+                    //.row
+                    //    .small-3.columns
+                    //        label.right
+                    //            b key:
+                    //    .small-9.columns
+                    //        label.left {{ activity.key }}
                     .row
                         .small-3.columns
                             label.right
@@ -41,9 +41,10 @@ div(ng-controller='ObservedController')
                                     tr
                                         th Team Name
                                         th Proof
-                                    tr(ng-repeat='activity in activity.Yes')
+                                    tr(ng-repeat='team in activity.Yes')
                                         td
-                                            a(href='{{team_Table_Link(activity)}}') {{activity}}
+                                            a(href='{{team_Table_Link(team)}}') {{team}}
+                                        td {{ proofs[team].proof }}
                     .row(ng-show='activity.No.length>0')
                         .small-3.columns
                             label.right
@@ -54,9 +55,10 @@ div(ng-controller='ObservedController')
                                     tr
                                         th Team Name
                                         th Proof
-                                    tr(ng-repeat='activity in activity.No')
+                                    tr(ng-repeat='team in activity.No')
                                         td
-                                            a(href='{{team_Table_Link(activity)}}') {{activity}}
+                                            a(href='{{team_Table_Link(team)}}') {{team}}
+                                        td {{ proofs[team].proof }}
                     .row(ng-show='activity.NA.length>0')
                         .small-3.columns
                             label.right
@@ -67,10 +69,10 @@ div(ng-controller='ObservedController')
                                     tr
                                         th Team Name
                                         th Proof
-                                    tr(ng-repeat='activity in activity.NA')
+                                    tr(ng-repeat='team in activity.NA')
                                         td
-                                            a(href='{{team_Table_Link(activity)}}') {{activity}}
-
+                                            a(href='{{team_Table_Link(team)}}') {{team}}
+                                        td {{ proofs[team].proof }}
                     .row(ng-show='activity.Maybe.length>0')
                         .small-3.columns
                             label.right
@@ -81,9 +83,10 @@ div(ng-controller='ObservedController')
                                     tr
                                         th Team Name
                                         th Proof
-                                    tr(ng-repeat='activity in activity.Maybe')
+                                    tr(ng-repeat='team in activity.Maybe')
                                         td
-                                            a(href='{{team_Table_Link(activity)}}') {{activity}}
+                                            a(href='{{team_Table_Link(team)}}') {{team}}
+                                        td {{ proofs[team].proof }}
 
 
     .row

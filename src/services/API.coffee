@@ -34,6 +34,7 @@ class API
   team_Delete       : (project, team, callback)=> @._GET "#{@.version}/team/#{project}/delete/#{team}" , callback
   team_Get          : (project, team, callback)=> @._GET "#{@.version}/team/#{project}/get/#{team}"    , callback
   team_New          : (project,       callback)=> @._GET "#{@.version}/team/#{project}/new"            , callback
+  teams_Proofs      : (project,       callback)=> @._GET "#{@.version}/teams/proofs/#{project}"        , callback
 
   # POST requests
   file_Save         : (project,team, data, callback)=> @._POST "#{@.version}/team/#{project}/save/#{team}", data, callback

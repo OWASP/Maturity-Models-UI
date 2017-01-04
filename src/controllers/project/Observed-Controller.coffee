@@ -24,5 +24,7 @@ angular.module('MM_Graph')
         using observed.map_Data(), ->
           $scope.observed    = @.observed
           $scope.activities  = @.activities
-          $scope.activity    = @.activity_By_Key($scope.key)
-          window.scope = $scope
+          if $scope.key
+            $scope.activity    = @.activity_For_Key    $scope.key
+            @.proofs_For_Activity $scope.activity, (proofs)->
+              $scope.proofs = proofs

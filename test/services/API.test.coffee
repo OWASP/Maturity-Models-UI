@@ -78,6 +78,10 @@ describe 'services | API', ->
   it 'project_List'     , -> call_API "project_List"     , [             ], (data)-> data.assert_Is ['bsimm','samm']
   it 'project_Scores'   , -> call_API "project_Scores"   , [project      ], (data)-> data['team-A']['level_1'].assert_Is { value: 19.4, percentage: '50%', activities: 39 }
   it 'routes'           , -> call_API "routes"           , [             ], (data)-> data.raw.assert_Contains ['/ping']
+  it 'teams_Proofs'     , -> call_API "teams_Proofs"     , [project      ], (data)-> data['SM.1.1']['level-1'].assert_Is { value: 'Yes', proof: '' }
+
+
+  # special cases
   it 'team_Delete', ->
     inject ($httpBackend)->
       $httpBackend.expectGET("/api/v1/team/#{project}/delete/#{team}").respond { status: 'ok'}
@@ -89,7 +93,6 @@ describe 'services | API', ->
       data.status.assert_Is 'Ok'
       data.team_Name.assert_Contains 'team-'
       data.team_Name.length.assert_Is 10
-
 
   it 'Angular bug $routeParams is lost after API call', ->
     inject ($routeParams)=>
