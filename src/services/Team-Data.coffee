@@ -39,6 +39,7 @@ class Team_Data
     @.schema   = null
     @.data     = null
     @.deferred = null
+
   load_Data: (callback)=>
     if not (@.$routeParams.project and @.$routeParams.team)                     # check that project and team are set
       return callback()

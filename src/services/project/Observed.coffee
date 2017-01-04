@@ -10,6 +10,13 @@ class Observed
     @.schema         = null
 
 
+  activity_By_Key: (key)=>
+    if key and @.activities
+      for activity in @.activities
+        if activity.key is key
+          return activity
+    return {}
+
   current_Level: ()=>
     @.$routeParams.level || null
 
@@ -46,16 +53,15 @@ class Observed
       for key in activities
         activity_Data   = @.project_Data       .activities[key]
         activity_Schema = @.project_Data.schema.activities[key]
-
         domain_Activities[key]=
           key     : key
-          level   : activity_Schema.level
-          name    : activity_Schema.name
-          observed: activity_Data['Yes']?.length ? 0
-          Yes     : activity_Data['Yes']
-          No      : activity_Data['No']
-          Maybe   : activity_Data['Maybe']
-          NA      : activity_Data['NA']
+          level   : activity_Schema.level  || 0
+          name    : activity_Schema.name   || ''
+          observed: activity_Data['Yes'  ]?.length ? 0
+          Yes     : activity_Data['Yes'  ] || []
+          No      : activity_Data['No'   ] || []
+          Maybe   : activity_Data['Maybe'] || []
+          NA      : activity_Data['NA'   ] || []
 
 
       @.observed[domain] =
