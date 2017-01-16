@@ -75,7 +75,6 @@ class Team_Mappings
                 when 'NA'    then row.push false, false, true , false
                 when 'Maybe' then row.push false, false, false, true
 
-              row.push ''  # proof value
               @.mappings.push row
 
 app.service 'team_Mappings', ($routeParams, team_Data)=>

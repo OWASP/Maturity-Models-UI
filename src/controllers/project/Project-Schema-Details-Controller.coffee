@@ -9,20 +9,20 @@ angular.module('MM_Graph')
       
     $scope.create_Scheme_Details_Table_Rows = (schema, schema_Details)->
       rows = []
+      if schema?.activities and schema_Details?.activities
+        for domain_Name, domain of schema?.domains
+          practices   = domain.practices
+          for practice_Name in practices
+            practice           = schema.practices[practice_Name]
+            activities           = practice.activities
+            for key in activities
+              activity         = schema.activities[key]
+              activity_Details = schema_Details.activities[key]
+              if $scope.show_Row(activity.level, domain_Name)
+                  cells = [domain_Name, practice_Name, key, activity.level, activity.name,
+                           activity_Details?.objective, activity_Details?.proof, activity_Details?.description]
 
-      for domain_Name, domain of schema?.domains
-        practices   = domain.practices
-        for practice_Name in practices
-          practice           = schema.practices[practice_Name]
-          activities           = practice.activities
-          for key in activities
-            activity         = schema.activities[key]
-            activity_Details = schema_Details.activities[key]
-            if $scope.show_Row(activity.level, domain_Name)
-                cells = [domain_Name, practice_Name, key, activity.level, activity.name,
-                         activity_Details?.objective, activity_Details?.proof, activity_Details?.description]
-
-                rows.push cells
+                  rows.push cells
       return rows
 
     $scope.current_Level = ()->
@@ -42,5 +42,5 @@ angular.module('MM_Graph')
         $scope.project        = @.project
         $scope.level          = $routeParams.level  || null
         $scope.domain         = $routeParams.domain || null
-        $scope.domains        = @.schema.domains.keys()
+        $scope.domains        = @.schema?.domains?.keys()
         $scope.rows           = $scope.create_Scheme_Details_Table_Rows @.schema, @.schema_Details
