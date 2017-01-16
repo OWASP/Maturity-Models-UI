@@ -5,7 +5,7 @@ div(ng-controller='ObservedController')
         h4 Observed data for: {{key}}
         form
             .row
-                .small-8
+                .small-12
                     //.row
                     //    .small-3.columns
                     //        label.right
@@ -24,6 +24,24 @@ div(ng-controller='ObservedController')
                                 b name:
                         .small-9.columns
                             label.left {{ activity.name }}
+                    .row
+                        .small-3.columns
+                            label.right
+                                b objective:
+                        .small-9.columns
+                            label.left {{ activity.objective }}
+                    .row
+                        .small-3.columns
+                            label.right
+                                b proof:
+                        .small-9.columns
+                            label.left {{ activity.proof }}
+                    .row
+                        .small-3.columns
+                            label.right
+                                b description:
+                        .small-9.columns
+                            label.left {{ activity.description }}
                     .row
                         .small-3.columns
                             label.right

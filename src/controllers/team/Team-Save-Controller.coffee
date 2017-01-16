@@ -1,6 +1,5 @@
 angular.module('MM_Graph')
-  .controller 'TeamSaveController', ($scope, team_Data)->
-
+  .controller 'TeamSaveController', ($scope, $rootScope, keyboard, team_Data)->
 
     $scope.save_Data = ()->
       $scope.status = 'saving data ....'
@@ -21,8 +20,10 @@ angular.module('MM_Graph')
         $scope.metadata = team_Data.data.metadata
         $scope.status   = 'data loaded'
 
+    $scope.$on 'keyup_CtrS', (event,args)->                 # receive event when Ctrl+S was pressed
+      $scope.save_Data()                                    # trigger save data
+      args.preventDefault()                                 # prevent OS/browser from showing the default save dialog box
 
-#    using Team_Data, ->
-#      @.subscribe $scope, =>                  # register to receive notification when data is available
-#        $scope.load_Data()
-#      @.notify()                              # trigger notification if it already exists
+    $rootScope.$on 'onChange', ()->
+      $scope.status = 'unsaved data'
+      $scope.messageClass = 'warning'

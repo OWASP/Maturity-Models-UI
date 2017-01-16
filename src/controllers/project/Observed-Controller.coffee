@@ -25,6 +25,6 @@ angular.module('MM_Graph')
           $scope.observed    = @.observed
           $scope.activities  = @.activities
           if $scope.key
-            $scope.activity    = @.activity_For_Key    $scope.key
+            $scope.activity  = @.activity_For_Key  $scope.key
             @.proofs_For_Activity $scope.activity, (proofs)->
               $scope.proofs = proofs

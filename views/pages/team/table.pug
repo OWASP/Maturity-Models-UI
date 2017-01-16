@@ -11,7 +11,7 @@ div
 
     teamMenu
 
-    div.show-for-print
+    //div.show-for-print
         hr
         //.row.column
             .small-4.columns
@@ -75,7 +75,7 @@ div(ng-controller='TeamDataController')
 
                 span(ng-show='current_Filter()')
                     span &#32;|&#32;
-                    a(href='view/{{project}}/{{team}}/table?filter='     ) (remove '{{current_Filter()}}' filter)
+                    a(href='view/{{project}}/{{team}}/table?filter=' ) (remove '{{current_Filter()}}' filter)
 
 
 

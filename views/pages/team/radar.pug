@@ -2,9 +2,44 @@ teamMenu
 
 .row
     //.large-9.columns
-    b {{team}} data (in green) compared to levels 1,2 3 data (in orange)
+    b {{team}} data
     br
     br
+
+.row
+    .small-6.columns
+        div(ng-controller='RadarController' radar-size='400' extra-level="" , target-div='.chart')
+            div.chart
+    .small-6.columns
+        pre.
+            SM   = Strategy & Metrics
+            CMVM = Configuration Management & Vulnerability Management
+            SE   = Software Environment
+            PT   = Penetration Testing
+            ST   = Security Testing
+            CR   = Code Review
+            AA   = Architecture Analysis
+            SR   = Standards & Requirements
+            SFD  = Security Features & Design
+            AM   = Attack Models
+            T    = Training
+            CP   = Compliance & Policy
+
+
+
+
+
+
+
+
+
+.row
+    //.large-9.columns
+    b {{team}} data (in green) compared to levels 1,2 and 3 data (in orange)
+    br
+    br
+
+
 .row(style='background:#F0F0F0')
     .small-4.columns
         div(ng-controller='RadarController' radar-size='200' extra-level="level-1" , target-div='.chart-level-1')

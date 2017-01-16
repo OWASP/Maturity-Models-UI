@@ -1,5 +1,6 @@
-  angular.module('MM_Graph')
+angular.module('MM_Graph')
   .controller 'ProjectSchemaController', ($scope, $routeParams, API, project_Data)->
+
 
     $scope.create_Table_Rows = (data)->
       rows = []
@@ -22,7 +23,6 @@
               row.push value : key , id :key
               row.push value : activity.level
               row.push value : activity.name
-
               rows.push row
             domain_Row   = []
             practice_Row = []
@@ -30,6 +30,7 @@
 
     using project_Data, ->
       @.load_Data =>
-        $scope.project = @.project
-        $scope.level   = $routeParams.level || null
-        $scope.rows    = $scope.create_Table_Rows @.schema
+        $scope.project        = @.project
+        $scope.rows           = $scope.create_Table_Rows @.schema
+        $scope.schema         = @.schema
+        $scope.schema_Details = @.schema_Details

@@ -20,17 +20,17 @@
                 td.hide-for-print {{index + 1}}
                 td.hide-for-medium-down.hide-for-print {{cells[0]}}
                 td.hide-for-medium-down.hide-for-print {{cells[1]}}
-                td {{cells[2]}}
+                td
+                    a(href='{{observed_Link()}}/{{cells[2]}}') {{cells[2]}}
                 td {{cells[3]}}
                 td {{cells[4]}}
                 td
-                    input(type='radio' ng-checked= 'cells[5]' ng-model="data.activities[cells[2]].value" value='Yes')
+                    input(type='radio' ng-checked= 'cells[5]' ng-model="data.activities[cells[2]].value" value='Yes'   ng-change='onChanged(this)' )
                 td
-                    input(type='radio' ng-checked= 'cells[6]' ng-model="data.activities[cells[2]].value" value='No')
+                    input(type='radio' ng-checked= 'cells[6]' ng-model="data.activities[cells[2]].value" value='No'    ng-change='onChanged(this)' )
                 td
-                    input(type='radio' ng-checked= 'cells[7]' ng-model="data.activities[cells[2]].value" value='NA')
+                    input(type='radio' ng-checked= 'cells[7]' ng-model="data.activities[cells[2]].value" value='NA'    ng-change='onChanged(this)' )
                 td
-                    input(type='radio' ng-checked= 'cells[8]' ng-model="data.activities[cells[2]].value" value='Maybe')
+                    input(type='radio' ng-checked= 'cells[8]' ng-model="data.activities[cells[2]].value" value='Maybe' ng-change='onChanged(this)' )
                 td.hide-for-medium-down.input-field.hide-for-print
-                    //{{cells[9]}}
-                    input(type='text'  ng-model='data.activities[cells[2]].proof')
+                    input(type='text'  ng-model='data.activities[cells[2]].proof'  ng-change='onChanged(this)' )

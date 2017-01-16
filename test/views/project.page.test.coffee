@@ -30,34 +30,38 @@ describe 'views | project.page', ->
       $routeParams.project = 'demo'
       element = $compile(angular.element(html))($rootScope)
 
-      $httpBackend.expectGET('/api/v1/project/get/'        + $routeParams.project).respond ['team-A','team-B']
-      $httpBackend.expectGET('/api/v1/project/schema/'     + $routeParams.project).respond {}
-      $httpBackend.expectGET('/api/v1/project/activities/' + $routeParams.project).respond {}
-      $httpBackend.expectGET('/api/v1/project/scores/'     + $routeParams.project).respond {}
+      $httpBackend.expectGET('/api/v1/project/get/'            + $routeParams.project).respond ['team-A','team-B']
+      $httpBackend.expectGET('/api/v1/project/schema/'         + $routeParams.project).respond {}
+      $httpBackend.expectGET('/api/v1/project/schema-details/' + $routeParams.project).respond {}
+      $httpBackend.expectGET('/api/v1/project/activities/'     + $routeParams.project).respond {}
+      $httpBackend.expectGET('/api/v1/project/scores/'         + $routeParams.project).respond {}
 
       $httpBackend.flush()
 
 
       using $(element.find('a')), ->
-        @.length.assert_Is 12
+        @.length.assert_Is 13
 
         check_Link = (id, link, value)=>
           using @.eq(id), ->
             @.attr('href').assert_Is link
             @.html().assert_Is value
 
+        index = 0;
+
         # projectMenu
-        check_Link 0 , '/view/project/demo'                   , 'demo'
-        check_Link 1 , '/view/project/demo/schema'            , 'schema'
-        check_Link 2 , '/view/project/demo/scores'            , 'scores'
-        check_Link 3 , '/view/project/demo/observed'          , 'observed'
-        check_Link 4 , '/view/project/demo/observed-details'  , 'observed (details)'
+        check_Link index++ , '/view/project/demo'                   , 'demo'
+        check_Link index++ , '/view/project/demo/schema'            , 'schema'
+        check_Link index++ , '/view/project/demo/schema-details'    , 'schema (details)'
+        check_Link index++ , '/view/project/demo/scores'            , 'scores'
+        check_Link index++ , '/view/project/demo/observed'          , 'observed'
+        check_Link index++ , '/view/project/demo/observed-details'  , 'observed (details)'
 
         # other links below
-        check_Link 5 , 'view/project/demo/schema'             , 'schema'
-        check_Link 6 , 'view/project/demo/scores'             , 'scores'
-        check_Link 7 , 'view/project/demo/observed'           , 'observed'
-        check_Link 8 , 'view/demo/team-A/radar'               , 'team-A'
-        check_Link 9 , 'view/demo/team-B/radar'               , 'team-B'
-        check_Link 10, 'view/project/demo/new-team'           , 'new team'
-        check_Link 11, 'api/v1/project/caches/clear'          , 'clear project cache'
+        check_Link index++, 'view/project/demo/schema'             , 'schema'
+        check_Link index++, 'view/project/demo/scores'             , 'scores'
+        check_Link index++, 'view/project/demo/observed'           , 'observed'
+        check_Link index++, 'view/demo/team-A/radar'               , 'team-A'
+        check_Link index++ , 'view/demo/team-B/radar'              , 'team-B'
+        check_Link index++, 'view/project/demo/new-team'           , 'new team'
+        check_Link index++, 'api/v1/project/caches/clear'          , 'clear project cache'

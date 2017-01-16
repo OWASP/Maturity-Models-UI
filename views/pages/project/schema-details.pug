@@ -1,0 +1,61 @@
+projectMenu
+
+div(ng-controller='ProjectSchemaDetailsController')#project
+    pre {{ schema.domains }}
+    .row
+        ul.hide-for-print
+            small
+                b &#32;&#32; filter by level: &#32;&#32;
+                a(href='{{page_Link()}}?level=1&domain={{ current_Domain()}}'   ) 1   &#32;
+                a(href='{{page_Link()}}?level=2&domain={{ current_Domain()}}'   ) 2   &#32;
+                a(href='{{page_Link()}}?level=3&domain={{ current_Domain()}}'   ) 3   &#32;
+
+                b &#32;|&#32; filter by domain: &#32;&#32;
+                span(ng-repeat="domain in domains")
+                    a(href='{{page_Link()}}?domain={{ domain }}&level={{ current_Level() }}'   ) {{ domain }}   &#32;
+
+                span(ng-show='current_Level() || current_Domain()')
+                    span &#32;|&#32;
+                    b &#32;&#32; remove: &#32;&#32;
+                    a(href='{{page_Link()}}'     ) all filters
+
+    .row.fullWidth.activity-table
+        div.callout.large.primary
+            div.row.column(ng-show='project')
+                h4 Schema Details for Project {{project}}
+                    b &#32;- {{rows.size()}} activities
+                    b(ng-if='level')
+                        small &#32;(level={{level}})
+                    b(ng-if='domain')
+                        small &#32;(domain={{domain}})
+
+
+                table(border=1, style='border-collapse: collapse')
+                    thead
+                        tr
+                            th Domain
+                            th.text-center(width=150) Practice
+                            th Key
+                            th Level
+                            th(width=250) Activity
+                            th Objective
+                            th(width=150) Proof
+                            th Description
+                    tbody
+                        tr(ng-repeat='row in ::rows', style='vertical-align: top')
+                          td {{ row[0] }}
+                          td.text-center {{ row[1] }}
+                          td.text-center
+                            a(href='{{ observed_Link()}}/{{ row[2] }}') {{ row[2] }}
+                          td.text-center {{ row[3] }}
+                          td {{ row[4] }}
+                          td {{ row[5] }}
+                          td  {{ row[6] }}
+                          td {{ row[7] }}
+
+                          //td(ng-repeat='(index, cell) in row track by $index')
+                            span(ng-if="index===2")
+                              a(href='{{ observed_Link()}}/{{cell}}') {{cell}}
+                            span(ng-if="index===2")
+                                span.text-left {{ cell }}
+                            span(ng-if="index != 2") {{ cell }}

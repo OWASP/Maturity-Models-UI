@@ -22,5 +22,5 @@ div(ng-controller='TeamDataController')
                         //td
                             input(type='radio' ng-checked= 'cells[5]' ng-model="data.activities[cells[2]].value" value='Yes')
                         td
-                            input(type='text'  ng-model='data.activities[cells[2]].proof')
+                            input(type='text'  ng-model='data.activities[cells[2]].proof' ng-change='onChanged(this)')
     teamSave.hide-for-print

@@ -2,7 +2,7 @@ angular.module('MM_Graph')
   .controller 'RadarController', ($scope, $routeParams, team_Data, $attrs)->
 
     radar_Size  = $attrs.radarSize  || 450
-    extra_Level = $attrs.extraLevel || 'level-1'
+    extra_Level = $attrs.extraLevel #|| 'level-1'
     target_Div  = $attrs.targetDiv  || '.chart-container'
 
     $scope.radar_Div = target_Div
@@ -24,6 +24,8 @@ angular.module('MM_Graph')
 
       team_Data.radar_Fields                (radar_Fields          )->
         team_Data.radar_Team   $scope.team, (radar_Team            )->
-          team_Data.radar_Team extra_Level, (radar_Team_Extra_Level)->
-
-            $scope.show_Radar [radar_Fields, radar_Team, radar_Team_Extra_Level]
+          if extra_Level
+            team_Data.radar_Team extra_Level, (radar_Team_Extra_Level)->
+              $scope.show_Radar [radar_Fields, radar_Team, radar_Team_Extra_Level]
+          else
+            $scope.show_Radar [radar_Fields, radar_Team]

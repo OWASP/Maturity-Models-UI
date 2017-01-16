@@ -17,9 +17,9 @@ describe 'controllers | project | Project-Menu-controller', ->
     using $scope, ->
       @.project     .assert_Is project
       @.base_Path   .assert_Is "/view/project/#{project}"
-      @.links.size().assert_Is 4
+      @.links.size().assert_Is 5
       texts = (link.text for link in @.links)
-      texts.assert_Is [ 'schema', 'scores', 'observed', 'observed (details)' ]
+      texts.assert_Is [ 'schema', 'schema (details)', 'scores', 'observed', 'observed (details)' ]
 
   it 'is_Active', ->
     inject ($location)->

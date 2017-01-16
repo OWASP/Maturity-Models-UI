@@ -18,7 +18,7 @@ describe 'angular | Routes ', ->
         '/view/project/:project/observed/:key'
         '/view/project/:project/observed-details'
         '/view/project/:project/schema'
-        '/view/project/:project/schema/:level'
+        '/view/project/:project/schema-details'
         '/view/:project/:team/admin'
         '/view/:project/:team/edit'
         '/view/:project/:team/radar'

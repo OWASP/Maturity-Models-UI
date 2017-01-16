@@ -72,13 +72,14 @@ describe 'services | API', ->
       $httpBackend.flush()
 
 
-  it 'data_Radar_Team'  , -> call_API "data_Radar_Team"  , [project, team], (data)-> data.axes.first().value.assert_Is 0.4091
-  it 'data_Radar_Fields', -> call_API "data_Radar_Fields", [project      ], (data)-> data.axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 , size: 11}
-  it 'project_Get'      , -> call_API "project_Get"      , [project      ], (data)-> data.assert_Contains ['level-1', 'level-2','level-3']
-  it 'project_List'     , -> call_API "project_List"     , [             ], (data)-> data.assert_Is ['bsimm','samm']
-  it 'project_Scores'   , -> call_API "project_Scores"   , [project      ], (data)-> data['team-A']['level_1'].assert_Is { value: 19.4, percentage: '50%', activities: 39 }
-  it 'routes'           , -> call_API "routes"           , [             ], (data)-> data.raw.assert_Contains ['/ping']
-  it 'teams_Proofs'     , -> call_API "teams_Proofs"     , [project      ], (data)-> data['SM.1.1']['level-1'].assert_Is { value: 'Yes', proof: '' }
+  it 'data_Radar_Team'       , -> call_API "data_Radar_Team"        , [project, team], (data)-> data.axes.first().value.assert_Is 0.4091
+  it 'data_Radar_Fields'     , -> call_API "data_Radar_Fields"      , [project      ], (data)-> data.axes.first().assert_Is { axis: 'SM', name: 'Strategy & Metrics', key: 'SM', xOffset: 20, value: 0 , size: 11}
+  it 'project_Get'           , -> call_API "project_Get"            , [project      ], (data)-> data.assert_Contains ['level-1', 'level-2','level-3']
+  it 'project_List'          , -> call_API "project_List"           , [             ], (data)-> data.assert_Is ['bsimm','samm']
+  it 'project_Schema_Details', -> call_API "project_Schema_Details" , [project      ], (data)-> data.activities['SM.1.1'].keys().assert_Is [ 'description', 'resources', 'objective', 'proof' ]
+  it 'project_Scores'        , -> call_API "project_Scores"         , [project      ], (data)-> data['team-A']['level_1'].assert_Is { value: 19.4, percentage: '50%', activities: 39 }
+  it 'routes'                , -> call_API "routes"                 , [             ], (data)-> data.raw.assert_Contains ['/ping']
+  it 'teams_Proofs'          , -> call_API "teams_Proofs"           , [project      ], (data)-> data['SM.1.1']['level-1'].assert_Is { value: 'Yes', proof: '' }
 
 
   # special cases

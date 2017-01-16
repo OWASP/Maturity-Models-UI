@@ -9,6 +9,7 @@ class Observed
     @.observed       = null
     @.activities     = null
     @.schema         = null
+    @.schema_Details = null
 
 
   activity_For_Key: (key)=>
@@ -34,7 +35,8 @@ class Observed
      .map_Activities()
 
   map_Domains: ()=>
-    schema = @.project_Data.schema
+    schema           = @.project_Data.schema
+
     if schema
       @.domains     = {}
       for domain_Name, domain of schema.domains
@@ -54,15 +56,20 @@ class Observed
       for key in activities
         activity_Data   = @.project_Data       .activities[key]
         activity_Schema = @.project_Data.schema.activities[key]
+        schema_Details  = @.project_Data.schema_Details?.activities[key]
+
         domain_Activities[key]=
-          key     : key
-          level   : activity_Schema.level  || 0
-          name    : activity_Schema.name   || ''
-          observed: activity_Data['Yes'  ]?.length ? 0
-          Yes     : activity_Data['Yes'  ] || []
-          No      : activity_Data['No'   ] || []
-          Maybe   : activity_Data['Maybe'] || []
-          NA      : activity_Data['NA'   ] || []
+          key         : key
+          level       : activity_Schema.level          || 0
+          name        : activity_Schema.name           || ''
+          description : schema_Details?.description    || ''
+          objective   : schema_Details?.objective      || ''
+          proof       : schema_Details?.proof          || ''
+          observed    : activity_Data['Yes'  ]?.length  ? 0
+          Yes         : activity_Data['Yes'  ]         || []
+          No          : activity_Data['No'   ]         || []
+          Maybe       : activity_Data['Maybe']         || []
+          NA          : activity_Data['NA'   ]         || []
 
 
       @.observed[domain] =

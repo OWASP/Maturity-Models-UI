@@ -5,8 +5,5 @@ angular.module('MM_Graph')
       $scope.team    = team_Data.team
       $scope.data    = team_Data.data
 
-
-#    using Team_Data, ->
-#      @.subscribe $scope, =>                  # register to receive notification when data is available
-#        $scope.load_Data()
-#      @.notify()                              # trigger notification if it already exists
+      $scope.onChanged = (target)->
+        $scope.$emit 'onChange', target
