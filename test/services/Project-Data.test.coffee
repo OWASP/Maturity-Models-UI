@@ -2,8 +2,6 @@ describe 'services | Project-Data', ->
 
   project       = null
   project_Data  = null
-  $scope        = null
-  $rootScope    = null
 
   beforeEach ()->
     module('MM_Graph')

@@ -1,4 +1,3 @@
-
 describe 'controllers | project | Project', ->
 
   scope       = null

@@ -1,4 +1,4 @@
-describe 'services | Project-Data', ->
+describe 'services | Keyboard', ->
 
   keyboard      = null
 

@@ -31,20 +31,21 @@ describe 'services | project | Observed', ->
       @.project_Data.load_Data =>
         @.map_Data()
 
-        @.activity_For_Key('SM.1.1')
-          .assert_Is {
-            key     : 'SM.1.1',
-            level   : '1',
-            name    : 'Publish process (roles, responsibilities, plan), evolve as necessary',
-            description: 'The process for addressing software security is broadcast to all stakeholders so that everyone knows the plan. Goals, roles, responsibilities, and activities are explicitly defined. Most organizations pick and choose from a published methodology, such as the Microsoft SDL or the Cigital Touchpoints, and then tailor the methodology to their needs. An SSDL process must be adapted to the specifics of the development process it governs (e.g., waterfall, agile, etc) and evolves both with the organization and the security landscape. A process must be published to count. In many cases, the methodology is published only internally and is controlled by the SSG. The SSDL does not need to be publicly promoted outside of the firm to have the desired impact.',
-            objective: 'make the plan explicit ',
-            proof: 'Details published on wiki (provide link as proof)',
-            observed: 3,
-            Yes     : [ 'team-A', 'team-B', 'team-C' ],
-            No      : [ 'save-test' ],
-            Maybe   : [],
-            NA      : []
-          }
+        @.activity_For_Key('SM.1.1').keys().assert_Is [ 'key', 'level', 'name', 'description', 'objective',
+                                                        'proof', 'observed', 'Yes', 'No', 'Maybe', 'NA' ]
+        using @.activity_For_Key('SM.1.1'), ->
+          @.key         .assert_Is 'SM.1.1'
+          @.level       .assert_Is '1'
+          @.name        .assert_Is 'Publish process (roles, responsibilities, plan), evolve as necessary'
+          @.description .assert_Is 'The process for addressing software security is broadcast to all stakeholders so that everyone knows the plan. Goals, roles, responsibilities, and activities are explicitly defined. Most organizations pick and choose from a published methodology, such as the Microsoft SDL or the Cigital Touchpoints, and then tailor the methodology to their needs. An SSDL process must be adapted to the specifics of the development process it governs (e.g., waterfall, agile, etc) and evolves both with the organization and the security landscape. A process must be published to count. In many cases, the methodology is published only internally and is controlled by the SSG. The SSDL does not need to be publicly promoted outside of the firm to have the desired impact.'
+          @.objective   .assert_Is 'make the plan explicit '
+          @.proof       .assert_Is 'Details should be published on wiki (provide link as proof)'
+          @.observed    .assert_Is 3
+          @.Yes         .assert_Is [ 'team-A', 'team-B', 'team-C' ]
+          @.No          .assert_Is [ 'save-test' ]
+          @.Maybe       .assert_Is []
+          @.NA          .assert_Is []
+
         @.activity_For_Key(null)
           .assert_Is {}
       httpBackend.flush()
