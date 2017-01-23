@@ -25,8 +25,12 @@ describe 'services | Team-Data', ->
 
   it 'constructor', ->
     using team_Data, ->
-      (@.project is null).assert_Is_True()
-      (@.team    is null).assert_Is_True()
+      (@.data           is null).assert_Is_True()
+      (@.project        is null).assert_Is_True()
+      (@.schema         is null).assert_Is_True()
+      (@.schema         is null).assert_Is_True()
+      (@.schema_Details is null).assert_Is_True()
+      (@.team           is null).assert_Is_True()
 
 
   it 'load_Data (no project or team)', ->
@@ -52,6 +56,7 @@ describe 'services | Team-Data', ->
         @.project.assert_Is 'bsimm'
         @.team.assert_Is    'team-A'
         @.schema.keys().assert_Is [ 'config','metadata', 'domains', 'practices', 'activities' ]
+        @.schema_Details.activities.keys().length.assert_Is 112
         @.scores.keys().assert_Is [ 'level_1', 'level_2', 'level_3'      ]
         @.data.keys(  ).assert_Is [ 'metadata', 'activities' ]
     $httpBackend$.flush()

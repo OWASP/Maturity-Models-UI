@@ -1,36 +1,72 @@
-
 .row.fullWidth.activity-table(ng-show='show', id='level-{{level}}')
     .panel.callout.radius.text-center Level {{level}} - {{score}}
     table
         thead
             tr
-                th.hide-for-print #
-                th.hide-for-medium-down.hide-for-print Domain
-                th.hide-for-medium-down.hide-for-print Practice
-                th Key
-                th Level
-                th Activity
-                th Yes
-                th No
-                th NA
-                th Maybe
-                th.hide-for-medium-down.hide-for-print Proof
+                th(ng-show="show_Fields['Index']").hide-for-print #
+                th(ng-show="show_Fields['Domain']").hide-for-medium-down.hide-for-print Domain
+                th(ng-show="show_Fields['Practice']").hide-for-medium-down.hide-for-print Practice
+                th(ng-show="show_Fields['Key']") Key
+                th(ng-show="show_Fields['Level']") Level
+                th(ng-show="show_Fields['Activity']") Activity
+                //th(ng-show="show_Fields['Yes']") Yes
+                //th(ng-show="show_Fields['No']") No
+                //th(ng-show="show_Fields['NA']") NA
+                //th(ng-show="show_Fields['Maybe']") Maybe
+                th(ng-show="show_Fields['Objective']") Objective
+                th(ng-show="show_Fields['Description']") Description
+                th(ng-show="show_Fields['Yes']").text-center Yes
+                th(ng-show="show_Fields['No']").text-center No
+                th(ng-show="show_Fields['NA']").text-center NA
+                th(ng-show="show_Fields['Maybe']").text-center Maybe
+                th(ng-show="show_Fields['Proof']").hide-for-medium-down.hide-for-print Proof (value)
+                th(ng-show="show_Fields['Proof_Help']") Proof (help)
         tbody
             tr(ng-repeat="(index, cells) in rows", id='{{cells[2]}}')
-                td.hide-for-print {{index + 1}}
-                td.hide-for-medium-down.hide-for-print {{cells[0]}}
-                td.hide-for-medium-down.hide-for-print {{cells[1]}}
-                td
+                td(ng-show="show_Fields['Index']").hide-for-print {{index + 1}}
+                td(ng-show="show_Fields['Domain']").hide-for-medium-down.hide-for-print {{cells[0]}}
+                td(ng-show="show_Fields['Practice']").hide-for-medium-down.hide-for-print {{cells[1]}}
+                td(ng-show="show_Fields['Key']")
                     a(href='{{observed_Link()}}/{{cells[2]}}') {{cells[2]}}
-                td {{cells[3]}}
-                td {{cells[4]}}
-                td
+                td(ng-show="show_Fields['Level']").text-center {{cells[3]}}
+                td(ng-show="show_Fields['Activity']", width="450")
+                    span {{cells[4]}}
+                    a(ng-mouseenter='descriptions[cells[2]].show_Short=false' ng-mouseleave='descriptions[cells[2]].show_Short=true') &#32; *
+                    span(ng-show="!descriptions[cells[2]].show_Short ")
+                        .panel(style='position:absolute;width:450px;left:250px') {{ descriptions[cells[2]].description }}
+
+
+
+                //td(ng-show="show_Fields['Yes']")
+                //    input(type='radio' ng-checked= 'cells[5]' ng-model="data.activities[cells[2]].value" value='Yes'   ng-change='onChanged(this)' )
+                //td(ng-show="show_Fields['No']")
+                //    input(type='radio' ng-checked= 'cells[6]' ng-model="data.activities[cells[2]].value" value='No'    ng-change='onChanged(this)' )
+                //td(ng-show="show_Fields['NA']")
+                //    input(type='radio' ng-checked= 'cells[7]' ng-model="data.activities[cells[2]].value" value='NA'    ng-change='onChanged(this)' )
+                //td(ng-show="show_Fields['Maybe']")
+                //    input(type='radio' ng-checked= 'cells[8]' ng-model="data.activities[cells[2]].value" value='Maybe' ng-change='onChanged(this)' )
+
+
+
+                td(ng-show="show_Fields['Objective']") {{ schema_Details.activities[cells[2]].objective}}
+                td(ng-show="show_Fields['Description']", width="450")  {{ descriptions[cells[2]].description }}
+
+                    //span(ng-show="!descriptions[cells[2]].show_Short ")
+                        a(ng-click="descriptions[cells[2]].show_Short=true") [-] &#32;
+                        span {{ descriptions[cells[2]].description }}
+                    //span(ng-show="descriptions[cells[2]].show_Short ")
+                        a(ng-click="descriptions[cells[2]].show_Short=false") [+] &#32;
+                        span {{descriptions[cells[2]].description_Short }}...
+
+
+                td(ng-show="show_Fields['Yes']").text-center
                     input(type='radio' ng-checked= 'cells[5]' ng-model="data.activities[cells[2]].value" value='Yes'   ng-change='onChanged(this)' )
-                td
+                td(ng-show="show_Fields['No']").text-center
                     input(type='radio' ng-checked= 'cells[6]' ng-model="data.activities[cells[2]].value" value='No'    ng-change='onChanged(this)' )
-                td
+                td(ng-show="show_Fields['NA']").text-center
                     input(type='radio' ng-checked= 'cells[7]' ng-model="data.activities[cells[2]].value" value='NA'    ng-change='onChanged(this)' )
-                td
+                td(ng-show="show_Fields['Maybe']").text-center
                     input(type='radio' ng-checked= 'cells[8]' ng-model="data.activities[cells[2]].value" value='Maybe' ng-change='onChanged(this)' )
-                td.hide-for-medium-down.input-field.hide-for-print
+                td(ng-show="show_Fields['Proof']").hide-for-medium-down.input-field.hide-for-print
                     input(type='text'  ng-model='data.activities[cells[2]].proof'  ng-change='onChanged(this)' )
+                td(ng-show="show_Fields['Proof_Help']") {{ schema_Details.activities[cells[2]].proof}}

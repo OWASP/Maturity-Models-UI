@@ -2,17 +2,18 @@ app = angular.module('MM_Graph')
 
 class Team_Data
   constructor: ($routeParams,$rootScope, $cacheFactory, $q, API)->
-    @.$routeParams  = $routeParams
-    @.$rootScope    = $rootScope
-    @.$cacheFactory = $cacheFactory
-    @.cache         = $cacheFactory('team_Data')
-    @.$q            = $q
-    @.deferred      = null
-    @.API           = API
-    @.project       = null
-    @.data          = null
-    @.team          = null
-    @.schema        = null
+    @.$routeParams   = $routeParams
+    @.$rootScope     = $rootScope
+    @.$cacheFactory  = $cacheFactory
+    @.cache          = $cacheFactory('team_Data')
+    @.$q             = $q
+    @.deferred       = null
+    @.API            = API
+    @.data           = null
+    @.project        = null
+    @.schema         = null
+    @.schema_Details = null
+    @.team           = null
 
 
   call_With_Cache: (method, params, callback)=>                                 # method that uses promises to prevent multiple parallel calls
@@ -50,24 +51,27 @@ class Team_Data
       @.clear_Data()                                                            # when project changes remove all cache entries
       @.project = @.$routeParams.project
       @.team    = @.$routeParams.team
-      @.project_Schema (schema)=>                                               # get projecg schema
-        @.data_Score (scores)=>                                                 # get current team scores
-          @.team_Get (data)=>                                                   # get team data
-            @.scores = scores
-            @.schema = schema
-            @.data   = data
-
-            @.deferred.resolve()                                                # trigger promise resolve
+      @.project_Schema (schema)=>                                               # get project schema
+        @.project_Schema_Details (schema_Details)=>
+          console.log schema_Details
+          @.data_Score (scores)=>                                                 # get current team scores
+            @.team_Get (data)=>                                                   # get team data
+              @.data           = data
+              @.schema         = schema
+              @.schema_Details = schema_Details
+              @.scores         = scores
+              @.deferred.resolve()                                                # trigger promise resolve
 
     @.deferred ?= @.$q.defer()                                                  # ensure @.deferred object exits
     @.deferred.promise.then ->                                                  # schedule execution
       callback()                                                                # invoke original caller callback
 
-  data_Score    : (             callback) => @.call_With_Cache 'data_Score'       , [@.project, @.team      ], callback
-  project_Schema: (             callback) => @.call_With_Cache 'project_Schema'   , [@.project              ], callback
-  radar_Fields  : (             callback) => @.call_With_Cache 'data_Radar_Fields', [@.project              ], callback
-  radar_Team    : (target_Team, callback) => @.call_With_Cache 'data_Radar_Team'  , [@.project, target_Team ], callback
-  team_Get      : (             callback) => @.call_With_Cache 'team_Get'         , [@.project, @.team      ], callback
+  data_Score            : (             callback) => @.call_With_Cache 'data_Score'             , [@.project, @.team      ], callback
+  project_Schema        : (             callback) => @.call_With_Cache 'project_Schema'         , [@.project              ], callback
+  project_Schema_Details: (             callback) => @.call_With_Cache 'project_Schema_Details' , [@.project              ], callback
+  radar_Fields          : (             callback) => @.call_With_Cache 'data_Radar_Fields'      , [@.project              ], callback
+  radar_Team            : (target_Team, callback) => @.call_With_Cache 'data_Radar_Team'        , [@.project, target_Team ], callback
+  team_Get              : (             callback) => @.call_With_Cache 'team_Get'               , [@.project, @.team      ], callback
 
   save: (callback)=>
     @.API.file_Save @.project, @.team , @.data, callback
