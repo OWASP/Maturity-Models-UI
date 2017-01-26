@@ -1,4 +1,3 @@
-#to be deleted
 describe 'directive | team-table', ->
   #project = 'bsimm'
   #team    = 'team-A'
@@ -22,11 +21,14 @@ describe 'directive | team-table', ->
     table_Headers.assert_Is [ '#',
       'Domain',
       'Practice',
-      'Activity',
+      'Key',
       'Level',
-      'Question',
+      'Activity',
+      'Objective',
+      'Description',
       'Yes',
       'No',
       'NA',
       'Maybe',
-      'Proof' ]
+      'Proof (value)',
+      'Proof (help)' ]

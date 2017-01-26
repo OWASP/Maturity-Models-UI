@@ -1,4 +1,4 @@
-describe 'controllers | project | Project-Schema-Controller', ->
+describe 'controllers | project | Project-Schema-Details-Controller', ->
 
   $scope  = null
   project = null

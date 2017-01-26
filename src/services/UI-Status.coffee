@@ -11,16 +11,16 @@ class UI_Status
       Index       : false,
       Domain      : false,
       Practice    : false,
-      Key         : false,
+      Key         : true,
       Level       : false,
       Activity    : true ,
       Yes         : true ,
       No          : true ,
       NA          : true ,
       Maybe       : true ,
-      Proof       : true ,
+      Proof       : false ,
       Proof_Help  : false ,
-      Objective   : false ,
+      Objective   : true ,
       Description : false
     @
 

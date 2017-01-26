@@ -53,7 +53,6 @@ class Team_Data
       @.team    = @.$routeParams.team
       @.project_Schema (schema)=>                                               # get project schema
         @.project_Schema_Details (schema_Details)=>
-          console.log schema_Details
           @.data_Score (scores)=>                                                 # get current team scores
             @.team_Get (data)=>                                                   # get team data
               @.data           = data

@@ -18,8 +18,8 @@ angular.module('MM_Graph')
             for key in activities
               activity         = schema.activities[key]
               activity_Details = schema_Details.activities[key]
-              if $scope.show_Row(activity.level, domain_Name)
-                  cells = [domain_Name, practice_Name, key, activity.level, activity.name,
+              if $scope.show_Row(activity?.level, domain_Name)
+                  cells = [domain_Name, practice_Name, key, activity?.level, activity?.name,
                            activity_Details?.objective, activity_Details?.proof, activity_Details?.description]
 
                   rows.push cells

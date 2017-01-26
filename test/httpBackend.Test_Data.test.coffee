@@ -14,7 +14,7 @@ describe 'httpBackend | Test_Data', ->
         data.keys()              .assert_Is       [ 'config', 'metadata','domains', 'practices', 'activities']
         data.domains.keys()      .assert_Is       [ 'Governance', 'Construction', 'Verification', 'Operations' ]
         data.practices.keys()    .assert_Contains ['Strategy & Metrics', 'Policy & Compliance','Education & Guidance']
-        data.activities['SM.1.A'].assert_Is       { level: '1', name: 'Is there a software security assurance program in place?' }
+        data.activities['SM.1.A'].assert_Is       { level: '1', name: 'Estimate overall business risk profile' }
       $httpBackend.flush()
       
   it 'team/bsimm/get/team-A', ->

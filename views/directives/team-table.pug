@@ -32,8 +32,9 @@
                 td(ng-show="show_Fields['Activity']", width="450")
                     span {{cells[4]}}
                     a(ng-mouseenter='descriptions[cells[2]].show_Short=false' ng-mouseleave='descriptions[cells[2]].show_Short=true') &#32; *
-                    span(ng-show="!descriptions[cells[2]].show_Short ")
-                        .panel(style='position:absolute;width:450px;left:250px') {{ descriptions[cells[2]].description }}
+                    span(ng-show="descriptions[cells[2]]")
+                        span(ng-show="!descriptions[cells[2]].show_Short")
+                            .panel(style='position:absolute;width:450px;left:250px') {{ descriptions[cells[2]].description }}
 
 
 
