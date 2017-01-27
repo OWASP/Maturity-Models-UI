@@ -11,7 +11,21 @@ teamMenu
         div(ng-controller='RadarController' radar-size='400' extra-level="" , target-div='.chart')
             div.chart
     .small-6.columns
-        pre.
+        pre(ng-show="project=='samm'").
+            SM   = Strategy & Metrics
+            OE   = Operational Enablement
+            EH   = Environment Hardening
+            IM   = Issue Management
+            ST   = Security Testing
+            IR   = Implementation Review
+            DR   = Design Review
+            SA   = Secure Architecture
+            SR   = Security Requirements
+            TA   = Threat Assessment
+            EG   = Education & Guidance
+            PC   = Policy & Compliance
+
+        pre(ng-show="project=='bsimm'").
             SM   = Strategy & Metrics
             CMVM = Configuration Management & Vulnerability Management
             SE   = Software Environment
