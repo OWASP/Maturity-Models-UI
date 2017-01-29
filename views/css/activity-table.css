@@ -23,7 +23,6 @@
     padding: 0px !important;
     valign: center !important;
     font-size:10px !important;
-    /*width: 100pc !important;*/
     height: 20px !important;
     margin-bottom:0; !important;
 }
@@ -44,5 +43,19 @@ td.td-text-left  {
 }
 
 @media print {
-    .panel.callout {border: solid; border-width: 2; background-color: #c0c0c0;}
+    .panel.callout { border: solid; border-width: 2; background-color: #c0c0c0; }
+}
+
+
+textarea {
+    padding: 0px !important;
+    valign: center !important;
+    font-size:10px !important;
+    width: 200px !important;
+    margin-bottom:0; !important;
+    position:relative;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
 }

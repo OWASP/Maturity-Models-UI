@@ -8,19 +8,20 @@ class UI_Status
 
   set_Default_Values: ()=>
     @.team_Table_Fields =
-      Index       : false,
-      Domain      : false,
-      Practice    : false,
-      Key         : true,
-      Level       : false,
-      Activity    : true ,
-      Yes         : true ,
-      No          : true ,
-      NA          : true ,
-      Maybe       : true ,
-      Proof       : false ,
-      Proof_Help  : false ,
-      Objective   : true ,
+      Index       : false
+      Key         : true
+      Domain      : false
+      Practice    : false
+      Level       : false
+      Activity    : true
+      Yes         : true
+      No          : true
+      NA          : true
+      Maybe       : true
+      Proof       : false
+      Proof_Edit  : false
+      Proof_Help  : false
+      Objective   : true
       Description : false
     @
 
