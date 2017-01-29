@@ -18,17 +18,6 @@ describe 'directive | team-table', ->
 
   it 'check columns names', ->
     table_Headers = (a.innerText for a in $(html).find('th'))
-    table_Headers.assert_Is [ '#',
-      'Domain',
-      'Practice',
-      'Key',
-      'Level',
-      'Activity',
-      'Objective',
-      'Description',
-      'Yes',
-      'No',
-      'NA',
-      'Maybe',
-      'Proof (value)',
-      'Proof (help)' ]
+    table_Headers.assert_Is [ ' #', ' Key', 'Domain', 'Practice', 'Level', 'Activity',
+                              'Objective', 'Description', 'Yes', 'No', 'NA', 'Maybe',
+                              'Proof (value)', 'Proof (edit)', 'Proof (help)']
