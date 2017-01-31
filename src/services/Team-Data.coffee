@@ -73,7 +73,15 @@ class Team_Data
   team_Get              : (             callback) => @.call_With_Cache 'team_Get'               , [@.project, @.team      ], callback
 
   save: (callback)=>
-    @.API.file_Save @.project, @.team , @.data, callback
+    @.API.file_Save @.project, @.team , @.data, (result)=>
+      @.project  = null                                                         # clear these values to trigger data reload
+      @.team     = null
+      @.load_Data =>                                                            # find better way to reload this data (see below)
+        callback result                                                         # since at the moment we are doing a full data reload
+
+      #@.data_Score (scores)=>                                                  # (this would be a better option but cache prevents data_Score data reload
+        #@.scores = scores                                                      # get current team scores (to update it based on saved changes)
+        #callback()
 
 app.service 'team_Data', ($routeParams, $rootScope, $cacheFactory, $q, API)=>
   return new Team_Data $routeParams, $rootScope, $cacheFactory, $q, API
