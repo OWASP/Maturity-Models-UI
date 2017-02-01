@@ -33,15 +33,24 @@ div(ng-controller='ObservedController')
                     .row
                         .small-3.columns
                             label.right
-                                b proof:
-                        .small-9.columns
-                            label.left {{ activity.proof }}
-                    .row
-                        .small-3.columns
-                            label.right
                                 b description:
                         .small-9.columns
                             label.left {{ activity.description }}
+                    .row.row(ng-show="activity.proof")
+                        .small-3.columns
+                            label.right
+                                b proof:
+                        .small-9.columns
+                            label.left {{ activity.proof }}
+                    .row(ng-show="activity.resources[0]")
+                        .small-3.columns
+                            label.right
+                                b resources:
+                        .small-9.columns
+                            label.left
+                                span(ng-repeat="resource in activity.resources")
+                                    a(href='{{resource}}') {{resource}}
+                                    br
                     .row
                         .small-3.columns
                             label.right

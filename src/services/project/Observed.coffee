@@ -65,6 +65,7 @@ class Observed
           description : schema_Details?.description    || ''
           objective   : schema_Details?.objective      || ''
           proof       : schema_Details?.proof          || ''
+          resources   : schema_Details?.resources      || []
           observed    : activity_Data['Yes'  ]?.length  ? 0
           Yes         : activity_Data['Yes'  ]         || []
           No          : activity_Data['No'   ]         || []
