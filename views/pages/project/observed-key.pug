@@ -1,3 +1,9 @@
+style.
+    .data-label {
+        color: #4d4d4d;
+        font-size: 0.875rem
+    }
+
 projectMenu
 
 div(ng-controller='ObservedController')
@@ -5,7 +11,7 @@ div(ng-controller='ObservedController')
         h4 Observed data for: {{key}}
         form
             .row
-                .small-12
+                .small-12.data-label
                     //.row
                     //    .small-3.columns
                     //        label.right
@@ -14,56 +20,49 @@ div(ng-controller='ObservedController')
                     //        label.left {{ activity.key }}
                     .row
                         .small-3.columns
-                            label.right
-                                b level:
+                            b.right level:
                         .small-9.columns
-                            label.left {{ activity.level }}
+                            .left {{ activity.level }}
                     .row
                         .small-3.columns
-                            label.right
-                                b name:
+                            b.right name:
                         .small-9.columns
-                            label.left {{ activity.name }}
+                            .left {{ activity.name }}
                     .row
                         .small-3.columns
-                            label.right
-                                b objective:
+                            b.right objective:
                         .small-9.columns
-                            label.left {{ activity.objective }}
+                            .left {{ activity.objective }}
                     .row
                         .small-3.columns
-                            label.right
-                                b description:
+                            b.right description:
                         .small-9.columns
-                            label.left {{ activity.description }}
+                            .left {{ activity.description }}
                     .row.row(ng-show="activity.proof")
                         .small-3.columns
-                            label.right
-                                b proof:
+                            b.right proof:
                         .small-9.columns
-                            label.left {{ activity.proof }}
+                            .left {{ activity.proof }}
                     .row(ng-show="activity.resources[0]")
                         .small-3.columns
-                            label.right
-                                b resources:
+                            b.right resources:
                         .small-9.columns
-                            label.left
+                            .left
                                 span(ng-repeat="resource in activity.resources")
                                     a(href='{{resource}}') {{resource}}
                                     br
                     .row
                         .small-3.columns
-                            label.right
-                                b Observed:
+                            b.right Observed:
                         .small-9.columns(ng-class="'observed-size-' + activity.observed ")
-                            label.left {{ activity.observed }}
+                            .left {{ activity.observed }}
                     hr
                     .row(ng-show='activity.Yes.length>0')
                         .small-3.columns
-                            label.right
+                            .right
                                 b yes:
                         .small-9.columns
-                            label.left
+                            .left
                                 table
                                     tr
                                         th Team Name
@@ -74,10 +73,10 @@ div(ng-controller='ObservedController')
                                         td {{ proofs[team].proof }}
                     .row(ng-show='activity.No.length>0')
                         .small-3.columns
-                            label.right
+                            .right
                                 b no:
                         .small-9.columns
-                            label.left
+                            .left
                                 table
                                     tr
                                         th Team Name
@@ -88,10 +87,10 @@ div(ng-controller='ObservedController')
                                         td {{ proofs[team].proof }}
                     .row(ng-show='activity.NA.length>0')
                         .small-3.columns
-                            label.right
+                            .right
                                 b na:
                         .small-9.columns
-                            label.left
+                            .left
                                 table
                                     tr
                                         th Team Name
@@ -102,10 +101,10 @@ div(ng-controller='ObservedController')
                                         td {{ proofs[team].proof }}
                     .row(ng-show='activity.Maybe.length>0')
                         .small-3.columns
-                            label.right
+                            .right
                                 b maybe:
                         .small-9.columns
-                            label.left
+                            .left
                                 table
                                     tr
                                         th Team Name
