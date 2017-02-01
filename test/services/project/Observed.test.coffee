@@ -30,9 +30,8 @@ describe 'services | project | Observed', ->
     using observed, ->
       @.project_Data.load_Data =>
         @.map_Data()
-
-        @.activity_For_Key('SM.1.1').keys().assert_Is [ 'key', 'level', 'name', 'description', 'objective',
-                                                        'proof', 'observed', 'Yes', 'No', 'Maybe', 'NA' ]
+        @.activity_For_Key('SM.1.1').keys().assert_Is [ 'key', 'level', 'name', 'description', 'objective', 'proof'
+                                                        'resources', 'observed', 'Yes', 'No', 'Maybe', 'NA' ]
         using @.activity_For_Key('SM.1.1'), ->
           @.key         .assert_Is 'SM.1.1'
           @.level       .assert_Is '1'
@@ -50,6 +49,12 @@ describe 'services | project | Observed', ->
           .assert_Is {}
       httpBackend.flush()
 
+  it 'calculate_Observed', ->
+    using observed, ->
+      @.calculate_Observed().assert_Is 0
+      @.calculate_Observed(Yes   : ['a', 'b']).assert_Is 2
+      @.calculate_Observed(Maybe : ['a'     ]).assert_Is 1
+      @.calculate_Observed(Yes : ['a', 'b'], Maybe: ['a', 'b','c']).assert_Is 5
 
   it 'current_Level', ->
     using observed, ->
@@ -86,6 +91,7 @@ describe 'services | project | Observed', ->
           description : ''      ,
           objective   : ''      ,
           proof       : ''      ,
+          resources   : []      ,
           observed    : 0       ,
           No          : []      ,
           Yes         : []      ,

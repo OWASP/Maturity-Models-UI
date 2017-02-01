@@ -19,6 +19,11 @@ class Observed
           return activity
     return {}
 
+  calculate_Observed: (activity_Data)=>
+    return 0 if not activity_Data
+    return (activity_Data['Yes']?.length || 0) + ((activity_Data['Maybe'  ]?.length || 0) )
+
+
   current_Level: ()=>
     @.$routeParams.level || null
 
@@ -66,7 +71,7 @@ class Observed
           objective   : schema_Details?.objective      || ''
           proof       : schema_Details?.proof          || ''
           resources   : schema_Details?.resources      || []
-          observed    : activity_Data['Yes'  ]?.length  ? 0
+          observed    : @.calculate_Observed(activity_Data)
           Yes         : activity_Data['Yes'  ]         || []
           No          : activity_Data['No'   ]         || []
           Maybe       : activity_Data['Maybe']         || []
