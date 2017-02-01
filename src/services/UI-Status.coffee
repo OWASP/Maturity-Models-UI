@@ -19,7 +19,7 @@ class UI_Status
       NA          : true
       Maybe       : true
       Proof       : false
-      Proof_Edit  : false
+      Proof_Edit  : true
       Proof_Help  : false
       Objective   : true
       Description : false

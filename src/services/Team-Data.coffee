@@ -74,10 +74,13 @@ class Team_Data
 
   save: (callback)=>
     @.API.file_Save @.project, @.team , @.data, (result)=>
-      @.project  = null                                                         # clear these values to trigger data reload
-      @.team     = null
-      @.load_Data =>                                                            # find better way to reload this data (see below)
-        callback result                                                         # since at the moment we are doing a full data reload
+
+      callback result                                                           # the code below had a really nasty side effect, where the 2nd save didn't work because the input fields would be pointing to the previous @.data object
+
+#      @.project  = null                                                         # clear these values to trigger data reload
+#      @.team     = null
+#      @.load_Data =>                                                            # find better way to reload this data (see below)
+#        callback result                                                         # since at the moment we are doing a full data reload
 
       #@.data_Score (scores)=>                                                  # (this would be a better option but cache prevents data_Score data reload
         #@.scores = scores                                                      # get current team scores (to update it based on saved changes)

@@ -43,7 +43,7 @@ div(ng-controller='TeamDataController')
                     b show fields:
             .large-8.columns
                 span(ng-repeat="(key,value) in ui_Status.team_Table_Fields")
-                    input(id='{{key}}', type='checkbox', ng-model='ui_Status.team_Table_Fields[key]' ng-change='ui_Status.onChange_team_Table_Fields()')
+                    input(id='{{key}}', type='checkbox', ng-model='ui_Status.team_Table_Fields[key]')
                     label(for='{{key}}')
                         small {{key}}
                     br(ng-if="key=='Maybe'")
