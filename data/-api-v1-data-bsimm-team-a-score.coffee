@@ -1,1 +1,1 @@
-angular.module('MM_Graph').run ($httpBackend)-> $httpBackend.whenGET('/api/v1/data/bsimm/team-A/score').respond {"level_1":{"value":19.4,"percentage":"50%","activities":39},"level_2":{"value":13.4,"percentage":"34%","activities":40},"level_3":{"value":4.8,"percentage":"15%","activities":33}}
+angular.module('MM_Graph').run ($httpBackend)-> $httpBackend.whenGET('/api/v1/data/bsimm/team-A/score').respond {"level_1":{"value":25,"percentage":"64%","activities":39},"level_2":{"value":23,"percentage":"57%","activities":40},"level_3":{"value":8,"percentage":"24%","activities":33}}
