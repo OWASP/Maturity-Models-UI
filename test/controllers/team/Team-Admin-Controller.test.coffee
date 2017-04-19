@@ -1,6 +1,5 @@
-describe 'controllers | Team-Delete-Controller', ->
+describe 'controllers | Team-Admin-Controller', ->
   $scope      = null
-  routeParams = null
   location    = null
   project     = 'bsimm'
   team        = 'team-A'  
@@ -14,8 +13,6 @@ describe 'controllers | Team-Delete-Controller', ->
       location = $location
       $routeParams.project = project
       $routeParams.team    = team
-      #$controller('TeamDataController', { $scope: $scope, $location: $location })
-
       $controller('TeamAdminController', { $scope: $scope })
       $httpBackend.flush()
 
@@ -40,11 +37,28 @@ describe 'controllers | Team-Delete-Controller', ->
       @.project = project
       @.team = team
       newTeamName = 'super-team'
+      location.path("/view/ASVS/#{team}/admin")
+      @.$apply()
       @.rename_Team(newTeamName)
       inject ($httpBackend)->
         $httpBackend.expectGET("/api/v1/team/#{project}/rename/#{team}/#{newTeamName}").respond true
         $httpBackend.flush()
       @.renameStatus.contains 'renamed'
+      location.path().assert_Is "/view/ASVS/#{newTeamName}/admin"
+
+  it '$scope.rename_Team fail', ->
+    using $scope, ->
+      @.project = project
+      @.team = team
+      newTeamName = 'super-team'
+      originalLocation = "/view/ASVS/#{team}/admin"
+      location.path(originalLocation)
+      @.rename_Team(newTeamName)
+      inject ($httpBackend)->
+        $httpBackend.expectGET("/api/v1/team/#{project}/rename/#{team}/#{newTeamName}").respond false
+        $httpBackend.flush()
+      @.renameStatus.contains 'failed'
+      location.path().assert_Is originalLocation
 
 
 
