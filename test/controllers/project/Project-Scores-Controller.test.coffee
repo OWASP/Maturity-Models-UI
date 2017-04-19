@@ -21,9 +21,9 @@ describe 'controllers | project | Project-Scores', ->
   it 'constructor',->
     using $scope, ->
       @.project.assert_Is 'bsimm'
-      @.data['team-A'].level_1.assert_Is { value: 19.4, percentage: '50%', activities: 39, color: 'green' }
-      @.data['team-A'].level_2.assert_Is { value: 13.4, percentage: '34%', activities: 40, color: 'green' }
-      @.data['team-A'].level_3.assert_Is { value: 4.8 , percentage: '15%', activities: 33, color: 'red'   }
+      @.data['team-A'].level_1.assert_Is { value: 25, percentage: '64%', activities: 39, color: 'green' }
+      @.data['team-A'].level_2.assert_Is { value: 23, percentage: '57%', activities: 40, color: 'green' }
+      @.data['team-A'].level_3.assert_Is { value: 8 , percentage: '24%', activities: 33, color: 'orange'}
        
   it '$scope.get_Style', ->
     $scope.get_Style().assert_Is 'green'
