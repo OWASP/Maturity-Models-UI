@@ -1,5 +1,5 @@
 #to be deleted
-describe '| directive | activity-table', ->
+describe 'directive | activity-table', ->
 
   element = null
   $scope  = null
@@ -15,4 +15,7 @@ describe '| directive | activity-table', ->
       $compile(template)($scope);
       $scope.$apply();
       element = template
+
+  it 'check html', ->
+    element.html().assert_Contains 'class="activity-table"'
     

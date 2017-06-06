@@ -1,0 +1,47 @@
+projectMenu
+
+div(ng-controller='ObservedController')
+    .row
+        .medium-12
+            h4 Observed (details) activities for project: {{project}}
+
+    .row.fullWidth
+        .medium-12.columns
+            table.fullWidth.observed-table
+                tr.observed-domain(ng-class="'observed-column-' + data.index")
+                    td(colspan='4') {{data.title}}
+                tr.observed-title
+                    td Activity
+                    td Level
+                    td Question
+                    td Observed
+                    td.text-center Yes
+                    td.text-center No
+                    td.text-center.hide-for-print Maybe
+                    td.text-center.hide-for-print NA
+                tr(ng-repeat='(domain, activity) in ::activities')
+                    td
+                        a(href='{{page_Link()}}/{{activity.key}}')                                              {{activity.key}}
+                    td.text-center                                                                              {{activity.level}}
+                    td                                                                                          {{activity.name}}
+                    td.text-center(ng-class="'observed-size-' + activity.observed ")                            {{activity.observed}}
+
+                    // show without link (print friendly)
+                    td.show-for-print
+                        span(ng-repeat="team in activity.Yes")                                                  {{team}}&#32;
+                    td.show-for-print
+                        span(ng-repeat="team in activity.No")                                                   {{team}}&#32;
+
+                    // show with link (normal page)
+                    td.hide-for-print
+                        a(ng-repeat="team in activity.Yes"   href="{{team_Table_Link(team)}}" target='_blank')  {{team}}
+                            span &#32;
+                    td.hide-for-print
+                        a(ng-repeat="team in activity.No"    href="{{team_Table_Link(team)}}" target='_blank')  {{team}}
+                            span &#32;
+                    td.hide-for-print
+                        a(ng-repeat="team in activity.Maybe" href="{{team_Table_Link(team)}}" target='_blank')  {{team}}
+                            span &#32;
+                    td.hide-for-print
+                        a(ng-repeat="team in activity.NA"    href="{{team_Table_Link(team)}}" target='_blank')  {{team}}
+                            span &#32;

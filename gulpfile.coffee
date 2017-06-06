@@ -55,7 +55,7 @@ gulp.task 'concat-js-libs', ()->                                            # th
               bower_Folder + '/angular-route/angular-route.min.js'    ,
               bower_Folder + '/jquery/dist/jquery.min.js'             ,
 
-              #bower_Folder + 'foundation/js/foundation.js'
+              #bower_Folder + '/foundation/js/foundation.js'
             ]
   
   gulp.src(sources)

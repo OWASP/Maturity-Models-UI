@@ -1,0 +1,11 @@
+div.ng-hide(ng-controller='TeamEditController' ng-show='domains')
+    div(ng-controller='TeamDataController')
+    teamMenu
+    br
+    teamSave
+
+    .row.fullWidth
+        hr
+    .row.fullWidth
+        .medium-3.columns(ng-repeat='(domain, activities) in domains')
+            activityTable(title='domain', activities='activities', data='data')

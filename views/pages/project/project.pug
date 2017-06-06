@@ -1,0 +1,30 @@
+projectMenu
+.row
+    div(ng-controller='ProjectController')#project
+        div.callout.large.primary
+            div.row.column
+                h4 Project {{project}}
+                ul
+                    ul
+                        li
+                            a(href='view/project/{{project}}/schema') schema
+
+                        li
+                            a(href='view/project/{{project}}/scores') scores
+                        li
+                            a(href='view/project/{{project}}/observed') observed
+                p
+                    b Teams:
+                ul
+                    ul
+                        li(ng-repeat="(key, team) in teams.sort()")
+                            a(href='view/{{project}}/{{team}}/radar') {{team}}
+
+                p
+                    b Actions:
+                ul
+                    ul
+                        li
+                            a(href='view/project/{{project}}/new-team') new team
+                        li
+                            a(href='api/v1/project/caches/clear' target='_blank') clear project cache

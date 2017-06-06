@@ -1,0 +1,83 @@
+div(ng-controller='TeamDataController')
+    teamMenu
+    br
+    p These are all activities that are currently marked with YES
+    div(ng-controller='TableController' filter="Yes")
+        .row.fullWidth.activity-table(ng-show='show', id='level-{{level}}')
+            table.yes-answers
+                thead
+                    tr
+                        th.hide-for-print #
+                        th Activity
+                        th Question
+                        th  Proof
+                tbody
+                    tr(ng-repeat="(index, cells) in rows", id='{{cells[2]}}')
+                        td.hide-for-print  {{index + 1}}
+                        td {{cells[3]}}
+                        td.td-text-left {{cells[4]}}
+                        td
+                            input(type='text'  ng-model='data.activities[cells[2]].proof' ng-change='onChanged(this)')
+
+
+    hr
+    .panel (for now showing the rest of the mappings below)
+    hr
+
+    p ... with NO
+    div(ng-controller='TableController' filter="No")
+        .row.fullWidth.activity-table(ng-show='show')
+            table.yes-answers
+                thead
+                    tr
+                        th.hide-for-print #
+                        th Activity
+                        th Question
+                        th  Proof
+                tbody
+                    tr(ng-repeat="(index, cells) in rows")
+                        td.hide-for-print  {{index + 1}}
+                        td {{cells[3]}}
+                        td.td-text-left {{cells[4]}}
+                        td
+                            input(type='text'  ng-model='data.activities[cells[2]].proof' ng-change='onChanged(this)')
+
+    hr
+    p ... with NA
+    div(ng-controller='TableController' filter="NA")
+        .row.fullWidth.activity-table(ng-show='show')
+            table.yes-answers
+                thead
+                    tr
+                        th.hide-for-print #
+                        th Activity
+                        th Question
+                        th  Proof
+                tbody
+                    tr(ng-repeat="(index, cells) in rows")
+                        td.hide-for-print  {{index + 1}}
+                        td {{cells[3]}}
+                        td.td-text-left {{cells[4]}}
+                        td
+                            input(type='text'  ng-model='data.activities[cells[2]].proof' ng-change='onChanged(this)')
+
+    hr
+    p ... with Maybe
+    div(ng-controller='TableController' filter="Maybe")
+        .row.fullWidth.activity-table(ng-show='show')
+            table.yes-answers
+                thead
+                    tr
+                        th.hide-for-print #
+                        th Activity
+                        th Question
+                        th  Proof
+                tbody
+                    tr(ng-repeat="(index, cells) in rows")
+                        td.hide-for-print  {{index + 1}}
+                        td {{cells[3]}}
+                        td.td-text-left {{cells[4]}}
+                        td
+                            input(type='text'  ng-model='data.activities[cells[2]].proof' ng-change='onChanged(this)')
+
+    teamSave.hide-for-print

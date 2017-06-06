@@ -1,0 +1,13 @@
+div(ng-controller='TeamAdminController')
+    teamMenu
+    .row.fullWidth
+        .small-2.columns
+            label.right.inline
+                b Delete Team:
+        .small-2.columns
+            a.button.postfix#delete-button(ng-click='delete_Team()') {{delete_Button_Message}}
+        .small-2.columns
+        .small-1.columns
+            .center.label.round#status-label(ng-class='messageClass') {{status}}
+        .small-4.columns
+

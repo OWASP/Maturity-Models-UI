@@ -1,0 +1,20 @@
+div(ng-controller='TeamDataController')
+    div(ng-controller='TeamMetadataController')
+        teamMenu
+        br
+        teamSave
+        .row.column.activity-table
+            .small-2.columns
+                br
+            .small-8.columns
+                table
+                    thead
+                        tr
+                            th name
+                            th value
+                    tbody
+                        tr(ng-repeat="(key,value) in data.metadata", id='{{value}}')
+                            td {{key}}
+                            td.input-metadata
+                                input(type='text' ng-model='data.metadata[key]' ng-change='onChanged(this)')
+            .small-2.columns

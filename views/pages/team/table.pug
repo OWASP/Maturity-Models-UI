@@ -1,0 +1,60 @@
+div
+    style
+        |@media print {
+        |    div.columns {
+        |        float:left!important;
+        |        padding-left:0.9375em!important;
+        |    padding-right:0.9375em!important;
+        |    width:33%!important;
+        |}
+        |}
+
+    teamMenu
+
+div(ng-controller='TeamDataController')
+    hr
+    .row
+        b {{team}} Table data
+        br
+
+    .row
+        style.
+            input[type=checkbox] {
+                width:10px; height:10px;  !important;
+            }
+
+        span.hide-for-print
+            .large-2.columns
+                small
+                    b &#32;&#32; filter by: &#32;&#32;
+                    br
+                    a(href='view/{{project}}/{{team}}/table?filter=Yes'  ) Yes   &#32;
+                    a(href='view/{{project}}/{{team}}/table?filter=No'   ) No    &#32;
+                    a(href='view/{{project}}/{{team}}/table?filter=NA'   ) NA    &#32;
+                    a(href='view/{{project}}/{{team}}/table?filter=Maybe') Maybe &#32;
+
+                    span(ng-show='current_Filter()')
+                        br
+                        //span &#32;|&#32;
+                        a(href='view/{{project}}/{{team}}/table?filter=' ) (remove '{{current_Filter()}}' filter)
+
+            .large-1.columns
+                small
+                    b show fields:
+            .large-8.columns
+                span(ng-repeat="(key,value) in ui_Status.team_Table_Fields")
+                    input(id='{{key}}', type='checkbox', ng-model='ui_Status.team_Table_Fields[key]')
+                    label(for='{{key}}')
+                        small {{key}}
+                    br(ng-if="key=='Maybe'")
+            .large-1.columns
+                small
+                    div(ng-controller='TeamSaveController')
+                        a.button.postfix#save-button(ng-click='save_Data()') save
+
+                        .center.label.round#status-label(ng-class='messageClass') {{status}}
+    .row
+        br
+    teamTable(level='1')
+    teamTable(level='2')
+    teamTable(level='3')

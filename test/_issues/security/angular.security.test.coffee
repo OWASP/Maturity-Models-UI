@@ -1,4 +1,4 @@
-describe '_issues | security | Issue 153 - AngularJS Sandbox Bypass Collection', ->
+xdescribe '_issues | security | Issue 153 - AngularJS Sandbox Bypass Collection', ->
 
   return if window.wallaby   # this tests leaves Angular in a weird state in Wallaby (Karma is ok with them)
 
@@ -42,8 +42,8 @@ describe '_issues | security | Issue 153 - AngularJS Sandbox Bypass Collection',
       $scope.test.assert_Is '123'
 
   describe 'exploit tests', ->
-    it 'Confirm Angular version (1.5.8)' ,->
-      angular.version.full.assert_Is '1.5.8'                                                                          # confirm that we are in angular version 1.5.7
+    it 'Confirm Angular version (1.6.0)' ,->
+      angular.version.full.assert_Is '1.6.0'                                                                          # confirm that we are in angular version 1.5.7
 
     it 'Confirm window.alert call can be captured', ->
       alert('xss')                                                                                                    # the alert function has been captured where the

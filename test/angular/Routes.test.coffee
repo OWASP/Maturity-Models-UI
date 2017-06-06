@@ -3,37 +3,49 @@ describe 'angular | Routes ', ->
   beforeEach ()->
     module('MM_Graph')
 
-  it '$routeProvider routers',->
+  it '$routeProvider routers (check list)',->
     inject ($route)->
       $route.keys().assert_Is [ 'routes', 'reload', 'updateParams' ]
       #console.log $route.routes.keys()
       routes = [
         '/view'
+        '/view/routes'
         '/view/projects'
         '/view/project/:project'
         '/view/project/:project/new-team'
         '/view/project/:project/scores'
+        '/view/project/:project/observed'
+        '/view/project/:project/observed/:key'
+        '/view/project/:project/observed-details'
         '/view/project/:project/schema'
-        '/view/project/:project/schema/:level'
-        '/view/all/radar'
-        '/view/routes'
-        #'/view/:project/:team'
+        '/view/project/:project/schema-details'
+        '/view/:project/:team/admin'
         '/view/:project/:team/edit'
         '/view/:project/:team/radar'
+        '/view/:project/:team/metadata'
+        '/view/:project/:team/yes-answers'
         '/view/:project/:team/raw'
-        '/view/:project/:team/table',
-        '/view/:project/:team/table/:level']
+        '/view/:project/:team/table'
+      ]
       
       expected_Routes = []      
-      for route in routes                               # handle case where angular adds an extra route with / at the end
+      for route in routes                                         # handle case where angular adds an extra route with / at the end
         expected_Routes.push route
         expected_Routes.push route + '/'
       expected_Routes.push 'null'
 
-      for route in $route.routes.keys()                 # this makes it easier to debug which route is missing
+      real_Routes = $route.routes.keys()
+
+      for route in real_Routes                                    # this makes it easier to debug which route is missing
         #console.log route
         expected_Routes.assert_Contains route
-      $route.routes.keys().assert_Is expected_Routes
+
+      for route,index in expected_Routes
+        #console.log route
+        real_Routes.assert_Contains route                         # confirm it exists
+        real_Routes[index].assert_Is expected_Routes[index]       # confirm order is correct
+
+      $route.routes.keys().assert_Is expected_Routes              # final check to make sure they match
 
 
   #todo: fix this test which is not working as originally designed after the fix to the $templateCache
@@ -57,7 +69,7 @@ describe 'angular | Routes ', ->
         '/view/project/:project'                : 'project.page.html'
         '/view/projest/:project/schema'         : 'project-schema.page.html'      # there is a bug with the current logic since this request below will not be triggered
 #        '/view/project/:project/schema/:level'  : 'project-schema.page.html'     # since it is using the same urlTemplate value
-        '/view/all/radar'                       : 'all-radar.page.html'
+        #'/view/all/radar'                       : 'all-radar.page.html'
         '/view/routes'                          : 'routes.page.html'
         #'/view/:project/:team'                  : 'view.page.html'
         '/view/:project/:team/edit'             : 'edit.page.html'

@@ -9,8 +9,8 @@ describe 'views | project-schema.page', ->
     module('MM_Graph')
     inject ($templateCache)->
       $templateCache.get_Keys()
-                    .assert_Contains '/ui/html/pages/project-schema.page.html'
-      html = $templateCache.get      '/ui/html/pages/project-schema.page.html'
+                    .assert_Contains '/ui/html/pages/project/schema.html'
+      html = $templateCache.get      '/ui/html/pages/project/schema.html'
       
 
   it 'check raw template value',->
@@ -18,7 +18,7 @@ describe 'views | project-schema.page', ->
       @.find('#project').text()                 .assert_Contains '{project}}'
       @.find('#project').attr('ng-controller')  .assert_Is 'ProjectSchemaController'
       @.find('div'     ).length                 .assert_Is 3
-      @.find('h4'      ).text()                 .assert_Is 'Schema for Project {{project}} for level {{level}} - {{rows.size()}} activities'
+      @.find('h4'      ).text()                 .assert_Is 'Schema for Project {{project}} - {{rows.size()}} activities'
 
 
   it 'check with Controller', ->

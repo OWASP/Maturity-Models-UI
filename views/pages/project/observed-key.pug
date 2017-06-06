@@ -1,0 +1,119 @@
+style.
+    .data-label {
+        color: #4d4d4d;
+        font-size: 0.875rem
+    }
+
+projectMenu
+
+div(ng-controller='ObservedController')
+    .row
+        h4 Observed data for: {{key}}
+        form
+            .row
+                .small-12.data-label
+                    //.row
+                    //    .small-3.columns
+                    //        label.right
+                    //            b key:
+                    //    .small-9.columns
+                    //        label.left {{ activity.key }}
+                    .row
+                        .small-3.columns
+                            b.right level:
+                        .small-9.columns
+                            .left {{ activity.level }}
+                    .row
+                        .small-3.columns
+                            b.right name:
+                        .small-9.columns
+                            .left {{ activity.name }}
+                    .row
+                        .small-3.columns
+                            b.right objective:
+                        .small-9.columns
+                            .left {{ activity.objective }}
+                    .row
+                        .small-3.columns
+                            b.right description:
+                        .small-9.columns
+                            .left {{ activity.description }}
+                    .row.row(ng-show="activity.proof")
+                        .small-3.columns
+                            b.right proof:
+                        .small-9.columns
+                            .left {{ activity.proof }}
+                    .row(ng-show="activity.resources[0]")
+                        .small-3.columns
+                            b.right resources:
+                        .small-9.columns
+                            .left
+                                span(ng-repeat="resource in activity.resources")
+                                    a(href='{{resource}}') {{resource}}
+                                    br
+                    .row
+                        .small-3.columns
+                            b.right Observed:
+                        .small-9.columns(ng-class="'observed-size-' + activity.observed ")
+                            .left {{ activity.observed }}
+                    hr
+                    .row(ng-show='activity.Yes.length>0')
+                        .small-3.columns
+                            .right
+                                b yes:
+                        .small-9.columns
+                            .left
+                                table
+                                    tr
+                                        th Team Name
+                                        th Proof
+                                    tr(ng-repeat='team in activity.Yes')
+                                        td
+                                            a(href='{{team_Table_Link(team)}}') {{team}}
+                                        td {{ proofs[team].proof }}
+                    .row(ng-show='activity.No.length>0')
+                        .small-3.columns
+                            .right
+                                b no:
+                        .small-9.columns
+                            .left
+                                table
+                                    tr
+                                        th Team Name
+                                        th Proof
+                                    tr(ng-repeat='team in activity.No')
+                                        td
+                                            a(href='{{team_Table_Link(team)}}') {{team}}
+                                        td {{ proofs[team].proof }}
+                    .row(ng-show='activity.NA.length>0')
+                        .small-3.columns
+                            .right
+                                b na:
+                        .small-9.columns
+                            .left
+                                table
+                                    tr
+                                        th Team Name
+                                        th Proof
+                                    tr(ng-repeat='team in activity.NA')
+                                        td
+                                            a(href='{{team_Table_Link(team)}}') {{team}}
+                                        td {{ proofs[team].proof }}
+                    .row(ng-show='activity.Maybe.length>0')
+                        .small-3.columns
+                            .right
+                                b maybe:
+                        .small-9.columns
+                            .left
+                                table
+                                    tr
+                                        th Team Name
+                                        th Proof
+                                    tr(ng-repeat='team in activity.Maybe')
+                                        td
+                                            a(href='{{team_Table_Link(team)}}') {{team}}
+                                        td {{ proofs[team].proof }}
+
+
+    .row
+        a(href='javascript:history.back();') back

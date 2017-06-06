@@ -1,5 +1,5 @@
 #to be deleted
-describe '| directive | team-menu', ->
+describe 'directive | team-menu', ->
   project = 'bsimm'
   team    = 'team-A'
   element = null
@@ -24,19 +24,19 @@ describe '| directive | team-menu', ->
 
   it 'should contain navigation links', ->
     links = (text:a.text, href: a.href for a in $(html).find('a'))
-    links.size().assert_Is 6
-
+    links.size().assert_Is 8
     index = 0
     check_Link = (path, text) ->
       links[index  ].href.assert_Contains path
       links[index++].text.assert_Is text
 
-    check_Link "/view/project/#{project}"        , project
-    #check_Link "/view/#{project}/#{team}"        , 'view'
-    check_Link "/view/#{project}/#{team}/table"  , 'table'
-    check_Link "/view/#{project}/#{team}/radar"  , 'radar'
-    check_Link "/view/#{project}/#{team}/edit"   , 'edit'
-    check_Link "/view/#{project}/#{team}/raw"    , 'raw'
+    check_Link "/view/project/#{project}"             , project
+    check_Link "/view/#{project}/#{team}/radar"       , 'radar'        # note these links need to be tested in sequence
+    check_Link "/view/#{project}/#{team}/table"       , 'table'
+    check_Link "/view/#{project}/#{team}/yes-answers" , 'yes answers'
+    check_Link "/view/#{project}/#{team}/edit"        , 'edit'
+    check_Link "/view/#{project}/#{team}/metadata"    , 'metadata'
+    check_Link "/view/#{project}/#{team}/raw"         , 'raw'
 
   #it 'check menu active status', ->
   #  inject ($location)->

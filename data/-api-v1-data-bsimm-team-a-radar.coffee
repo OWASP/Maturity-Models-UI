@@ -1,0 +1,1 @@
+angular.module('MM_Graph').run ($httpBackend)-> $httpBackend.whenGET('/api/v1/data/bsimm/team-A/radar').respond {"axes":[{"value":0.4091},{"value":0.8182},{"value":0.875},{"value":0.375},{"value":0.1071},{"value":0.45},{"value":0.6667},{"value":1.3636},{"value":2.6667},{"value":1.3929},{"value":1.5},{"value":0.8333}]}

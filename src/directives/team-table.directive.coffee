@@ -4,5 +4,5 @@ app.directive  'teamtable', ()->
   controller: 'TableController'
   restrict: 'E',
   scope:
-    level: '=level'    
+    level      : '=level'
   templateUrl: '/ui/html/directives/team-table.html'

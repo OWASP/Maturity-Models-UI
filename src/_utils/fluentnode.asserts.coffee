@@ -15,6 +15,9 @@ if window['chai']     # need to move this to a separate file only available duri
     expect(@.toString()).to.equal(target, message)
     @
 
+  String::assert_Is_Not      = (target, message)->
+    expect(@.toString()).to.not.equal(target, message)
+    @
 
   String::assert_Contains = (target, message)->
     source    = @.toString()

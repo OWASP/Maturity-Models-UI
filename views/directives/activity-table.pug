@@ -14,10 +14,10 @@
             tr.activity(ng-repeat="activity in activities", id='{{activity}}')
                 td.text-left {{activity}}
                 td
-                    input(type="radio" ng-name='activity' ng-model="data.activities[activity]" value='Yes')
+                    input(type="radio" ng-name='activity' ng-model="data.activities[activity].value" value='Yes')
                 td
-                    input(type="radio" ng-name='activity' ng-model="data.activities[activity]" value='No')
+                    input(type="radio" ng-name='activity' ng-model="data.activities[activity].value" value='No')
                 td
-                    input(type="radio" ng-name='activity' ng-model="data.activities[activity]" value='NA')
+                    input(type="radio" ng-name='activity' ng-model="data.activities[activity].value" value='NA')
                 td
-                    input(type="radio" ng-name='activity' ng-model="data.activities[activity]" value='Maybe')
+                    input(type="radio" ng-name='activity' ng-model="data.activities[activity].value" value='Maybe')
