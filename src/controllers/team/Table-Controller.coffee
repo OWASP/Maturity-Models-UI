@@ -15,10 +15,9 @@ angular.module('MM_Graph')
       descriptions = {}
       for key, activity of $scope.schema_Details.activities
         descriptions[key] =
-          description: activity.description
-          description_Short: activity.description.substring(0,130)
-          #description_rest : activity.description.substring(75)
-          show_Short: true
+          description      : activity.description
+          hide_Description : true
+          answers          : activity.answers
       descriptions
 
 

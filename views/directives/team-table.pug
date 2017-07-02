@@ -30,20 +30,27 @@
                 td(ng-show="show_Fields['Activity'   ]", width="450")
                     span {{cells[4]}}
                     span.hide-for-print
-                        a(ng-mouseenter='descriptions[cells[2]].show_Short=false' ng-mouseleave='descriptions[cells[2]].show_Short=true') &#32; *
+                        a(ng-mouseenter='descriptions[cells[2]].hide_Description=false' ng-mouseleave='descriptions[cells[2]].hide_Description=true') &#32; *
                         span(ng-show="descriptions[cells[2]]")
-                            span(ng-show="!descriptions[cells[2]].show_Short")
+                            span(ng-show="!descriptions[cells[2]].hide_Description")
                                 .panel(style='position:absolute;width:450px;left:250px') {{ descriptions[cells[2]].description }}
                 td(ng-show="show_Fields['Objective'  ]") {{ schema_Details.activities[cells[2]].objective}}
                 td(ng-show="show_Fields['Description']", width="450")  {{ descriptions[cells[2]].description }}
-                td(ng-show="show_Fields['Yes'        ]").text-center
+
+                td.text-center(ng-show="descriptions[cells[2]].answers != null" colspan=4)
+                    select( ng-model='data.activities[cells[2]].value' ng-change='onChanged(this)')
+                        option(ng-repeat="answer in descriptions[cells[2]].answers track by answer.value" ng-value='answer.value') {{ answer.text }}
+                    //pre {{ data.activities[cells[2]].value }}
+
+                td(ng-show="show_Fields['Yes'        ] && descriptions[cells[2]].answers == null").text-center
                     input(type='radio' ng-checked= 'cells[5]' ng-model="data.activities[cells[2]].value" value='Yes'   ng-change='onChanged(this)' )
-                td(ng-show="show_Fields['No'         ]").text-center
+                td(ng-show="show_Fields['No'         ] && descriptions[cells[2]].answers == null").text-center
                     input(type='radio' ng-checked= 'cells[6]' ng-model="data.activities[cells[2]].value" value='No'    ng-change='onChanged(this)' )
-                td(ng-show="show_Fields['NA'         ]").text-center
+                td(ng-show="show_Fields['NA'         ] && descriptions[cells[2]].answers == null").text-center
                     input(type='radio' ng-checked= 'cells[7]' ng-model="data.activities[cells[2]].value" value='NA'    ng-change='onChanged(this)' )
-                td(ng-show="show_Fields['Maybe'      ]").text-center
+                td(ng-show="show_Fields['Maybe'      ] && descriptions[cells[2]].answers == null").text-center
                     input(type='radio' ng-checked= 'cells[8]' ng-model="data.activities[cells[2]].value" value='Maybe' ng-change='onChanged(this)' )
+
                 td(ng-show="show_Fields['Proof'      ]", width="250")
                     span {{ data.activities[cells[2]].proof }}
                 td(ng-show="show_Fields['Proof_Edit' ]")
