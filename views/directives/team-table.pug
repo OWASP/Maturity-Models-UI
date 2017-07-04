@@ -50,8 +50,7 @@
                     input(type='radio' ng-checked= 'cells[7]' ng-model="data.activities[cells[2]].value" value='NA'    ng-change='onChanged(this)' )
                 td(ng-show="show_Fields['Maybe'      ] && descriptions[cells[2]].answers == null").text-center
                     input(type='radio' ng-checked= 'cells[8]' ng-model="data.activities[cells[2]].value" value='Maybe' ng-change='onChanged(this)' )
-
-                td(ng-show="show_Fields['Proof'      ]", width="250")
+                td(ng-show="show_Fields['Proof'      ]", width="450")
                     span {{ data.activities[cells[2]].proof }}
                 td(ng-show="show_Fields['Proof_Edit' ]")
                     textarea(ng-model='data.activities[cells[2]].proof' ng-change='onChanged(this)')
