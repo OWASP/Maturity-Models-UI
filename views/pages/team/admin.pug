@@ -3,11 +3,22 @@ div(ng-controller='TeamAdminController')
     .row.fullWidth
         .small-2.columns
             label.right.inline
-                b Delete Team:
+                b New team name:
+        .small-3.columns
+            input(type='text' ng-model='newTeamName' placeholder='New team name')
         .small-2.columns
-            a.button.postfix#delete-button(ng-click='delete_Team()') {{delete_Button_Message}}
-        .small-2.columns
+            a.button.postfix#rename-button(ng-click='rename_Team(newTeamName)') {{rename_Button_Message}}
         .small-1.columns
-            .center.label.round#status-label(ng-class='messageClass') {{status}}
+            .center.label.round#teamname-label(ng-class='messageClass' ng-if='!!renameStatus') {{renameStatus}}
+        .small-4.columns
+
+    .row.fullWidth
+        .small-2.columns
+            label.right.inline
+                b Delete Team:
+        .small-3.columns
+            a.button.postfix#delete-button(ng-click='delete_Team()') {{delete_Button_Message}}
+        .small-1.columns
+            .center.label.round#status-label(ng-class='messageClass' ng-if='!!deleteStats') {{deleteStatus}}
         .small-4.columns
 
