@@ -1,1 +1,1 @@
-angular.module('MM_Graph').run ($httpBackend)-> $httpBackend.whenGET('/api/v1/project/list').respond ["bsimm","samm"]
+angular.module('MM_Graph').run ($httpBackend)-> $httpBackend.whenGET('/api/v1/project/list').respond ["bsimm","ASVS","samm"]

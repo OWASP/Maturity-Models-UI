@@ -22,6 +22,11 @@ module.exports = function(config) {
             'data/**/*.coffee': ['coffee'],
             'test/**/*.coffee': ['coffee'],
         },
+        coffeePreprocessor: {
+            options: {
+                sourceMap: true
+            }
+        },
         reporters     : ['progress'],
         port          : 9876,
         colors        : true,

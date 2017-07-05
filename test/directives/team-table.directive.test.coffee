@@ -6,7 +6,9 @@ describe 'directive | team-table', ->
   html    = null
 
   beforeEach ()->
-    module('MM_Graph')
+    module('MM_Graph', ($provide) ->
+      $provide.constant 'team_Mappings', load_Data: ->
+    )
 
   beforeEach ->
     inject ($rootScope, $controller, $compile)->
@@ -15,6 +17,7 @@ describe 'directive | team-table', ->
       $compile(element)($scope)
       $scope.$apply()
       html     = element.outerHTML
+
 
   it 'check columns names', ->
     table_Headers = (a.innerText for a in $(html).find('th'))

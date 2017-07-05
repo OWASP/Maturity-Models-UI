@@ -20,7 +20,7 @@ describe 'controllers | Table-Controller', ->
   it 'check $scope values', ->
     $scope.data.keys().assert_Is [ 'metadata', 'activities' ]
     $scope.rows.size().assert_Is 39
-    $scope.score      .assert_Is '50%'
+    $scope.score      .assert_Is '64%'
     $scope.show       .assert_Is_True()
 
 

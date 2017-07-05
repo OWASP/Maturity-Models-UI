@@ -42,13 +42,13 @@ describe '_issues | bugs', ->
       sequence = 0
       promise = api._GET url, (data)->
         (++sequence).assert_Is 2                                # only called after $httpBackend.flush()
-        data.assert_Is ['bsimm', 'samm']
+        data.assert_Is ['bsimm', 'ASVS', 'samm']
       promise.then (data)->
         (++sequence).assert_Is 3                                # called after original promise callback is invoked
-        data.assert_Is ['bsimm', 'samm']
+        data.assert_Is ['bsimm', 'ASVS', 'samm']
       promise.then (data)->
         (++sequence).assert_Is 4                                # confirms multiple calls to 'then' are honored
-        data.assert_Is ['bsimm', 'samm']
+        data.assert_Is ['bsimm', 'ASVS', 'samm']
       (++sequence).assert_Is 1
       $httpBackend.flush()                                      # flush request and trigger callback to first load_Data call
       (++sequence).assert_Is 5                                  # confirms that all 'then' have been called
